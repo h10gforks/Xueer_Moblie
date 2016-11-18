@@ -45,11 +45,12 @@ export default {
 @import '../../assets/value.scss';
 
 .object {
+	font-size: 28px; /*no*/
+	font-weight: 300;
 	padding: 0 16px; 
 }
 .title {
 	font-size: 40px;/*no*/
-	font-weight: lighter;
 	line-height: 28px;
 	padding: 14px 0 16px;
 	border-bottom: 1px solid $shallow_silver;
@@ -62,7 +63,6 @@ export default {
 .info {
 	font-size: 28px; /*no*/
 	line-height: 14px;
-	font-weight: lighter;
 	color: $shallow_grey;
 	display: inline-block;
 	width: 50%;
@@ -74,21 +74,20 @@ export default {
 	text-align: right;
 }
 .cont {
-	font-size: 28px; /*no*/
-	line-height: 18px;
+	line-height: 36px; /*no*/
 }
 .cont p {
 	margin: 15px 0;
 }
 .cont blockquote {
-	display: inline-block;
+	padding: 10px 0 10px 20px; /*px*/
+    margin: 30px 0 30px 30px; /*px*/
 	position: relative;
-	margin-left: 15px;
     font-weight: 300;
     font-style: italic;
     color: $shallow_grey;
     letter-spacing: .08em;
-    border-left: .166667rem solid #ddd;
+    border-left: 6px solid #ddd;
 }
 .cont blockquote::before {
 	position: absolute;
@@ -100,6 +99,6 @@ export default {
     margin-left: .7em;
 }
 .cont blockquote p {
-	margin: 21px 0 21px 10px;
+	margin: 15px 0 15px;
 }
 </style>

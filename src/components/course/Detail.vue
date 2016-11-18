@@ -1,22 +1,19 @@
 <template>
-	<div class="courses">
+	<div :class="$style.detail">
 		
 	</div>
 </template>
 
 <script>
 export default {
-	data () {
+	data (){
 		return {
-			courses: ''
+			
 		}
-	}, 
-	created () {
-		
 	}
 }
 </script>
 
 <style lang="sass" module>
-
+	
 </style>
