@@ -1,28 +1,68 @@
 <template>
 	<div :class="$style.cont">
-		<div :class="$style.artical_cont">
-			<div :class="$style.img_cont">
-				<img src="http://a.cphotos.bdimg.com/timg?image&quality=100&size=b4000_4000&sec=1479308824&di=496eed6a71a3856bb4a12352f530621b&src=http://file27.mafengwo.net/M00/B2/12/wKgB6lO0ahWAMhL8AAV1yBFJDJw20.jpeg">
-			</div>
-			<div :class="$style.overview">
-				<p :class="$style.intro">
-					评价最高的课程合集，最热门的课程评价
-				</p>
-				<div :class="$style.like">
-					<div :class="$style.view"></div>
-					<div :class="$style.liked"></div>
+		<div v-for="item in tips" :class="$style.artical_cont">
+			<router-link :to="{ name: 'tip', params: { id: item.id }}">
+				<div :class="$style.img_cont">
+					<img :src="item.img_url">
 				</div>
-				<div :class="$style.time">2015-01-30</div>
+			</router-link>
+			<div :class="$style.overview">
+				<router-link :to="{ name: 'tip', params: { id: item.id,cont: item.body }}">
+					<p :class="$style.intro">
+						{{ item.title }}
+					</p>
+				</router-link>
+				<div :class="$style.like">
+					<div :class="$style.view">
+						<svg :class="$style.icon_views">
+  							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#views_count"></use>
+						</svg>
+						<span :class="$style.count">{{ item.views }}</span>
+					</div>
+					<div :class="$style.liked">
+						<svg :class="$style.icon_likes">
+  							<use :class="$style.use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
+						</svg>
+						<span :class="$style.count">{{ item.likes }}</span>
+					</div>
+				</div>
+				<div :class="$style.time">{{ item.date }}</div>
 			</div>
+			<router-view></router-view>
 		</div>
 	</div>
 </template>
 
+<script>
+export default {
+	data (){
+		return {
+			tips: ''
+		}
+	},
+	mounted () {
+		this.fetchData()
+	},
+	methods: {
+		fetchData() {
+			var self = this
+			fetch('/api/v1.0/tips/')
+			.then(function(response) {
+			    response.json().then(function(json) {
+  					self.tips = json
+  					console.log(json)
+    			});
+			})
+		}
+	}
+}
+</script>
+
 <style lang='sass' module>
 @import '../../assets/value.scss';
 
-img {
-	width: 100%;
+.img_cont {
+	height: 140px;
 }
 .artical_cont {
 	margin: 16px 16px 0;
@@ -44,10 +84,13 @@ img {
 .like {
 	margin: 22px 0 0;
 	font-size: 0;
+	color: #FFF;
 }
 .view,
 .liked {
 	display: inline-block;
+	text-align: center;
+	font-size: 0;
 	width: 64px;
 	height: 20px;
 	border-radius: 2px;
@@ -55,6 +98,22 @@ img {
 }
 .view {
 	margin-right: 11px;
+}
+.icon_views {
+	width: 40px; /*px*/
+    height: 20px; /*px*/
+}
+.icon_likes {
+	width: 30px; /*px*/
+    height: 25px; /*px*/
+}
+.count,.icon_views,.icon_likes {
+	vertical-align: middle;
+}
+.count {
+	line-height: 20px;
+	font-size: 24px;/*px*/
+	padding-left: 7px;
 }
 .time {
 	position: absolute;

@@ -8,7 +8,7 @@ const csso = require('postcss-csso');
 
 module.exports = {
 	entry: {
-		'bundle.js': ['./src/main.js', 'webpack-hot-middleware/client']
+		'bundle.js': ['whatwg-fetch','./src/main.js', 'webpack-hot-middleware/client']
 	},
 	output: {
 		path: '/',

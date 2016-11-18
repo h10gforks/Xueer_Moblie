@@ -5,11 +5,25 @@ Vue.use(VueRouter)
 
 import Index from '../components/index/Cont.vue'
 import Recommend from '../components/index/Recommend.vue'
+import Subject from '../components/subject/Subject.vue'
 
 module.exports = new VueRouter({
     base: __dirname,
     routes: [
-        { path: '/index', component: Index },
-        { path: '/recommend', component: Recommend },
+        { 
+        	name: 'index',
+        	path: '/', 
+        	component: Index,
+        },
+        { 
+        	name: 'recommend',
+        	path: '/recommend', 
+        	component: Recommend 
+        },
+        {
+            name: 'tip',
+            path: '/tip/:id',
+            component: Subject
+        }
     ]
 })

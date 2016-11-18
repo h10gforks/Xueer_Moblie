@@ -3,7 +3,7 @@ html,body {
 }
 body {
 	margin: 0;
-	font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
+	font-family: "STHeiti","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
 }
 div,
 span {
@@ -18,4 +18,11 @@ h2 {
 a {
 	text-decoration: none;
 	outline: none;
+}
+img {
+	width: 100%;
+	height: 100%;
+}
+blockquote {
+	margin: 0;
 }

@@ -15,6 +15,6 @@ export default {
 .nav_bar {
 	width: 100%;
 	height: 56px;
-	box-shadow: 0 0 5px $shallow_silver; /*no*/
+	border-bottom: 1px solid $shallow_silver;
 }
 </style>

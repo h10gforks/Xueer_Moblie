@@ -1,15 +1,16 @@
 <template>
 	<div :class="$style.index">
 		<navBar></navBar>
-		<div :class="$style.tabs">
+		<iconSvg></iconSvg>
+		<div v-if="isIndex" :class="$style.tabs">
 			<div :class="$style.item">
-				<router-link :class="$style.active" to="/index">首页</router-link>
+				<router-link :class="[$style.active,$style.link]" to="/">首页</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link to="/recommend">推荐课程</router-link>
+				<router-link :class="$style.link" to="/recommend">推荐课程</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link to="/index">所有课程</router-link>
+				<router-link :class="$style.link" to="/index">所有课程</router-link>
 			</div>
 		</div>
 		<div>
@@ -20,11 +21,25 @@
 
 <script>
 import NavBar from './common/NavBar.vue'
+import IconSvg from './common/IconSvg.vue'
 import Cont from './index/Cont.vue'
 export default {
+	data(){
+		return {
+			isIndex: true
+		}
+	},
 	components: {
 		NavBar,
+		IconSvg,
 		Cont
+	},
+	updated (){
+		if (this.$router.currentRoute.name !== 'index' ) {
+			this.isIndex = false
+		} else {
+			this.isIndex = true
+		}
 	}
 }
 </script>
@@ -42,20 +57,19 @@ export default {
 	font-size: 0;
 	background: $shallow_silver;
 }
-.active {
-	border-bottom: 4px solid currentColor;
-	color: #EEAB5D;
-}
 .item {
 	width: 80px;
 	display: inline-block;
 	font-size: 14px;
 	text-align: center;
 }
-a {
+.link {
 	display: inline-block;
 	color: #666666;
-	padding: 0 5px;
 	line-height: 44px;
+}
+.active {
+	border-bottom: 4px solid currentColor;
+	color: #EEAB5D;
 }
 </style>

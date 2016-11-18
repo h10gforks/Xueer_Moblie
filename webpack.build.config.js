@@ -10,7 +10,7 @@ const px2rem = require('postcss-px2rem');
 const csso = require('postcss-csso');
 
 module.exports = {
-	entry: path.resolve(__dirname,'./src/main.js'),
+	entry: ['whatwg-fetch',path.resolve(__dirname,'./src/main.js')],
 	output: {
 		path: path.join(__dirname, '/static'),
 		publicPath: '/static/',
