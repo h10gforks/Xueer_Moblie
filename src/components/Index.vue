@@ -1,7 +1,5 @@
 <template>
 	<div :class="$style.index">
-		<navBar></navBar>
-		<iconSvg></iconSvg>
 		<div v-if="isIndex" :class="$style.tabs">
 			<div :class="$style.item">
 				<router-link :class="[$style.active,$style.link]" to="/">首页</router-link>
@@ -20,19 +18,11 @@
 </template>
 
 <script>
-import NavBar from './common/NavBar.vue'
-import IconSvg from './common/IconSvg.vue'
-import Cont from './index/Cont.vue'
 export default {
 	data(){
 		return {
 			isIndex: true
 		}
-	},
-	components: {
-		NavBar,
-		IconSvg,
-		Cont
 	},
 	updated (){
 		if (this.$router.currentRoute.name !== 'index' ) {

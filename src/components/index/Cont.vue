@@ -7,7 +7,7 @@
 				</div>
 			</router-link>
 			<div :class="$style.overview">
-				<router-link :to="{ name: 'tip', params: { id: item.id,cont: item.body }}">
+				<router-link :to="{ name: 'tip', params: { id: item.id }}">
 					<p :class="$style.intro">
 						{{ item.title }}
 					</p>
