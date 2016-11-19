@@ -2,7 +2,8 @@
   	<div :class="$style.app" id="app">
   		<navBar></navBar>
 		<iconSvg></iconSvg>
-  		<index></index>
+  		<!-- <index></index> -->
+		<detail></detail>
   	</div>
 </template>
 
@@ -10,11 +11,16 @@
 import Index from './components/Index.vue'
 import NavBar from './components/common/NavBar.vue'
 import IconSvg from './components/common/IconSvg.vue'
+
+//写detail暂时引入
+import Detail from './components/course/Detail.vue'
+
 export default {
 	components: {
 		NavBar,
 		IconSvg,
-		Index
+		Index,
+		Detail
 	}
 }
 </script>

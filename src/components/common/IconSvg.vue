@@ -1,4 +1,4 @@
-<template>
+<template>heart_f
     <svg style="display:none">
         <symbol id="views_count" viewBox="0 0 20 10">
             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -14,8 +14,8 @@
             </g>
         </symbol>
         <symbol id="heart_f" viewBox="0 0 13 12">
-            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="outline" transform="translate(-305.000000, -423.000000)" fill="#FFFFFF">
+            <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+                <g id="outline" transform="translate(-305.000000, -423.000000)">
                     <g id="4" transform="translate(15.000000, 343.000000)">
                         <g id="Group-Copy-2" transform="translate(57.000000, 3.000000)">
                             <path d="M239.5,79.25 C239.016111,77.951 237.6605,77 236.25,77 C234.413389,77 233,78.449 233,80.375 C233,83.02175 235.739389,85.0685 239.5,89 C243.260611,85.0685 246,83.02175 246,80.375 C246,78.449 244.586611,77 242.75,77 C241.338056,77 239.983889,77.951 239.5,79.25 Z" id="Shape-Copy-2"></path>
