@@ -10,33 +10,24 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-	data (){
-		return {
-			cont: '',
-			title: '',
-			author: '',
-			date: ''
-		}
-	},
 	created () {
-		this.fetchData()
+		this.fetchSubject(this.$route.params.id)
+	},
+	computed: {
+	    ...mapGetters([
+	    	'cont',
+			'title',
+			'author',
+			'date'
+	    ])
 	},
 	methods: {
-		fetchData() {
-			var self = this
-			var url = '/api/v1.0/tips/' + this.$route.params.id
-			fetch(url)
-			.then(function(response) {
-			    response.json().then(function(json) {
-  					self.cont = json.body
-  					self.title = json.title
-  					self.author = json.author
-  					self.date = json.date
-  					console.log(json)
-    			});
-			})
-		}
+		...mapActions([
+			'fetchSubject'
+		])
 	}
 }
 </script>
@@ -45,12 +36,12 @@ export default {
 @import '../../assets/value.scss';
 
 .object {
-	font-size: 28px; /*no*/
+	font-size: 28px; /*px*/
 	font-weight: 300;
 	padding: 0 16px; 
 }
 .title {
-	font-size: 40px;/*no*/
+	font-size: 40px;/*px*/
 	line-height: 28px;
 	padding: 14px 0 16px;
 	border-bottom: 1px solid $shallow_silver;
@@ -61,7 +52,7 @@ export default {
 	padding: 10px 0;
 }
 .info {
-	font-size: 28px; /*no*/
+	font-size: 28px; /*px*/
 	line-height: 14px;
 	color: $shallow_grey;
 	display: inline-block;
@@ -74,7 +65,7 @@ export default {
 	text-align: right;
 }
 .cont {
-	line-height: 36px; /*no*/
+	line-height: 36px; /*px*/
 }
 .cont p {
 	margin: 15px 0;

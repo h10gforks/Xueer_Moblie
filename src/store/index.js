@@ -1,8 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+//全局的getters、actions、mutations
 import * as getters from './getters'
 import * as actions from './actions'
 import * as mutations from './mutations'
+
+//
+import home from './modules/home'
+import subject from './modules/subject'
+import detail from './modules/detail'
+
 
 Vue.use(Vuex)
 
@@ -14,6 +22,11 @@ const store = new Vuex.Store({
   state,
   getters,
   actions,
+  modules: {
+    home,
+    subject,
+    detail
+  },
   mutations
 })
 

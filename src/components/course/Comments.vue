@@ -1,6 +1,6 @@
 <template>
 	<div :class="$style.comments">
-		<li v-for="item in _comments" :class="$style.comment_item">
+		<li v-for="item in comments" :class="$style.comment_item">
 	        <div :class="$style.space">
 	            <div :class="$style.avatar">
 					<img :src="item.avatar">
@@ -31,15 +31,7 @@
 
 <script>
 export default {
-	data () {
-		return {
-			_comments: []
-		}
-	},
 	props:['comments'],
-	created() {
-		this._comments = this.comments
-	},
 	methods: {
 		showMore(item) {
 			item.body = item._body

@@ -34,26 +34,21 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-	data (){
-		return {
-			tips: ''
-		}
-	},
 	mounted () {
 		this.fetchData()
 	},
+	computed: {
+	    ...mapGetters([
+	    	'tips'
+	    ])
+	},
 	methods: {
-		fetchData() {
-			var self = this
-			fetch('/api/v1.0/tips/')
-			.then(function(response) {
-			    response.json().then(function(json) {
-  					self.tips = json
-  					console.log(json)
-    			});
-			})
-		}
+		...mapActions([
+			'fetchData'
+		])
 	}
 }
 </script>
@@ -106,6 +101,9 @@ export default {
 .icon_likes {
 	width: 30px; /*px*/
     height: 25px; /*px*/
+}
+.icon_likes use {
+	fill: #FFF;
 }
 .count,.icon_views,.icon_likes {
 	vertical-align: middle;
