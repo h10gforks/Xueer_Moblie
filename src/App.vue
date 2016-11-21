@@ -1,5 +1,6 @@
 <template>
   	<div :class="$style.app" id="app">
+  		<a name="top"></a>
   		<navBar></navBar>
 		<iconSvg></iconSvg>
   		<!-- <index></index> -->

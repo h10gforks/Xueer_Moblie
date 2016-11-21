@@ -2,7 +2,9 @@ const state = {
     info: {},
     hot_tags: [],
     comments: [],
-    hot_comments: []
+    hot_comments: [],
+    page: 0,
+    more: true
 }
 
 const getters = {
@@ -10,15 +12,12 @@ const getters = {
     hot_tags: state => state.hot_tags,
     comments: state => state.comments,
     hot_comments: state => state.hot_comments,
+    more: state => state.more
 }
 
 const actions = {
     fetchInfo({ commit, state }) {
-        new Promise((resolve) =>{
-            var info = commit('fetchInfo')
-        }).then(
-            commit('getTag',state)
-        )
+        commit('fetchInfo')
     },
     fetchComments({ commit, state }) {
         commit('fetchComments')
@@ -34,23 +33,28 @@ const mutations = {
         .then(function(response) {
             response.json().then(function(json) {
                 state.info = json
-                return json
+                state.views = json.views
+                let hot_tags = json.hot_tags.split(' ')
+                hot_tags.unshift(json.main_category)
+                state.hot_tags = hot_tags
             });
         })
     },
-    getTag(state){
-        for(var key in state) {
-             console.log(state[key])
-        }
-        // var arr = this.hot_tags = tags.split(' ')
-        // this.hot_tags.unshift(this.info.main_category)
-        // return arr;
-    },
     fetchComments() {
-        fetch('/api/v1.0/courses/190/comments/')
+        state.page++
+        let url = '/api/v1.0/courses/190/comments/'+"?page="+state.page+"&per_page=10"
+        fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
-                state.comments = json
+                preprocess(json)
+                if (json.length == 0) {
+                    state.more = false
+                    return;
+                }
+                state.comments = state.comments.concat(json)
+                if (state.comments.length >= state.views) {
+                    state.more = false
+                }
             })
         })
     },
@@ -58,18 +62,20 @@ const mutations = {
         fetch('/api/v1.0/courses/190/comments/hot/')
         .then(function(response) {
             response.json().then(function(json) {
-                state.hot_comments = json
+                 preprocess(json)
+                 state.hot_comments = state.hot_comments.concat(json)
             })
         })
     },
-    // preprocess(json) {;
-    //     json.forEach(function(element, index, array){
-    //         if(element.body.length >= 60) {
-    //             element._body = element.body
-    //             element.body =element.body.substr(0,60)
-    //         }
-    //     })
-    // }
+}
+var preprocess = (json) => {
+    json.forEach(function(element, index, array){
+        if(element.body.length >= 60) {
+            element._body = element.body
+            element.body =element.body.substr(0,60)
+        }
+    })
+    return json
 }
 
 export default {

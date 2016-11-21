@@ -6,6 +6,8 @@ import 'whatwg-fetch'
 
 import router from './route/router.js'
 
+import directives from './directives.js'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

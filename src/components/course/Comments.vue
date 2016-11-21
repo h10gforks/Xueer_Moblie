@@ -49,9 +49,6 @@ export default {
 	padding-top: 21px;
 	border-bottom: 2px solid #ececec; /*px*/
 }
-.comment_item:last-child {
-	margin-bottom: 16px;
-}
 .avatar, .content {
 	display: inline-block;
 	vertical-align: top;

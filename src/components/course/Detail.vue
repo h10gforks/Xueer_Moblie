@@ -18,7 +18,19 @@
 		<div :class="$style.comments">
 			<h2 :class="[$style.comments_title, $style.title_all]">所有评论</h2>
 			<comment :comments="comments"></comment>
+			<div v-if="more" @click="moreComments" :class="$style.more_comments">展开更多评价</div>
+			<div v-else :class="$style.no_more_comments">
+				∑(っ °Д °;)っ
+				<br>没有更多评价了。
+			</div>
 		</div>
+		<div v-show="back_to_top" v-scroll="scrollHandler" :class="$style.back_to_top">
+	        <svg :class="$style.arrow_icon">
+	               <a href="#top">
+	               		<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back_to_top"></use>
+	               </a>
+	        </svg>   
+	     </div>
 	</div>
 </template>
 
@@ -27,30 +39,39 @@ import { mapGetters, mapActions } from 'vuex'
 
 import Comment from './Comments.vue'
 export default {
+	data() {
+		return {
+			back_to_top: false
+		}
+	},
 	computed: {
 	    ...mapGetters([
 	    	'info',
 	    	'hot_tags',
 	    	'comments',
-	    	'hot_comments'
+	    	'hot_comments',
+	    	'more'
 	    ])
 	},
 	created (){
-		let self = this
-		new Promise((resolve) => {
-            self.fetchInfo()
-        }).then(
-        	self.fetchComments()
-        ).then(
-        	self.fetchHotComments()
-        )
+        this.fetchInfo()
+    	this.fetchComments()
+    	this.fetchHotComments()
+        
 	},
 	methods: {
 		...mapActions([
 			'fetchInfo',
 			'fetchComments',
 			'fetchHotComments'
-		])
+		]),
+		moreComments() {
+			this.fetchComments()
+		},
+		scrollHandler() {
+			let scrollTop = document.body.scrollTop
+			scrollTop > 10 ? this.back_to_top = true : this.back_to_top = false
+		}
 	},
 	components: {
 		Comment
@@ -116,5 +137,33 @@ export default {
     padding: 0 0 16px;
     color: #666;
     border-bottom: 2px solid #ececec; /*px*/
+}
+.more_comments {
+	border: 2px solid currentColor; /*px*/
+    border-radius: 4px; /*px*/
+    text-align: center;
+    width: 156px;
+    line-height: 38px;
+    font-size: 32px; /*px*/
+    color: $_yellow;
+    margin: 17px auto;
+}
+.no_more_comments {
+	font-size: 28px; /*px*/
+	color: #999;
+    width: 120px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+.back_to_top {
+	height: 40px;
+    width: 40px;
+    position: fixed;
+    bottom: 52px;
+    right: 16px;
+}
+.arrow_icon {
+	width: 100%;
+	height: 100%;
 }
 </style>
