@@ -4,16 +4,18 @@
   		<navBar></navBar>
 		<iconSvg></iconSvg>
   		<!-- <index></index> -->
-		<detail></detail>
+		<!-- <detail></detail> -->
+		<!-- <loginDialog></loginDialog> -->
+		<loading></loading>
   	</div>
 </template>
 
 <script>
 import Index from './components/Index.vue'
 import NavBar from './components/common/NavBar.vue'
+import loginDialog from './components/common/loginDialog.vue'
 import IconSvg from './components/common/IconSvg.vue'
-
-//写detail暂时引入
+import Loading from './components/common/loading.vue'
 import Detail from './components/course/Detail.vue'
 
 export default {
@@ -21,7 +23,9 @@ export default {
 		NavBar,
 		IconSvg,
 		Index,
-		Detail
+		Detail,
+		loginDialog,
+		Loading
 	}
 }
 </script>

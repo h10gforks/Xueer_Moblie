@@ -4,8 +4,18 @@
 			<h2 :class="$style.title">{{ info.title }}</h2>
 			<div :class="$style.teacher">{{ info.teacher }}</div>
 			<div :class="$style.btns">
-				<div></div>
-				<div></div>
+                <div :class="$style.btn" id="course_like">
+	                   <svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon]">
+	                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_s"></use>
+	                   </svg>
+	                   <span :class="$style.btn_text">{{ info.likes }}</span>
+                </div>
+                <div :class="$style.btn" id="w_comment">
+	                    <svg viewBox="0 0 17 14" :class="[$style.icon, $style.comment_icon]">
+	                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments"></use>
+	                    </svg>
+	                    <span :class="$style.btn_text">写评价</span>
+                </div>
 			</div>
 		</div>
 		<div :class="$style.tags">
@@ -165,5 +175,37 @@ export default {
 .arrow_icon {
 	width: 100%;
 	height: 100%;
+}
+.btns {
+	font-size: 0;
+	margin: 0 16px 16px;
+}
+.btn {
+	display: inline-block;
+	border: 2px solid #fff; /*px*/
+    border-radius: 4px; /*px*/
+    vertical-align: top;
+    font-size: 0;
+    line-height: 14px;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 10px 40px;
+}
+.btn:first-child {
+	margin-right: 16px;
+}
+.icon,.btn_text {
+	vertical-align: middle;
+}
+.icon {
+	width: 17px;
+	height: 14px;
+	margin-right: 8px;
+}
+.btn_text {
+	display: inline-block;
+	min-width: 48px;
+	text-align: center;
+	font-size: 28px; /*px*/
 }
 </style>
