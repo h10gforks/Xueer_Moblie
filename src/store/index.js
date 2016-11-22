@@ -10,12 +10,13 @@ import * as mutations from './mutations'
 import home from './modules/home'
 import subject from './modules/subject'
 import detail from './modules/detail'
+import search from './modules/search'
 
 
 Vue.use(Vuex)
 
 const state = {
-  count: 0
+  
 }
 
 const store = new Vuex.Store({
@@ -25,7 +26,8 @@ const store = new Vuex.Store({
   modules: {
     home,
     subject,
-    detail
+    detail,
+    search
   },
   mutations
 })
