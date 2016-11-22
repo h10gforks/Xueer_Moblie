@@ -7,7 +7,8 @@
 		<!-- <detail></detail> -->
 		<!-- <loginDialog></loginDialog> -->
 		<!-- <loading></loading> -->
-		<search></search>
+		<!-- <search></search> -->
+		<Foot></Foot>
   	</div>
 </template>
 
@@ -17,6 +18,7 @@ import NavBar from './components/common/NavBar.vue'
 import loginDialog from './components/common/loginDialog.vue'
 import IconSvg from './components/common/IconSvg.vue'
 import Loading from './components/common/loading.vue'
+import Foot from './components/common/Foot.vue'
 import Search from './components/search/Search.vue'
 import Detail from './components/course/Detail.vue'
 
@@ -28,7 +30,8 @@ export default {
 		Detail,
 		loginDialog,
 		Loading,
-		Search
+		Search,
+		Foot
 	}
 }
 </script>
