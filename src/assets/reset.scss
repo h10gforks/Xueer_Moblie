@@ -30,10 +30,10 @@ img {
 blockquote {
 	margin: 0;
 }
-button {
+input, button {
 	padding: 0;
 	border: 0;
 }
-input, button {
+input, button, textarea {
 	outline: none;
 }

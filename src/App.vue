@@ -3,12 +3,13 @@
   		<a name="top"></a>
   		<navBar></navBar>
 		<iconSvg></iconSvg>
-  		<!-- <index></index> -->
-		<!-- <detail></detail> -->
-		<!-- <loginDialog></loginDialog> -->
-		<!-- <loading></loading> -->
-		<!-- <search></search> -->
-		<Foot></Foot>
+  		<!-- <index></index>
+		<detail></detail>
+		<loginDialog></loginDialog>
+		<loading></loading>
+		<search></search>
+		<Foot></Foot> -->
+		<newComment></newComment>
   	</div>
 </template>
 
@@ -21,6 +22,7 @@ import Loading from './components/common/loading.vue'
 import Foot from './components/common/Foot.vue'
 import Search from './components/search/Search.vue'
 import Detail from './components/course/Detail.vue'
+import NewComment from './components/course/NewComment.vue'
 
 export default {
 	components: {
@@ -31,7 +33,8 @@ export default {
 		loginDialog,
 		Loading,
 		Search,
-		Foot
+		Foot,
+		NewComment
 	}
 }
 </script>

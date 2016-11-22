@@ -129,7 +129,7 @@ export default {
 }
 .tags_item {
 	font-size: 28px; /*px*/
-    border-radius: 4px; 
+    border-radius: 4px; /*px*/
     display: inline-block;
     line-height: 14px;
     background-color: #cdcdcd;

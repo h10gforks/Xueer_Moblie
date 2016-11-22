@@ -3,7 +3,7 @@
 		<li v-for="item in comments" :class="$style.comment_item">
 	        <div :class="$style.space">
 	            <div :class="$style.avatar">
-					<img :src="item.avatar">
+					<img src="http://xueer.muxixyz.com/static/x_m/avatar.png">
 	            </div>
 	            <div :class="$style.content">
 	                <div :class="$style.name">{{ item.user_name }}</div>
@@ -26,6 +26,7 @@
 	            </div>
 	        </div>
 	    </li>
+	    <div :class="$style.no_comments">∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div></div></div>
 	</div>
 </template>
 
@@ -105,5 +106,11 @@ export default {
 .more_text {
 	font-size: 28px; /*px*/
 	color: $shallow_grey;
+}
+.no_comments {
+	padding-top: 15px;
+	font-size: 28px; /*px*/
+    text-align: center;
+    color: #999;
 }
 </style>
