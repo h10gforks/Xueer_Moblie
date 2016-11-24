@@ -1,5 +1,5 @@
 <template>
-	<div :class="$style.tags">
+	<div @click="add_tag" :class="$style.tags">
 		<span v-for="item in hot_tags" :class="$style.tags_item">{{ item }}</span>
 	</div>
 </template>
@@ -9,6 +9,13 @@ export default {
 	data() {
 		return {
 			hot_tags: ['作业少','有意思','有点难','老师颜值高']
+		}
+	},
+	methods: {
+		add_tag(ev) {
+			if(ev.target.tagName == 'SPAN' || 'span') {
+				
+			}
 		}
 	}
 }
