@@ -1,23 +1,42 @@
 <template>
 	<div @click="add_tag" :class="$style.tags">
-		<span v-for="item in hot_tags" :class="$style.tags_item">{{ item }}</span>
+		<span v-for="item in hot_tag" :class="$style.tags_item">{{ item }}</span>
 	</div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
 	data() {
 		return {
-			hot_tags: ['作业少','有意思','有点难','老师颜值高']
+			val : ''
 		}
 	},
+	computed: {
+	    ...mapGetters([
+	    	'hot_tag'
+	    ])
+	},
 	methods: {
+		...mapActions([
+			'clickTag',
+			'getTags'
+		]),
 		add_tag(ev) {
 			if(ev.target.tagName == 'SPAN' || 'span') {
-				
+				if(this.val == ev.target.textContent){
+					return
+				} else {
+					this.val = ev.target.textContent
+				}
+				this.$store.commit('clickTag',this.val)
 			}
 		}
-	}
+	},
+	created () {
+		this.getTags()
+	},
 }
 </script>
 

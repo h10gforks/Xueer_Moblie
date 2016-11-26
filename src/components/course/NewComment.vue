@@ -7,7 +7,7 @@
 	        </svg>
 	        <div :class="$style.input_cont">
 	        	<div :class="$style.pre_tags">
-	        		<span v-for="item in pre_tags">{{ item | pre_tags }}</span>
+	        		<span :class="$style.pre_tags_item" v-for="item in pre_tags">{{ item | pre_tags }}</span>
 	        	</div>
 	        	<div :class="$style.input_box">
 	        		<input @keyup.delete="deleteTag" v-model='tags' :class="$style.tag_input" type="text" name="tag" placeholder="添加标签：输入一个标签后逗号间隔开">
@@ -19,31 +19,31 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import Tag from '../common/Tag.vue'
 export default {
 	data() {
 		return {
-			tags: '',
-			pre_tags: []
+			tags: ''
 		}
 	},
+	computed: {
+		...mapGetters([
+			'tag',
+			'pre_tags'
+		])
+	},
 	watch: {
-		tags: function(val) {
-			let tags = val.split(',').join('，').split('，')
-			if (tags.length > 1 && tags[0]) {
-				this.pre_tags.push(tags[0])
-				tags.shift()
-				return this.tags = tags + ""
-			}
-			console.log(this.pre_tags)
+		tags: function(val){
+			this.$store.commit('preTags',val)
+			this.tags = this.tag
 		}
 	},
 	methods: {
-		deleteTag() {
-			if (this.pre_tags.length > 0) {
-				this.pre_tags.pop()
-			}
-		}
+		...mapActions([
+			'deleteTag'
+		])
 	},
 	components: {
 		Tag
@@ -69,7 +69,6 @@ export default {
 	border: 2px solid #ECECEC; /*px*/
 }
 .input_cont {
-	font-size: 28px; /*px*/
 	line-height: 14px;
 	padding: 12px 9px 9px 37px;
 	width: 100%;
@@ -87,15 +86,19 @@ export default {
 	height: 14px;
 }
 .pre_tags {
-	padding-top: 2px; /*px*/
 	color: #999999;
 	float: left;
 }
+.pre_tags_item {
+	font-size: 28px; /*px*/
+}
 .input_box {
-	padding-left: .5em;
 	overflow: hidden;
 }
 .tag_input {
+	padding-left: .5em;
+	line-height: 14px;
+	font-size: 28px; /*px*/
 	width: 100%;
 }
 </style>

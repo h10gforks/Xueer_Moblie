@@ -11,6 +11,8 @@ import home from './modules/home'
 import subject from './modules/subject'
 import detail from './modules/detail'
 import search from './modules/search'
+import newcomments from './modules/newcomments.js'
+import tag from './modules/tag.js'
 
 
 Vue.use(Vuex)
@@ -27,7 +29,9 @@ const store = new Vuex.Store({
     home,
     subject,
     detail,
-    search
+    search,
+    newcomments,
+    tag
   },
   mutations
 })
