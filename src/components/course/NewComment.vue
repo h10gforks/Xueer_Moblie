@@ -7,7 +7,7 @@
 	        </svg>
 	        <div :class="$style.input_cont">
 	        	<div :class="$style.pre_tags">
-	        		<span :class="$style.pre_tags_item" v-for="item in pre_tags">{{ item | pre_tags }}</span>
+	        		<span :class="$style.pre_tags_item" v-for="item in pre_tags">{{ item | preTag }}</span>
 	        	</div>
 	        	<div :class="$style.input_box">
 	        		<input @keyup.delete="deleteTag" v-model='tags' :class="$style.tag_input" type="text" name="tag" placeholder="添加标签：输入一个标签后逗号间隔开">
@@ -20,8 +20,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
+import preTag from '../../filters/filter.js'
 import Tag from '../common/Tag.vue'
+
 export default {
 	data() {
 		return {
@@ -33,6 +34,9 @@ export default {
 			'tag',
 			'pre_tags'
 		])
+	},
+	filters: {
+		preTag: preTag
 	},
 	watch: {
 		tags: function(val){

@@ -3,10 +3,10 @@
   		<a name="top"></a>
   		<navBar></navBar>
 		<iconSvg></iconSvg>
-		<detail></detail>
+		<!-- <detail></detail> -->
+		<newComment></newComment>
   		<!-- <index></index> -->
 		<!--<loginDialog></loginDialog>
-		<newComment></newComment>
 		<loading></loading>
 		<search></search> -->
 		<Foot></Foot>
