@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import scroll from '../../directives/scroll.js'
 export default {
 	data() {
 		return {
@@ -17,9 +18,13 @@ export default {
 	},
 	methods: {
 		scrollHandler() {
+			console.log("hello")
 			let scrollTop = document.body.scrollTop
 			scrollTop > 10 ? this.back_to_top = true : this.back_to_top = false
 		}
+	},
+	directives: {
+		scroll: scroll
 	}
 }
 </script>

@@ -5,8 +5,6 @@ import store from './store'
 import 'whatwg-fetch'
 
 import router from './route/router.js'
-
-import directives from './directives.js'
 import filter from './filter.js'
 
 /* eslint-disable no-new */

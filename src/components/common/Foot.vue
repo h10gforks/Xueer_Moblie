@@ -14,11 +14,8 @@
 <style lang='sass' module>
 .footer {
 	width: 100%;
-    height: 124px;
+    min-height: 124px;
     background-color: #666;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     text-align: center;
     color: #999;
 }

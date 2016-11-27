@@ -37,6 +37,9 @@ export default {
 <style lang='sass' module>
 @import '../assets/reset.scss';
 @import '../assets/value.scss';
+.index {
+	flex: 1;
+}
 .home {
 	font-family: 'STHeiti';
 	height: 100%;

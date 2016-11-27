@@ -4,13 +4,12 @@
   		<navBar></navBar>
 		<iconSvg></iconSvg>
 		<detail></detail>
-  		<!-- <index></index>
-		<detail></detail>
-		<loginDialog></loginDialog>
+  		<!-- <index></index> -->
+		<!--<loginDialog></loginDialog>
 		<newComment></newComment>
 		<loading></loading>
 		<search></search> -->
-		<!-- <Foot></Foot> -->
+		<Foot></Foot>
   	</div>
 </template>
 
@@ -42,6 +41,9 @@ export default {
 
 <style lang='sass' module>
 .app {
+	display: flex;
+	flex-flow: column;
 	height: 100%;
+	min-height: 100vh;
 }
 </style>

@@ -67,6 +67,9 @@ export default {
 		0 2px 3px -2px currentColor,
 		0 0 0 0;
 }
+.artical_cont:last-child {
+	margin-bottom: 16px;
+}
 .overview {
 	position: relative;
 	padding: 16px;
