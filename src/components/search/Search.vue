@@ -60,6 +60,8 @@ export default {
     transition-delay: 0s;
 }
 .warpper {
+    opacity: 0;
+    filter: alpha(opacity=0);
     transition: 1s all;
     transition-delay: .5s;
 }
@@ -76,6 +78,8 @@ export default {
     display: inline-block;
     line-height: 34px;
     width: 215px;
+    height: 38px;
+    box-sizing: border-box;
     vertical-align: top;
     border: 2px solid #eeab5d;
     border-right: 0;
@@ -88,7 +92,7 @@ export default {
     display: inline-block;
     background-color: #eeab5d;
     width: 100px;
-    line-height: 40px;
+    height: 38px;
     vertical-align: top;
     color: #fff;
 }
@@ -110,12 +114,14 @@ export default {
     color: #fff;
     margin: 0 6px 16px 0;
 }
-/*.search_active .circle_fadeIn {
+.search_active .circle_fadeIn {
     transform: translate(-50%,-50%) scale(1);
     opacity: .8;
-}*/
+}
 .circle {
-    margin-left: 50%;
+    position: absolute;
+    top: 0;
+    margin-left: 75%;
     width: 1400px;
     height: 1400px;
     border-radius: 50%;

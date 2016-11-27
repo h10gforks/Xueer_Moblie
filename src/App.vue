@@ -3,13 +3,14 @@
   		<a name="top"></a>
   		<navBar></navBar>
 		<iconSvg></iconSvg>
+		<detail></detail>
   		<!-- <index></index>
 		<detail></detail>
 		<loginDialog></loginDialog>
-		<loading></loading>
-		<search></search>
-		<Foot></Foot> -->
 		<newComment></newComment>
+		<loading></loading>
+		<search></search> -->
+		<!-- <Foot></Foot> -->
   	</div>
 </template>
 

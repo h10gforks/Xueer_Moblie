@@ -1,23 +1,6 @@
 <template>
 	<div :class="$style.detail">
-		<div :class="$style.info">
-			<h2 :class="$style.title">{{ info.title }}</h2>
-			<div :class="$style.teacher">{{ info.teacher }}</div>
-			<div :class="$style.btns">
-                <div :class="$style.btn" id="course_like">
-	                   <svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon]">
-	                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_s"></use>
-	                   </svg>
-	                   <span :class="$style.btn_text">{{ info.likes }}</span>
-                </div>
-                <div :class="$style.btn" id="w_comment">
-	                    <svg viewBox="0 0 17 14" :class="[$style.icon, $style.comment_icon]">
-	                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments"></use>
-	                    </svg>
-	                    <span :class="$style.btn_text">写评价</span>
-                </div>
-			</div>
-		</div>
+		<info></info>
 		<div :class="$style.tags">
 			<span v-for="item in hot_tags" :class="$style.tags_item">{{ item }}</span>
 		</div>
@@ -34,13 +17,7 @@
 				<br>没有更多评价了。
 			</div>
 		</div>
-		<div v-show="back_to_top" v-scroll="scrollHandler" :class="$style.back_to_top">
-	        <svg :class="$style.arrow_icon">
-	               <a href="#top">
-	               		<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back_to_top"></use>
-	               </a>
-	        </svg>   
-	     </div>
+		<backToTop></backToTop>
 	</div>
 </template>
 
@@ -48,15 +25,12 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import Comment from './Comments.vue'
+import Info from './Info.vue'
+import BackToTop from '../common/BackToTop.vue'
+
 export default {
-	data() {
-		return {
-			back_to_top: false
-		}
-	},
 	computed: {
 	    ...mapGetters([
-	    	'info',
 	    	'hot_tags',
 	    	'comments',
 	    	'hot_comments',
@@ -64,27 +38,23 @@ export default {
 	    ])
 	},
 	created (){
-        this.fetchInfo()
     	this.fetchComments()
     	this.fetchHotComments()
         
 	},
 	methods: {
 		...mapActions([
-			'fetchInfo',
 			'fetchComments',
 			'fetchHotComments'
 		]),
 		moreComments() {
 			this.fetchComments()
-		},
-		scrollHandler() {
-			let scrollTop = document.body.scrollTop
-			scrollTop > 10 ? this.back_to_top = true : this.back_to_top = false
 		}
 	},
 	components: {
-		Comment
+		Comment,
+		Info,
+		BackToTop
 	}
 }
 </script>
@@ -164,17 +134,6 @@ export default {
     width: 120px;
     margin: 0 auto;
     padding: 15px 0;
-}
-.back_to_top {
-	height: 40px;
-    width: 40px;
-    position: fixed;
-    bottom: 52px;
-    right: 16px;
-}
-.arrow_icon {
-	width: 100%;
-	height: 100%;
 }
 .btns {
 	font-size: 0;
