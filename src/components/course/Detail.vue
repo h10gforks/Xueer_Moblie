@@ -64,36 +64,6 @@ export default {
 .detail {
 	font-weight: lighter;
 }
-.info {
-	position: relative;
-	padding: 16px 0;
-	background-image: url('../../assets/course_bg.jpg');
-	z-index: 100;
-	color: #FFF;
-}
-.info::before {
-	content: '.';
-	font-size: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -100;
-	opacity: .8;
-	filter: alpha(opacity=.8);
-	background-color: $_yellow;
-	width: 100%;
-	height: 100%;
-}
-.title {
-	font-size: 40px; /*px*/
-	line-height: 28px;
-	padding: 0 31px;
-}
-.teacher {
-	font-size: 28px; /*px*/
-	line-height: 24px;
-	padding: 16px 31px 7px;
-}
 .tags {
 	padding: 22px 28px 1px 34px;
 }
@@ -134,37 +104,5 @@ export default {
     width: 120px;
     margin: 0 auto;
     padding: 15px 0;
-}
-.btns {
-	font-size: 0;
-	margin: 0 16px 16px;
-}
-.btn {
-	display: inline-block;
-	border: 2px solid #fff; /*px*/
-    border-radius: 4px; /*px*/
-    vertical-align: top;
-    font-size: 0;
-    line-height: 14px;
-    text-align: left;
-    box-sizing: border-box;
-    padding: 10px 40px;
-}
-.btn:first-child {
-	margin-right: 16px;
-}
-.icon,.btn_text {
-	vertical-align: middle;
-}
-.icon {
-	width: 17px;
-	height: 14px;
-	margin-right: 8px;
-}
-.btn_text {
-	display: inline-block;
-	min-width: 48px;
-	text-align: center;
-	font-size: 28px; /*px*/
 }
 </style>
