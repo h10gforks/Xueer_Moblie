@@ -53,6 +53,5 @@ export default {
     padding: 3px;
     color: #fff;
     margin-right: 6px;
-    margin-bottom: 16px;
 }
 </style>
