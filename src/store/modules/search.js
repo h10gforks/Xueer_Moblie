@@ -1,15 +1,23 @@
 const state = {
-    hot: []
+    hot: [],
+    show_search: false
 }
 
 const getters = {
     hot: state => state.hot,
+    show_search: state => state.show_search
 }
 
 const actions = {
     fetchHot({ commit }) {
         commit('fetchHot')
-    }
+    },
+    showSearch({ commit }) {
+        commit('showSearch')
+    },
+    hideSearch({ commit }) {
+        commit('hideSearch')
+    },
 }
 
 const mutations = {
@@ -20,6 +28,12 @@ const mutations = {
                 state.hot = json
             });
         })
+    },
+    showSearch() {
+        state.show_search = true
+    },
+    hideSearch() {
+        state.show_search = false
     }
 }
 

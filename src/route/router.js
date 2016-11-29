@@ -8,6 +8,7 @@ import Recommend from '../components/index/Recommend.vue'
 import Subject from '../components/subject/Subject.vue'
 
 module.exports = new VueRouter({
+    mode: 'history',
     base: __dirname,
     routes: [
         { 

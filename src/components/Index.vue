@@ -27,8 +27,10 @@ export default {
 	updated (){
 		if (this.$router.currentRoute.name !== 'index' ) {
 			this.isIndex = false
+			console.log("Hello world!")
 		} else {
 			this.isIndex = true
+			console.log("Hello")
 		}
 	}
 }

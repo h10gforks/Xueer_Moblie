@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --quiet --config webpack.build.config.js",
-    "dev": "ninja"
+    "dev": "ninja start"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "node-sass": "^3.11.3",
+    "node-sass": "^3.13.0",
     "postcss": "^5.2.5",
     "postcss-csso": "^1.1.2",
     "postcss-loader": "^1.1.1",

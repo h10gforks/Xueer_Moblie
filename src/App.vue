@@ -1,11 +1,12 @@
 <template>
   	<div :class="$style.app" id="app">
   		<a name="top"></a>
+  		<iconSvg></iconSvg>
   		<navBar></navBar>
-		<iconSvg></iconSvg>
 		<!-- <detail></detail> -->
-		<newComment></newComment>
-  		<!-- <index></index> -->
+		<!-- <newComment></newComment> -->
+		<search></search>
+  		<index></index>
 		<!--<loginDialog></loginDialog>
 		<loading></loading>
 		<search></search> -->

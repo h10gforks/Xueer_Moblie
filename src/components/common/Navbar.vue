@@ -17,7 +17,7 @@
 	            </div>
             </div>
             <div :class="$style.icon_set">
-                <div data-link="/search" :class="[$style.nav_icon, $style.search]">
+                <div @click="showSearch" data-link="/search" :class="[$style.nav_icon, $style.search]">
                     <svg viewBox="0 0 34 34">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
                     </svg>
@@ -33,12 +33,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
 	data() {
 		return {
 			flag: false
 		}
-	}
+	},
+    methods: {
+       ...mapActions ([
+            'showSearch'
+       ]) 
+    }
 }
 </script>
 

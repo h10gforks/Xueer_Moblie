@@ -1,5 +1,5 @@
 <template>
-	<div :class="[$style.search_view, $style.search_active]">
+	<div v-if="show_search" :class="[$style.search_view, {[$style.search_active]: show_search}]">
         <div :class="[$style.warpper, $style.warpper_fadeIn, $style.warpper_fadeOut]">
             <div :class="$style.container">
                 <div :class="[$style.search_box, $style.space]">
@@ -16,7 +16,7 @@
                 </div>
         	</div>
         </div>
-        <div :class="[$style.circle, $style.circle_fadeIn]"></div>
+        <div @click="hideSearch" :class="[$style.circle, $style.circle_fadeIn]"></div>
     </div>
 </template>
 
@@ -28,7 +28,8 @@ export default {
 	},
 	computed: {
 	    ...mapGetters([
-	    	'hot'
+	    	'hot',
+            'show_search'
 	    ]),
 	    link: function() {
 	    	return 'search/?page=1&per_page=20&keywords=' + this.hot
@@ -36,7 +37,8 @@ export default {
 	},
 	methods: {
 		...mapActions([
-			'fetchHot'
+			'fetchHot',
+            'hideSearch'
 		])
 	}
 }
