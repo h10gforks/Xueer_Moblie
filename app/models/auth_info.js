@@ -5,7 +5,7 @@ var AuthInfo = Backbone.Model.extend({
     this.options = options;
   },
   url: function() {
-    var base = "http://120.77.8.149:4399/api/users/";
+    var base = "https://user.muxixyz.com/api/users/";
     return base + this.options.uid + "/";
   }
 });
