@@ -2,25 +2,33 @@ const state = {
     cont: '',
     title: '',
     author: '',
-    date: ''
+    date: '',
+    subject_likes: '',
+    subject_id: ''
 }
 
 const getters = {
     cont: state => state.cont,
     title: state => state.title,
     author: state => state.author,
-    date: state => state.date
+    date: state => state.date,
+    subject_likes: state => state.subject_likes,
+    subject_id: state => state.subject_id
 }
 
 const actions = {
     fetchSubject({ commit }, id) {
         commit('fetchSubject', id)
+    },
+    likeThis({commit}, id) {
+        commit('likeThis', id)
     }
 }
 
 const mutations = {
     fetchSubject(state, id) {
-        var url = '/api/v1.0/tips/' + id
+        state.subject_id = id
+        let url = '/api/v1.0/tips/' + id
         fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
@@ -28,7 +36,16 @@ const mutations = {
                 state.title = json.title
                 state.author = json.author
                 state.date = json.date
-                console.log(json)
+                state.subject_likes = json.likes
+            });
+        })
+    },
+    likeThis() {
+        let url = '/api/v1.0/comments/' + state.subject_id + '/like/'
+        fetch(url)
+        .then(function(response) {
+            response.json().then(function(json) {
+                
             });
         })
     }

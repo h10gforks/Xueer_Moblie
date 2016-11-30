@@ -6,11 +6,13 @@
 			<span :class="[$style.info, $style.info_right]">{{ date }}</span>
 		</div>
 		<div v-html='cont' :class="$style.cont"></div>
+		<btns></btns>
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Btns from './Btns.vue'
 
 export default {
 	created () {
@@ -28,6 +30,9 @@ export default {
 		...mapActions([
 			'fetchSubject'
 		])
+	},
+	components: {
+		Btns
 	}
 }
 </script>

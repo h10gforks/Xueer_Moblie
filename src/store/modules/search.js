@@ -31,6 +31,7 @@ const mutations = {
     },
     showSearch() {
         state.show_search = true
+        console.log("Hello world!")
     },
     hideSearch() {
         state.show_search = false

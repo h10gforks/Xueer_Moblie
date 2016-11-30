@@ -8,7 +8,7 @@
 	                </svg>
 	                <span :class="[$style.title_s, $style.title]">搜索</span>
 	            </div>
-	            <div v-if="!flag">
+	            <div @click="backStep" v-if="!flag">
 	                <svg viewBox="0 0 34 34" :class="[$style.back, $style.nav_icon]">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back"></use>
                     </svg>
@@ -41,9 +41,12 @@ export default {
 		}
 	},
     methods: {
-       ...mapActions ([
+        ...mapActions ([
             'showSearch'
-       ]) 
+        ]),
+        backStep(){
+            history.back();
+        }
     }
 }
 </script>
