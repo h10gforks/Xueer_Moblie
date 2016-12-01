@@ -1,9 +1,11 @@
 const state = {
-    courses: []
+    courses: [],
+    page: 1
 }
 
 const getters = {
-    courses: state => state.courses
+    courses: state => state.courses,
+    page: state => state.page
 }
 
 const actions = {
@@ -14,11 +16,14 @@ const actions = {
 
 const mutations = {
     fetchCourse(state) {
-        fetch('/api/v1.0/courses/?page=1&main_cat=0&ts_cat=1')
+        let url = '/api/v1.0/courses/?page='+ state.page + '1&main_cat=0&ts_cat=1'
+        state.page ++ 
+        fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
-                state.courses = json
-                console.log(json)
+                state.courses = state.courses.concat(json)
+                console.log(state.courses)
+                console.log(state.page)
             });
         })
     }

@@ -1,5 +1,5 @@
 <template>
-	<div :class="$style.course_list">
+	<div v-scroll="scrollHandler" :class="$style.course_list">
 		<div :class="[$style.menu, $style.space]">
             <div :class="$style.sort">
                 <span>排序方式：</span>
@@ -45,10 +45,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { subStr } from '../../filters/filter.js'
+import scroll from '../../directives/scroll.js'
+
 export default {
 	mounted () {
 		this.fetchCourse()
-		console.log(subStr)
 	},
 	computed: {
 	    ...mapGetters([
@@ -58,8 +59,17 @@ export default {
 	methods: {
 		...mapActions([
 			'fetchCourse'
-		])
-	},
+		]),
+        scrollHandler() {
+            let scrollTop = document.body.scrollTop - 104
+            if (scrollTop = 743) {
+                this.fetchCourse()
+            }
+        }
+    },
+    directives: {
+        scroll: scroll
+    },
 	filters: {
 		subStr: subStr
 	}
