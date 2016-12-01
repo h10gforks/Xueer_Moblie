@@ -21,6 +21,9 @@ const mutations = {
         fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
+                if (state.page >= 3) {
+                    state.courses.splice(0, 20)
+                }
                 state.courses = state.courses.concat(json)
                 console.log(state.courses)
                 console.log(state.page)

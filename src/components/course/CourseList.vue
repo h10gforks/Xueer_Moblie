@@ -73,11 +73,13 @@ export default {
             if (height == doc_height && this.flag == true) {
                 this.flag = false
                 this.fetchCourse()
+                console.log(height)
             }
         }
     },
     watch: {
        courses() {
+            document.body.scrollTop = 1816
             this.flag = true
        } 
     },
