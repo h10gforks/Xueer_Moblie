@@ -8,7 +8,7 @@
 				<router-link :class="$style.link" to="/recommend">推荐课程</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link :class="$style.link" to="/index">所有课程</router-link>
+				<router-link :class="$style.link" to="/recommend">所有课程</router-link>
 			</div>
 		</div>
 		<div>

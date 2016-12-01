@@ -48,6 +48,11 @@ import { subStr } from '../../filters/filter.js'
 import scroll from '../../directives/scroll.js'
 
 export default {
+    data() {
+        return {
+            flag: true
+        }
+    },
 	mounted () {
 		this.fetchCourse()
 	},
@@ -61,11 +66,20 @@ export default {
 			'fetchCourse'
 		]),
         scrollHandler() {
-            let scrollTop = document.body.scrollTop - 104
-            if (scrollTop = 743) {
+            var scroll_height = document.body.scrollTop
+            var doc_height = document.body.scrollHeight
+            var window_height = window.innerHeight
+            var height = scroll_height + window_height
+            if (height == doc_height && this.flag == true) {
+                this.flag = false
                 this.fetchCourse()
             }
         }
+    },
+    watch: {
+       courses() {
+            this.flag = true
+       } 
     },
     directives: {
         scroll: scroll

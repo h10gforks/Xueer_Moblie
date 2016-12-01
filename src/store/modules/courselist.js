@@ -1,6 +1,6 @@
 const state = {
     courses: [],
-    page: 1
+    page: 0
 }
 
 const getters = {
@@ -16,8 +16,8 @@ const actions = {
 
 const mutations = {
     fetchCourse(state) {
-        let url = '/api/v1.0/courses/?page='+ state.page + '1&main_cat=0&ts_cat=1'
         state.page ++ 
+        let url = 'api/v1.0/courses/?page='+ state.page +'&per_page=20&sort=view&null=asc'
         fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
