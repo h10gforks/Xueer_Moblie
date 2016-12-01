@@ -22,10 +22,8 @@ export default {
 		...mapActions([
 			'likeThis'
 		]),
-		methods: {
-			backIndex() {
-				history.go(-2)
-			}
+		backIndex() {
+			history.go(-1)
 		}
 	}
 }

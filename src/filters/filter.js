@@ -1,5 +1,10 @@
 let preTag = val => {
 	return " #" + val
 }
-
-module.exports = preTag
+let subStr = val => {
+	return val.substr(0,1)
+}
+export {
+	subStr,
+	preTag
+}

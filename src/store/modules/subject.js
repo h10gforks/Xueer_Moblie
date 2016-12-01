@@ -20,8 +20,8 @@ const actions = {
     fetchSubject({ commit }, id) {
         commit('fetchSubject', id)
     },
-    likeThis({commit}, id) {
-        commit('likeThis', id)
+    likeThis({commit}) {
+        commit('likeThis')
     }
 }
 
@@ -42,12 +42,13 @@ const mutations = {
     },
     likeThis() {
         let url = '/api/v1.0/comments/' + state.subject_id + '/like/'
-        fetch(url)
-        .then(function(response) {
-            response.json().then(function(json) {
+        console.log(url)
+        // fetch(url)
+        // .then(function(response) {
+        //     response.json().then(function(json) {
                 
-            });
-        })
+        //     });
+        // })
     }
 }
 

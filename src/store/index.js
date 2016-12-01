@@ -13,6 +13,7 @@ import detail from './modules/detail'
 import search from './modules/search'
 import newcomments from './modules/newcomments.js'
 import tag from './modules/tag.js'
+import courselist from './modules/courselist.js'
 
 
 Vue.use(Vuex)
@@ -31,7 +32,8 @@ const store = new Vuex.Store({
     detail,
     search,
     newcomments,
-    tag
+    tag,
+    courselist
   },
   mutations
 })

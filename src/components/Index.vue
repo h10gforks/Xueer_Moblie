@@ -41,6 +41,7 @@ export default {
 @import '../assets/value.scss';
 .index {
 	flex: 1;
+	margin-top: 56px;
 }
 .home {
 	font-family: 'STHeiti';

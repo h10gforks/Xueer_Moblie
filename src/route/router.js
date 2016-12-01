@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import Index from '../components/index/Cont.vue'
-import Recommend from '../components/index/Recommend.vue'
-import Subject from '../components/subject/Subject.vue'
+import CourseList from '../components/course/CourseList.vue'
+import Detail from '../components/course/Detail.vue'
 
 module.exports = new VueRouter({
     // mode: 'history',
@@ -19,12 +19,17 @@ module.exports = new VueRouter({
         { 
         	name: 'recommend',
         	path: '/recommend', 
-        	component: Recommend 
+        	component: CourseList
         },
         {
             name: 'tip',
             path: '/tip/:id',
-            component: Subject
+            component: CourseList
+        },
+        {
+            name: 'course',
+            path: '/course/:id',
+            component: Detail
         }
     ]
 })

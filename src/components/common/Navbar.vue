@@ -46,6 +46,7 @@ export default {
         ]),
         backStep(){
             history.back();
+            console.log("hello world!")
         }
     }
 }
@@ -55,6 +56,10 @@ export default {
 @import '../../assets/value.scss';
 .nav_bar {
 	border-bottom: 1px solid $shallow_silver;
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
 }
 .container {
 	width: 328px;

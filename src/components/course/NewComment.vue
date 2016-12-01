@@ -26,7 +26,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import preTag from '../../filters/filter.js'
+import { preTag } from '../../filters/filter.js'
 import Tag from '../common/Tag.vue'
 
 export default {

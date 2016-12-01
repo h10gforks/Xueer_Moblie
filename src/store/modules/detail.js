@@ -4,7 +4,8 @@ const state = {
     comments: [],
     hot_comments: [],
     page: 0,
-    more: true
+    more: true,
+    course_id: ''
 }
 
 const getters = {
@@ -16,20 +17,22 @@ const getters = {
 }
 
 const actions = {
-    fetchInfo({ commit, state }) {
-        commit('fetchInfo')
+    fetchInfo({ commit, state }, id) {
+        commit('fetchInfo', id)
     },
-    fetchComments({ commit, state }) {
-        commit('fetchComments')
+    fetchComments({ commit, state }, id) {
+        commit('fetchComments', id)
     },
-    fetchHotComments({ commit }) {
-        commit('fetchHotComments')
+    fetchHotComments({ commit, state }, id) {
+        commit('fetchHotComments', id)
     }
 }
 
 const mutations = {
-    fetchInfo() {
-        fetch('/api/v1.0/courses/190/')
+    fetchInfo(state, id) {
+        state.course_id = id
+        let url = '/api/v1.0/courses/' + state.course_id
+        fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
                 state.info = json
@@ -40,9 +43,10 @@ const mutations = {
             });
         })
     },
-    fetchComments() {
+    fetchComments(state, id) {
+        state.course_id = id
         state.page++
-        let url = '/api/v1.0/courses/190/comments/'+"?page="+state.page+"&per_page=10"
+        let url = '/api/v1.0/courses/' + state.course_id + '/comments/'+"?page="+state.page+"&per_page=10"
         fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
@@ -58,8 +62,10 @@ const mutations = {
             })
         })
     },
-    fetchHotComments() {
-        fetch('/api/v1.0/courses/190/comments/hot/')
+    fetchHotComments(state, id) {
+        state.course_id = id
+        let url = '/api/v1.0/courses/' + state.course_id + '/comments/hot/'
+        fetch(url)
         .then(function(response) {
             response.json().then(function(json) {
                  preprocess(json)

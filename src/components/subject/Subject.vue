@@ -97,4 +97,12 @@ export default {
 .cont blockquote p {
 	margin: 15px 0 15px;
 }
+.object{
+	ul {
+		padding: 16px;
+	}
+	li {
+		margin: 15px 0;
+	}
+}
 </style>

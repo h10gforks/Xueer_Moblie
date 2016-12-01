@@ -23,13 +23,14 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+    props: ['id'],
     computed: {
         ...mapGetters([
             'info'
         ])
     },
     created (){
-        this.fetchInfo()
+        this.fetchInfo(this.id)
     },
     methods: {
         ...mapActions([

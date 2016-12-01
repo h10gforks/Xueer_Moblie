@@ -71,6 +71,7 @@ export default {
 	margin-bottom: 16px;
 }
 .overview {
+	z-index: -100;
 	position: relative;
 	padding: 16px;
 }

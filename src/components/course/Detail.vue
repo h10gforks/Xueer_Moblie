@@ -1,6 +1,6 @@
 <template>
 	<div :class="$style.detail">
-		<info></info>
+		<info :id='id'></info>
 		<div :class="$style.tags">
 			<span v-for="item in hot_tags" :class="$style.tags_item">{{ item }}</span>
 		</div>
@@ -29,6 +29,11 @@ import Info from './Info.vue'
 import BackToTop from '../common/BackToTop.vue'
 
 export default {
+	data() {
+		return {
+			id: this.$route.params.id
+		}
+	},
 	computed: {
 	    ...mapGetters([
 	    	'hot_tags',
@@ -38,8 +43,8 @@ export default {
 	    ])
 	},
 	created (){
-    	this.fetchComments()
-    	this.fetchHotComments()
+    	this.fetchComments(this.$route.params.id)
+    	this.fetchHotComments(this.$route.params.id)
         
 	},
 	methods: {
@@ -48,7 +53,7 @@ export default {
 			'fetchHotComments'
 		]),
 		moreComments() {
-			this.fetchComments()
+			this.fetchComments(this.$route.params.id)
 		}
 	},
 	components: {
