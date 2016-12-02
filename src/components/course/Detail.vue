@@ -31,36 +31,38 @@ import BackToTop from '../common/BackToTop.vue'
 export default {
 	data() {
 		return {
-			id: this.$route.params.id
+			id: this.$route.params.id,
 		}
 	},
 	computed: {
-	    ...mapGetters([
-	    	'hot_tags',
-	    	'comments',
-	    	'hot_comments',
-	    	'more'
-	    ])
+		...mapGetters([
+			'hot_tags',
+			'comments',
+			'hot_comments',
+			'more',
+		]),
 	},
-	created (){
-    	this.fetchComments(this.$route.params.id)
-    	this.fetchHotComments(this.$route.params.id)
-        
+	created() {
+		this.fetchComments(this.$route.params.id)
+		this.fetchHotComments(this.$route.params.id)
 	},
 	methods: {
 		...mapActions([
 			'fetchComments',
-			'fetchHotComments'
+			'fetchHotComments',
 		]),
 		moreComments() {
 			this.fetchComments(this.$route.params.id)
-		}
+		},
 	},
 	components: {
 		Comment,
 		Info,
-		BackToTop
-	}
+		BackToTop,
+	},
+	beforeRouteLeave(to, from, next) {
+		next()
+	},
 }
 </script>
 
@@ -74,40 +76,40 @@ export default {
 }
 .tags_item {
 	font-size: 28px; /*px*/
-    border-radius: 4px; /*px*/
-    display: inline-block;
-    line-height: 14px;
-    background-color: #cdcdcd;
-    padding: 3px;
-    color: #fff;
-    margin-right: 6px;
-    margin-bottom: 16px;
+	border-radius: 4px; /*px*/
+	display: inline-block;
+	line-height: 14px;
+	background-color: #cdcdcd;
+	padding: 3px;
+	color: #fff;
+	margin-right: 6px;
+	margin-bottom: 16px;
 }
 .comments {
 	width: 333px;
-    margin: 0 auto;
+	margin: 0 auto;
 }
 .comments_title {
 	font-size: 32px; /*px*/
-    padding: 0 0 16px;
-    color: #666;
-    border-bottom: 2px solid #ececec; /*px*/
+	padding: 0 0 16px;
+	color: #666;
+	border-bottom: 2px solid #ececec; /*px*/
 }
 .more_comments {
 	border: 2px solid currentColor; /*px*/
-    border-radius: 4px; /*px*/
-    text-align: center;
-    width: 156px;
-    line-height: 38px;
-    font-size: 32px; /*px*/
-    color: $_yellow;
-    margin: 17px auto;
+	border-radius: 4px; /*px*/
+	text-align: center;
+	width: 156px;
+	line-height: 38px;
+	font-size: 32px; /*px*/
+	color: $_yellow;
+	margin: 17px auto;
 }
 .no_more_comments {
 	font-size: 28px; /*px*/
 	color: #999;
-    width: 120px;
-    margin: 0 auto;
-    padding: 15px 0;
+	width: 120px;
+	margin: 0 auto;
+	padding: 15px 0;
 }
 </style>

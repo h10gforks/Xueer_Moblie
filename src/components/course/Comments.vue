@@ -31,14 +31,15 @@
 </template>
 
 <script>
+/* eslint no-underscore-dangle:0 */
 export default {
-	props:['comments'],
+	props: ['comments'],
 	methods: {
 		showMore(item) {
 			item.body = item._body
 			item._body = ''
-		}
-	}
+		},
+	},
 }
 </script>
 

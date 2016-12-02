@@ -18,7 +18,8 @@ module.exports = {
     'globals': {
         'document': true,
         'fetch': true,
-        'window': true
+        'window': true,
+        'history': true
     },
     // add your custom rules here
     'rules': {

@@ -32,35 +32,34 @@ import Tag from '../common/Tag.vue'
 export default {
 	data() {
 		return {
-			tags: ''
+			tags: '',
 		}
 	},
 	computed: {
 		...mapGetters([
 			'tag',
-			'pre_tags'
-		])
+			'pre_tags',
+		]),
 	},
 	filters: {
-		preTag: preTag
+		preTag,
 	},
 	watch: {
-		tags: function(val){
-			this.$store.commit('preTags',val)
+		tags(val) {
+			this.$store.commit('preTags', val)
 			this.tags = this.tag
-		}
+		},
 	},
 	methods: {
 		...mapActions([
-			'deleteTag'
-		])
+			'deleteTag',
+		]),
 	},
 	components: {
-		Tag
-	}
+		Tag,
+	},
 }
 </script>
-
 <style lang='sass' module>
 @import '../../assets/value.scss';
 

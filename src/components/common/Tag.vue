@@ -5,32 +5,32 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
-	data () {
+	data() {
 		return {
-			val : ''
+			val: '',
 		}
 	},
 	computed: {
-	    ...mapGetters([
-	    	'hot_tag'
-	    ])
+		...mapGetters([
+			'hot_tag',
+		]),
 	},
 	methods: {
 		...mapActions([
 			'clickTag',
-			'getTags'
+			'getTags',
 		]),
 		add_tag(ev) {
-			if(ev.target.tagName == 'SPAN' || 'span') {
-				if(this.val == ev.target.textContent){
+			if (ev.target.tagName == 'SPAN' || 'span') {
+				if (this.val == ev.target.textContent) {
 					return
-				} else {
-					this.val = ev.target.textContent
 				}
-				this.$store.commit('clickTag',this.val)
+				this.val = ev.target.textContent
+				this.$store.commit('clickTag', this.val)
 			}
-		}
+		},
 	},
 	created() {
 		this.getTags()
@@ -43,12 +43,12 @@ export default {
 }
 .tags_item {
 	font-size: 28px; /*px*/
-    border-radius: 4px; /*px*/
-    display: inline-block;
-    line-height: 14px;
-    background-color: #cdcdcd;
-    padding: 3px;
-    color: #fff;
-    margin-right: 6px;
+	border-radius: 4px; /*px*/
+	display: inline-block;
+	line-height: 14px;
+	background-color: #cdcdcd;
+	padding: 3px;
+	color: #fff;
+	margin-right: 6px;
 }
 </style>

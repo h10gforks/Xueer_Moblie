@@ -15,14 +15,14 @@
 export default {
 	data() {
 		return {
-			flag: true
+			flag: true,
 		}
 	},
 	methods: {
 		cancel() {
 			this.flag = false
-		}
-	}
+		},
+	},
 }
 </script>
 

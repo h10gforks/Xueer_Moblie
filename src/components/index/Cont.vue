@@ -37,19 +37,19 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-	mounted () {
+	mounted() {
 		this.fetchData()
 	},
 	computed: {
-	    ...mapGetters([
-	    	'tips'
-	    ])
+		...mapGetters([
+			'tips',
+		]),
 	},
 	methods: {
 		...mapActions([
-			'fetchData'
-		])
-	}
+			'fetchData',
+		]),
+	},
 }
 </script>
 

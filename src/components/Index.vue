@@ -19,20 +19,18 @@
 
 <script>
 export default {
-	data(){
+	data() {
 		return {
-			isIndex: true
+			isIndex: true,
 		}
 	},
-	updated (){
-		if (this.$router.currentRoute.name !== 'index' ) {
+	updated() {
+		if (this.$router.currentRoute.name !== 'index') {
 			this.isIndex = false
-			console.log("Hello world!")
 		} else {
 			this.isIndex = true
-			console.log("Hello")
 		}
-	}
+	},
 }
 </script>
 

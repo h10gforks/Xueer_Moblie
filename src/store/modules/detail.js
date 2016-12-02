@@ -74,7 +74,6 @@ const mutations = {
 	},
 	fetchHotComments(state, id) {
 		state.course_id = id
-		console.log(state.course_id)
 		const url = '/api/v1.0/courses/' + state.course_id + '/comments/hot/'
 		fetch(url).then(response => {
 			response.json().then(json => {

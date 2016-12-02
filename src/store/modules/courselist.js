@@ -1,16 +1,24 @@
 const state = {
 	courses: [],
 	page: 0,
+	position: 0,
 }
 const getters = {
 	courses: () => state.courses,
 	page: () => state.page,
+	position: () => state.position,
 }
+/* eslint no-undef:0 */
 const actions = {
 	fetchCourse({
 		commit,
 	}) {
 		commit('fetchCourse')
+	},
+	getPosition({
+		commit,
+	}, position) {
+		commit('getPosition', position)
 	},
 }
 const mutations = {
@@ -25,6 +33,9 @@ const mutations = {
 				state.courses = state.courses.concat(json)
 			})
 		})
+	},
+	getPosition(state, position) {
+		state.position = position
 	},
 }
 export default {

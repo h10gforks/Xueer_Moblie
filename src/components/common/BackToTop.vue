@@ -9,23 +9,27 @@
 </template>
 
 <script>
-import scroll from '../../directives/scroll.js'
+import scroll from '../../directives/scroll'
+
 export default {
 	data() {
 		return {
-			back_to_top: false
+			back_to_top: false,
 		}
 	},
 	methods: {
 		scrollHandler() {
-			console.log("hello")
-			let scrollTop = document.body.scrollTop
-			scrollTop > 10 ? this.back_to_top = true : this.back_to_top = false
-		}
+			const scrollTop = document.body.scrollTop
+			if (scrollTop > 10) {
+				this.back_to_top = true
+			} else {
+				this.back_to_top = false
+			}
+		},
 	},
 	directives: {
-		scroll: scroll
-	}
+		scroll,
+	},
 }
 </script>
 
