@@ -1,32 +1,28 @@
 const state = {
-    tips: ''
+	tips: '',
 }
-
 const getters = {
-    tips: state => state.tips
+	tips: () => state.tips,
 }
-
 const actions = {
-    fetchData({ commit }) {
-        commit('fetchData')
-    }
+	fetchData({
+		commit,
+	}) {
+		commit('fetchData')
+	},
 }
-
 const mutations = {
-    fetchData(state) {
-        fetch('/api/v1.0/tips/')
-        .then(function(response) {
-            response.json().then(function(json) {
-                state.tips = json
-                console.log(json)
-            });
-        })
-    }
+	fetchData(state) {
+		fetch('/api/v1.0/tips/').then((response) => {
+			response.json().then((json) => {
+				state.tips = json
+			})
+		})
+	},
 }
-
 export default {
-  state,
-  getters,
-  actions,
-  mutations
+	state,
+	getters,
+	actions,
+	mutations,
 }

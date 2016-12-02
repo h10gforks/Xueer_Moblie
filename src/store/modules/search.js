@@ -1,46 +1,46 @@
 const state = {
-    hot: [],
-    show_search: false
+	hot: [],
+	show_search: false,
 }
-
 const getters = {
-    hot: state => state.hot,
-    show_search: state => state.show_search
+	hot: () => state.hot,
+	show_search: () => state.show_search,
 }
-
 const actions = {
-    fetchHot({ commit }) {
-        commit('fetchHot')
-    },
-    showSearch({ commit }) {
-        commit('showSearch')
-    },
-    hideSearch({ commit }) {
-        commit('hideSearch')
-    },
+	fetchHot({
+		commit,
+	}) {
+		commit('fetchHot')
+	},
+	showSearch({
+		commit,
+	}) {
+		commit('showSearch')
+	},
+	hideSearch({
+		commit,
+	}) {
+		commit('hideSearch')
+	},
 }
-
 const mutations = {
-    fetchHot() {
-        fetch('/api/v1.0/search/hot/')
-        .then(function(response) {
-            response.json().then(function(json) {
-                state.hot = json
-            });
-        })
-    },
-    showSearch() {
-        state.show_search = true
-        console.log("Hello world!")
-    },
-    hideSearch() {
-        state.show_search = false
-    }
+	fetchHot(state) {
+		fetch('/api/v1.0/search/hot/').then(response => {
+			response.json().then(json => {
+				state.hot = json
+			})
+		})
+	},
+	showSearch(state) {
+		state.show_search = true
+	},
+	hideSearch(state) {
+		state.show_search = false
+	},
 }
-
 export default {
-  state,
-  getters,
-  actions,
-  mutations
+	state,
+	getters,
+	actions,
+	mutations,
 }

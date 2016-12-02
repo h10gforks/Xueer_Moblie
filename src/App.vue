@@ -1,6 +1,6 @@
 <template>
-  	<div :class="$style.app" id="app">
-  		<a name="top"></a>
+  	<div :class='$style.app' id='app'>
+  		<a name='top'></a>
   		<iconSvg></iconSvg>
   		<navBar></navBar>
   		<search></search>
@@ -36,8 +36,8 @@ export default {
 		Loading,
 		Search,
 		Foot,
-		NewComment
-	}
+		NewComment,
+	},
 }
 </script>
 

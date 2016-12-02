@@ -1,14 +1,12 @@
 <template>
-	<div @click="add_tag" :class="$style.tags">
-		<span v-for="item in hot_tag" :class="$style.tags_item">{{ item }}</span>
+	<div @click='add_tag' :class='$style.tags'>
+		<span v-for='item in hot_tag' :class='$style.tags_item'>{{ item }}</span>
 	</div>
 </template>
-
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
-	data() {
+	data () {
 		return {
 			val : ''
 		}
@@ -34,12 +32,11 @@ export default {
 			}
 		}
 	},
-	created () {
+	created() {
 		this.getTags()
 	},
 }
 </script>
-
 <style lang='sass' module>
 .tags {
 	padding: 22px 28px 1px 34px;
