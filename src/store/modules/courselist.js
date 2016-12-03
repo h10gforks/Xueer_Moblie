@@ -35,8 +35,8 @@ const actions = {
 const mutations = {
 	/* eslint no-unused-vars:0 */
 	fetchCourse(state) {
-		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=view&null=asc'
 		state.page += 1
+		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=view&null=asc'
 		if (state.courses.length == 20) {
 			const courses_list = document.getElementById('js_courses_list')
 			if (courses_list) {
@@ -47,11 +47,9 @@ const mutations = {
 			state.scrollTop = document.body.scrollTop
 		}
 		fetch(url).then(response => {
-			console.log('state.page' + state.page)
 			response.json().then(json => {
 				if (state.page >= 3) {
 					state.courses.splice(0, 20)
-					console.log('调整滚动条！')
 					document.body.scrollTop = (state.scrollTop - state.height)
 				}
 				state.courses = state.courses.concat(json)

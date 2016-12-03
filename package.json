@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Muxi-Studio/Fecademy_fe#readme",
   "dependencies": {
+    "eslint-loader": "^1.6.1",
     "vue": "^2.0.5",
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0",

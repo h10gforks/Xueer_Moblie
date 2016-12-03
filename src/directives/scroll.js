@@ -7,7 +7,7 @@ const scrollCallback = callback => {
 }
 let callBackWarpped
 export default {
-	bind(el, binding) {
+	inserted(el, binding) {
 		const fn = binding.value
 		if (typeof fn !== 'function') {
 			return console.error('The param of directive v-scroll must be a function!')

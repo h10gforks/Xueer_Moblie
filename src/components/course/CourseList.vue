@@ -62,14 +62,12 @@ export default {
 	},
 	created() {
 		// 判断是否是从课程详情返回
-		console.log(this.back)
 		if (this.back) {
+			// 这里为什么要setTimeout
 			setTimeout(() => {
 				window.scrollTo(0, this.position)
-				console.log('1秒以后调整滚动条！')
 			}, 0)
 			this.flag = true
-			console.log(this.position)
 			this.turnFlag()
 		} else {
 			const p = this.fetchCourse()
@@ -86,8 +84,6 @@ export default {
 			const doc_height = document.body.scrollHeight
 			const window_height = window.innerHeight
 			const height = scroll_height + window_height
-			console.log('scroll!' + document.body.scrollTop)
-			console.log(this.flag)
 			if (height == doc_height && this.flag == true) {
 				this.flag = false
 				this.fetchCourse()
@@ -110,7 +106,6 @@ export default {
 	/* eslint no-unused-vars:0 */
 	beforeRouteLeave(to, from, next) {
 		this.getPosition(document.body.scrollTop)
-		console.log('(document.body.scrollTop' + document.body.scrollTop)
 		// 跳转到detail还会有个莫名其妙的滚动
 		this.flag = false
 		next()
