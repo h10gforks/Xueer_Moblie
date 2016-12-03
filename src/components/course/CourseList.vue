@@ -64,7 +64,11 @@ export default {
 		// 判断是否是从课程详情返回
 		console.log(this.back)
 		if (this.back) {
-			window.scrollTo(0, this.position)
+			setTimeout(() => {
+				window.scrollTo(0, this.position)
+				console.log('1秒以后调整滚动条！')
+			}, 0)
+			this.flag = true
 			console.log(this.position)
 			this.turnFlag()
 		} else {
@@ -82,7 +86,7 @@ export default {
 			const doc_height = document.body.scrollHeight
 			const window_height = window.innerHeight
 			const height = scroll_height + window_height
-			console.log('scroll!')
+			console.log('scroll!' + document.body.scrollTop)
 			console.log(this.flag)
 			if (height == doc_height && this.flag == true) {
 				this.flag = false
@@ -91,6 +95,7 @@ export default {
 		},
 	},
 	watch: {
+		// 有bug
 		courses() {
 			// 控制只发一次请求
 			this.flag = true
@@ -106,6 +111,8 @@ export default {
 	beforeRouteLeave(to, from, next) {
 		this.getPosition(document.body.scrollTop)
 		console.log('(document.body.scrollTop' + document.body.scrollTop)
+		// 跳转到detail还会有个莫名其妙的滚动
+		this.flag = false
 		next()
 	},
 }

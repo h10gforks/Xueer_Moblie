@@ -47,9 +47,11 @@ const mutations = {
 			state.scrollTop = document.body.scrollTop
 		}
 		fetch(url).then(response => {
+			console.log('state.page' + state.page)
 			response.json().then(json => {
 				if (state.page >= 3) {
 					state.courses.splice(0, 20)
+					console.log('调整滚动条！')
 					document.body.scrollTop = (state.scrollTop - state.height)
 				}
 				state.courses = state.courses.concat(json)
