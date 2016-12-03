@@ -40,6 +40,7 @@ export default {
 			'comments',
 			'hot_comments',
 			'more',
+			'back',
 		]),
 	},
 	created() {
@@ -50,6 +51,7 @@ export default {
 		...mapActions([
 			'fetchComments',
 			'fetchHotComments',
+			'turnFlag',
 		]),
 		moreComments() {
 			this.fetchComments(this.$route.params.id)
@@ -61,6 +63,7 @@ export default {
 		BackToTop,
 	},
 	beforeRouteLeave(to, from, next) {
+		this.turnFlag()
 		next()
 	},
 }

@@ -12,7 +12,7 @@
 				&nbsp;&nbsp;点赞最多</span>
 			</div>
 		</div>
-		<div  :class="$style.list">
+		<div id="js_courses_list" :class="$style.list">
 			<div v-for="item in courses" :class="$style.item">
 				<router-link :to="{ name: 'course', params: { id: item.id }}">
 					<div :class="[$style.course, $style.space]">
@@ -57,31 +57,33 @@ export default {
 		...mapGetters([
 			'courses',
 			'position',
+			'back',
 		]),
 	},
 	created() {
-		const self = this
-		const p = new Promise(resolve => {
-			self.fetchCourse()
-			resolve()
-		})
-	},
-	mounted() {
-		setTimeout(() => {
+		// 判断是否是从课程详情返回
+		console.log(this.back)
+		if (this.back) {
 			window.scrollTo(0, this.position)
+			console.log(this.position)
+			this.turnFlag()
+		} else {
+			const p = this.fetchCourse()
 		}
-		, 1000)
 	},
 	methods: {
 		...mapActions([
 			'fetchCourse',
 			'getPosition',
+			'turnFlag',
 		]),
 		scrollHandler() {
 			const scroll_height = document.body.scrollTop
 			const doc_height = document.body.scrollHeight
 			const window_height = window.innerHeight
 			const height = scroll_height + window_height
+			console.log('scroll!')
+			console.log(this.flag)
 			if (height == doc_height && this.flag == true) {
 				this.flag = false
 				this.fetchCourse()
@@ -90,7 +92,7 @@ export default {
 	},
 	watch: {
 		courses() {
-			document.body.scrollTop = 1816
+			// 控制只发一次请求
 			this.flag = true
 		},
 	},
@@ -103,6 +105,7 @@ export default {
 	/* eslint no-unused-vars:0 */
 	beforeRouteLeave(to, from, next) {
 		this.getPosition(document.body.scrollTop)
+		console.log('(document.body.scrollTop' + document.body.scrollTop)
 		next()
 	},
 }
