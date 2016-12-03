@@ -5,6 +5,7 @@ const state = {
 	scrollTop: 0,
 	height: 0,
 	back: false,
+	isend: false,
 }
 const getters = {
 	courses: () => state.courses,
@@ -13,6 +14,7 @@ const getters = {
 	scrollTop: () => state.scrollTop,
 	height: () => state.height,
 	back: () => state.back,
+	isend: () => state.isend,
 }
 /* eslint no-undef:0 */
 const actions = {
@@ -48,11 +50,14 @@ const mutations = {
 		}
 		fetch(url).then(response => {
 			response.json().then(json => {
-				if (state.page >= 3) {
+				if (state.courses.length >= 60) {
 					state.courses.splice(0, 20)
 					document.body.scrollTop = (state.scrollTop - state.height)
 				}
 				state.courses = state.courses.concat(json)
+				if (json.length == 0) {
+					state.isend = true
+				}
 			})
 		})
 	},

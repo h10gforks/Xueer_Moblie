@@ -15,25 +15,25 @@ import { mapGetters, mapActions } from 'vuex'
 import Btns from './Btns.vue'
 
 export default {
-	created () {
+	created() {
 		this.fetchSubject(this.$route.params.id)
 	},
 	computed: {
-	    ...mapGetters([
-	    	'cont',
+		...mapGetters([
+			'cont',
 			'title',
 			'author',
-			'date'
-	    ])
+			'date',
+		]),
 	},
 	methods: {
 		...mapActions([
-			'fetchSubject'
-		])
+			'fetchSubject',
+		]),
 	},
 	components: {
-		Btns
-	}
+		Btns,
+	},
 }
 </script>
 
@@ -77,22 +77,22 @@ export default {
 }
 .cont blockquote {
 	padding: 10px 0 10px 20px; /*px*/
-    margin: 30px 0 30px 30px; /*px*/
+	margin: 30px 0 30px 30px; /*px*/
 	position: relative;
-    font-weight: 300;
-    font-style: italic;
-    color: $shallow_grey;
-    letter-spacing: .08em;
-    border-left: 6px solid #ddd;
+	font-weight: 300;
+	font-style: italic;
+	color: $shallow_grey;
+	letter-spacing: .08em;
+	border-left: 6px solid #ddd;
 }
 .cont blockquote::before {
 	position: absolute;
-    left: -1.1em;
-    content: '\201C';
+	left: -1.1em;
+	content: '\201C';
 }
 .cont blockquote::after {
 	content: '\201D';
-    margin-left: .7em;
+	margin-left: .7em;
 }
 .cont blockquote p {
 	margin: 15px 0 15px;

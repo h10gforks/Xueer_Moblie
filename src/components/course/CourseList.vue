@@ -1,14 +1,12 @@
 <template>
 	<div v-scroll="scrollHandler" :class="$style.course_list">
 		<div :class="[$style.menu, $style.space]">
-			<div :class="$style.sort">
+			<div @click="reSort" :class="$style.sort">
 				<span>排序方式：</span>
-				<span data-sort="view" :class="[$style.s_item, $style.comment 
-				]">
+				<span data-sort="view" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
 					评论最多
 				&nbsp;&nbsp;</span>
-				<span data-sort="like" :class="[$style.s_item, $style.likes,
-				$style.active]">
+				<span data-sort="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
 				&nbsp;&nbsp;点赞最多</span>
 			</div>
 		</div>
@@ -36,8 +34,10 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</router-link>
+				</router-link>
+			</div>
+			<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
+			<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
 		</div>
 	</div>
 </template>
@@ -51,6 +51,7 @@ export default {
 	data() {
 		return {
 			flag: true,
+			isactive: true,
 		}
 	},
 	computed: {
@@ -58,6 +59,7 @@ export default {
 			'courses',
 			'position',
 			'back',
+			'isend',
 		]),
 	},
 	created() {
@@ -88,6 +90,9 @@ export default {
 				this.flag = false
 				this.fetchCourse()
 			}
+		},
+		reSort() {
+			this.isactive = !this.isactive
 		},
 	},
 	watch: {
@@ -194,5 +199,15 @@ export default {
 }
 .likes svg {
 	margin-left: 16px;
+}
+.hint {
+	font-size: 24px; /*px*/
+    text-align: center;
+    color: #999;
+    margin-top: 16px;
+    margin-bottom: 34px;
+}
+.active {
+	color: #eeab5d;
 }
 </style>

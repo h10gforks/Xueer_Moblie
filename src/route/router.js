@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Index from '../components/index/Cont'
 import CourseList from '../components/course/CourseList'
 import Detail from '../components/course/Detail'
+import Subject from '../components/subject/Subject'
 
 Vue.use(VueRouter)
 module.exports = new VueRouter({
@@ -20,7 +21,7 @@ module.exports = new VueRouter({
 	{
 		name: 'tip',
 		path: '/tip/:id',
-		component: CourseList,
+		component: Subject,
 	},
 	{
 		name: 'course',
