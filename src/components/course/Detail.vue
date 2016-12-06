@@ -46,12 +46,15 @@ export default {
 	created() {
 		this.fetchComments(this.$route.params.id)
 		this.fetchHotComments(this.$route.params.id)
+		this.isLoading(true)
+		document.body.scrollTop = 0
 	},
 	methods: {
 		...mapActions([
 			'fetchComments',
 			'fetchHotComments',
 			'turnFlag',
+			'isLoading',
 		]),
 		moreComments() {
 			this.fetchComments(this.$route.params.id)
@@ -66,6 +69,11 @@ export default {
 		this.turnFlag()
 		next()
 	},
+	watch: {
+		hot_tags() {
+			this.isLoading(false)
+		}
+	}
 }
 </script>
 

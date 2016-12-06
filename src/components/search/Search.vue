@@ -65,6 +65,7 @@ export default {
 
 <style lang='sass' module>
 .search_view {
+	z-index: 100;
 	position: fixed;
 	width: 100%;
 	top: 56px;

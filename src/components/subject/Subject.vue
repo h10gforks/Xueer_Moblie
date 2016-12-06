@@ -17,6 +17,8 @@ import Btns from './Btns.vue'
 export default {
 	created() {
 		this.fetchSubject(this.$route.params.id)
+		this.changePageFlagN('is_index')
+		this.changePageFlagY('is_sub')
 	},
 	computed: {
 		...mapGetters([
@@ -29,11 +31,18 @@ export default {
 	methods: {
 		...mapActions([
 			'fetchSubject',
+			'changePageFlagN',
+			'changePageFlagY',
+			'isLoading',
 		]),
 	},
 	components: {
 		Btns,
 	},
+	destroyed() {
+		this.changePageFlagY('is_index')
+		this.changePageFlagN('is_sub')
+	}
 }
 </script>
 

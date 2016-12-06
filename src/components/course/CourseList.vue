@@ -126,17 +126,28 @@ export default {
 		subStr,
 	},
 	/* eslint no-unused-vars:0 */
+	beforeRouteEnter (to, from, next) {
+		next(vm => {
+			
+		})
+	},
 	beforeRouteLeave(to, from, next) {
 		this.getPosition(document.body.scrollTop)
 		// 跳转到detail还会有个莫名其妙的滚动
 		this.flag = false
+		if(to.name === 'course') {
+			this.changePageFlagN('is_index')
+			this.changePageFlagN('is_all')
+			this.changePageFlagY('is_course')
+		}
+		this.changePageFlagN('is_search')
 		this.changePageFlagY('is_index')
 		this.changePageFlagN('is_all')
 		next()
 	},
 	mounted() {
-		this.isLoading(true)
 		this.changePageFlagN('is_index')
+		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
 		console.log('hello world!')
 		console.log(this.$store.state.is_index)
@@ -154,6 +165,7 @@ export default {
 			// 初始化数据
 			this.initCourse()
 			const p = this.fetchCourse()
+			this.isLoading(true)
 		}
 	},
 }
@@ -163,6 +175,7 @@ export default {
 .menu {
 	width: 100%;
 	height: 48px;
+	z-index: 0;
 	background-color: #ececec;
 	line-height: 48px;
 	color: #666;
@@ -221,7 +234,7 @@ export default {
 	width: 72px;
 	height: 12px;
 	overflow: hidden;
-	margin-right: 57px;
+	margin-right: 121px;
 }
 .va_item {
 	font-size: 24px; /*px*/

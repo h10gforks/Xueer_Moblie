@@ -1,7 +1,7 @@
 <template>
 	<div v-show="back_to_top" v-scroll="scrollHandler" :class="$style.back_to_top">
         <svg :class="$style.arrow_icon">
-           <a href="#top">
+           <a @click="backToTop">
            		<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back_to_top"></use>
            </a>
         </svg>   
@@ -22,9 +22,13 @@ export default {
 			const scrollTop = document.body.scrollTop
 			if (scrollTop > 10) {
 				this.back_to_top = true
+				console.log(this.back_to_top)
 			} else {
 				this.back_to_top = false
 			}
+		},
+		backToTop(){
+			document.body.scrollTop = 0
 		},
 	},
 	directives: {

@@ -14,6 +14,8 @@
 					</svg>
 					<span v-if="is_all" :class="[$style.title_l, $style.title]">所有课程</span>
 					<span v-if="is_auth" :class="[$style.title_l, $style.title]">我的学而</span>
+					<span v-if="is_course" :class="[$style.title_l, $style.title]">课程详情</span>
+					<span v-if="is_sub" :class="[$style.title_l, $style.title]">专题</span>
 				</div>
 			</div>
 			<div :class="$style.icon_set">
@@ -43,7 +45,9 @@ export default {
 			'is_all',
 			'is_search',
 			'is_auth',
-			'page_flag'
+			'page_flag',
+			'is_course',
+			'is_sub',
 		]),
 		...mapGetters([
 			'snaps',
@@ -63,7 +67,7 @@ export default {
 			this.getSnaps(this.snaps)
 			this.showSearch(),
 			this.changePageFlagY(['is_search','is_index'])
-			this.changePageFlagN(['is_all','is_auth','is_recommend'])
+			this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
 		},
 	},
 }
