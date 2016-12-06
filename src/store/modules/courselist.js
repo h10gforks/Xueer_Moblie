@@ -20,8 +20,8 @@ const getters = {
 const actions = {
 	fetchCourse({
 		commit,
-	}) {
-		commit('fetchCourse')
+	}, sort) {
+		commit('fetchCourse', sort)
 	},
 	getPosition({
 		commit,
@@ -40,8 +40,8 @@ const actions = {
 	},
 	fetchCourseN({
 		commit,
-	}) {
-		commit('fetchCourseN')
+	}, sort) {
+		commit('fetchCourseN', sort)
 	},
 }
 const mutations = {
@@ -50,9 +50,12 @@ const mutations = {
 		state.page = 0
 		state.courses = []
 	},
-	fetchCourse(state) {
+	fetchCourse(state, sort) {
+		if (!sort) {
+			sort = 'view'
+		}
 		state.page += 1
-		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=view&null=asc'
+		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=' + sort + '&null=asc'
 		if (state.courses.length == 20) {
 			const courses_list = document.getElementById('js_courses_list')
 			if (courses_list) {
@@ -81,13 +84,16 @@ const mutations = {
 	turnFlag(state) {
 		state.back = !state.back
 	},
-	fetchCourseN(state) {
+	fetchCourseN(state, sort) {
 		if (state.page >= 2) {
 			state.page -= 1
 		} else {
 			return false
 		}
-		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=view&null=asc'
+		if (!sort) {
+			sort = 'view'
+		}
+		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=' + sort + '&null=asc'
 		if (state.courses.length == 20) {
 			const courses_list = document.getElementById('js_courses_list')
 			if (courses_list) {

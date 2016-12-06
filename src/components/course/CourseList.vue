@@ -3,10 +3,10 @@
 		<div :class="[$style.menu, $style.space]">
 			<div @click="reSort" :class="$style.sort">
 				<span>排序方式：</span>
-				<span data-sort="view" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
+				<span id="view" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
 					评论最多
 				&nbsp;&nbsp;</span>
-				<span data-sort="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
+				<span id="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
 				&nbsp;&nbsp;点赞最多</span>
 			</div>
 		</div>
@@ -53,6 +53,7 @@ export default {
 			flag: true,
 			isactive: true,
 			window_height: 0,
+			is_db: '',
 		}
 	},
 	computed: {
@@ -90,13 +91,22 @@ export default {
 				this.flag = false
 				this.fetchCourse()
 			}
-			if(scroll_height <= 100 && this.flag == true) {
+			if (scroll_height <= 100 && this.flag == true) {
 				this.flag = false
 				this.fetchCourseN()
 			}
 		},
-		reSort() {
-			this.isactive = !this.isactive
+		reSort(e) {
+			const id = e.target.id
+			if (this.is_db == id) {
+				return false
+			} else {
+				this.isLoading(true)
+				this.isactive = !this.isactive
+				this.initCourse()
+				this.fetchCourse(id)
+			}
+			this.is_db = id
 		},
 	},
 	watch: {
