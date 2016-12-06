@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import { subStr } from '../../filters/filter.js'
 import scroll from '../../directives/scroll.js'
 
@@ -63,23 +63,10 @@ export default {
 			'isend',
 			'page',
 		]),
-	},
-	created() {
-		// 判断是否是从课程详情返回
-		if (this.back) {
-			// 这里为什么要setTimeout
-			setTimeout(() => {
-				window.scrollTo(0, this.position)
-			}, 0)
-			this.flag = true
-			this.turnFlag()
-		} else {
-			// 初始化数据
-			this.initCourse()
-			const p = this.fetchCourse()
-		}
-		this.changePageFlagN('is_index')
-		this.changePageFlagY('is_all')
+		...mapState([
+			'is_loading',
+			'page_snaps',
+		]),
 	},
 	methods: {
 		...mapActions([
@@ -89,6 +76,8 @@ export default {
 			'changePageFlagN',
 			'changePageFlagY',
 			'initCourse',
+			'fetchCourseN',
+			'isLoading',
 		]),
 		scrollHandler() {
 			const scroll_height = document.body.scrollTop
@@ -96,16 +85,14 @@ export default {
 			if (!this.window_height) {
 				this.window_height = window.innerHeight
 			}
-			console.log(scroll_height)
-			console.log(doc_height)
-			console.log(this.window_height)
 			const height = scroll_height + this.window_height
 			if (height == doc_height && this.flag == true) {
 				this.flag = false
 				this.fetchCourse()
 			}
-			if(scroll_height <= 100) {
-
+			if(scroll_height <= 100 && this.flag == true) {
+				this.flag = false
+				this.fetchCourseN()
 			}
 		},
 		reSort() {
@@ -116,6 +103,9 @@ export default {
 		// 有bug
 		courses() {
 			// 控制只发一次请求
+			if(this.courses.length > 0) {
+				this.isLoading(false)
+			}
 			this.flag = true
 		},
 	},
@@ -132,9 +122,29 @@ export default {
 		this.flag = false
 		this.changePageFlagY('is_index')
 		this.changePageFlagN('is_all')
+		next()
+	},
+	mounted() {
+		this.isLoading(true)
+		this.changePageFlagN('is_index')
+		this.changePageFlagY('is_all')
+		console.log('hello world!')
 		console.log(this.$store.state.is_index)
 		console.log(this.$router.currentRoute.name)
-		next()
+		console.log(this)
+		// 判断是否是从课程详情返回
+		if (this.back) {
+			// 这里为什么要setTimeout
+			setTimeout(() => {
+				window.scrollTo(0, this.position)
+			}, 0)
+			this.flag = true
+			this.turnFlag()
+		} else {
+			// 初始化数据
+			this.initCourse()
+			const p = this.fetchCourse()
+		}
 	},
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<div :class="$style.loading">
+	<div v-show='is_loading' :class="$style.loading">
 	    <div :class="[$style.boxes, $style.space]">
 	        <div :class="[$style.box, $style.left]"></div>
 	        <div :class="[$style.box, $style.middle]"></div>
@@ -7,10 +7,22 @@
 	    </div>
 	 </div>
 </template>
+<script>
+import { mapState } from 'vuex'
+export default {
+    computed: mapState([
+        'is_loading',
+    ])
+}
+</script>
 <style lang='sass' module>
 .loading {
     width: 100%;
     height: 100%;
+    background: #FFF;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .boxes {
     position: absolute;

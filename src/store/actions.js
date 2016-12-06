@@ -7,7 +7,10 @@ const actions = {
 	},
 	getSnaps({ commit }, snaps) {
 		commit('getSnaps', snaps)
-	}
+	},
+	isLoading({ commit }, flag) {
+		commit('isLoading', flag)
+	},
 }
 
 export default actions

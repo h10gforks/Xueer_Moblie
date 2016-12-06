@@ -5,6 +5,7 @@ const state = {
 	is_search: false,
 	is_auth: false,
 	page_snaps: {},
+	is_loading: false,
 }
 
 export default state

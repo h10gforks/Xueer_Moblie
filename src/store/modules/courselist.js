@@ -37,7 +37,12 @@ const actions = {
 		commit,
 	}, page) {
 		commit('initCourse', page)
-	}
+	},
+	fetchCourseN({
+		commit,
+	}) {
+		commit('fetchCourseN')
+	},
 }
 const mutations = {
 	/* eslint no-unused-vars:0 */
@@ -59,13 +64,13 @@ const mutations = {
 		}
 		fetch(url).then(response => {
 			response.json().then(json => {
-				if (state.courses.length >= 60) {
-					state.courses.splice(0, 20)
-					document.body.scrollTop = (state.scrollTop - state.height)
-				}
 				state.courses = state.courses.concat(json)
 				if (json.length == 0) {
 					state.isend = true
+				}
+				if (state.courses.length >= 60) {
+					state.courses.splice(0, 20)
+					document.body.scrollTop = (state.scrollTop - state.height)
 				}
 			})
 		})
@@ -75,6 +80,36 @@ const mutations = {
 	},
 	turnFlag(state) {
 		state.back = !state.back
+	},
+	fetchCourseN(state) {
+		if (state.page >= 2) {
+			state.page -= 1
+		} else {
+			return false
+		}
+		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=view&null=asc'
+		if (state.courses.length == 20) {
+			const courses_list = document.getElementById('js_courses_list')
+			if (courses_list) {
+				state.height = courses_list.offsetHeight
+			}
+		}
+		if (state.courses.length == 40) {
+			state.scrollTop = document.body.scrollTop
+		}
+		fetch(url).then(response => {
+			response.json().then(json => {
+				state.courses = json.concat(state.courses)
+				if (json.length == 0) {
+					state.isend = true
+				}
+				if (state.courses.length >= 60) {
+					state.courses.splice(state.courses.length - 20, 20)
+					document.body.scrollTop = (state.scrollTop - state.height)
+				}
+			})
+		})
+		return true
 	},
 }
 export default {
