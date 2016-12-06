@@ -20,17 +20,17 @@ module.exports = {
         noInfo: true
     },
     module: {
-        preLoaders: [{
-            test: /\.vue$/,
-            loader: 'eslint-loader',
-            include: projectRoot,
-            exclude: /node_modules/
-        }, {
-            test: /\.js$/,
-            loader: 'eslint-loader',
-            include: projectRoot,
-            exclude: /node_modules/
-        }],
+        // preLoaders: [{
+        //     test: /\.vue$/,
+        //     loader: 'eslint-loader',
+        //     include: projectRoot,
+        //     exclude: /node_modules/
+        // }, {
+        //     test: /\.js$/,
+        //     loader: 'eslint-loader',
+        //     include: projectRoot,
+        //     exclude: /node_modules/
+        // }],
         loaders: [{
             test: /\.vue$/,
             loader: 'vue'

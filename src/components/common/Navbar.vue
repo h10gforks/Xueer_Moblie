@@ -2,22 +2,22 @@
 	<div :class="$style.nav_bar">
 		<div :class="$style.container">
 			<div :class="$style.title_set">
-				<div v-if="flag">
+				<div v-if="is_index">
 					<svg :class="[$style.nav_icon, $style.logo]">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo"></use>
 					</svg>
-					<span :class="[$style.title_s, $style.title]">搜索</span>
+					<span v-if="is_search" :class="[$style.title_s, $style.title]">搜索</span>
 				</div>
-				<div @click="backStep" v-if="!flag">
-					<svg viewBox="0 0 34 34" :class="[$style.back, $style.nav_icon]">
+				<div @click="backStep">
+					<svg  v-if="!is_index" viewBox="0 0 34 34" :class="[$style.back, $style.nav_icon]">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back"></use>
 					</svg>
-					<span v-if="flag" :class="[$style.title_l, $style.title]">所有课程</span>
-					<span :class="[$style.title_l, $style.title]">我的学而</span>
+					<span v-if="is_all" :class="[$style.title_l, $style.title]">所有课程</span>
+					<span v-if="is_auth" :class="[$style.title_l, $style.title]">我的学而</span>
 				</div>
 			</div>
 			<div :class="$style.icon_set">
-				<div @click="showSearch" data-link="/search" :class="[$style.nav_icon, $style.search]">
+				<div @click="displaySearch" data-link="/search" :class="[$style.nav_icon, $style.search]">
 					<svg viewBox="0 0 34 34">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
 					</svg>
@@ -33,20 +33,37 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
-	data() {
-		return {
-			flag: false,
-		}
+	computed: {
+		...mapState([
+			'is_index',
+			'is_recommend',
+			'is_all',
+			'is_search',
+			'is_auth',
+			'page_flag'
+		]),
+		...mapGetters([
+			'snaps',
+		]),
 	},
 	methods: {
 		...mapActions([
 			'showSearch',
+			'changePageFlagN',
+			'changePageFlagY',
+			'getSnaps',
 		]),
 		backStep() {
 			history.back()
+		},
+		displaySearch() {
+			this.getSnaps(this.snaps)
+			this.showSearch(),
+			this.changePageFlagY(['is_search','is_index'])
+			this.changePageFlagN(['is_all','is_auth','is_recommend'])
 		},
 	},
 }

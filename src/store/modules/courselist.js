@@ -33,9 +33,18 @@ const actions = {
 	}) {
 		commit('turnFlag')
 	},
+	initCourse({
+		commit,
+	}, page) {
+		commit('initCourse', page)
+	}
 }
 const mutations = {
 	/* eslint no-unused-vars:0 */
+	initCourse(state, page) {
+		state.page = 0
+		state.courses = []
+	},
 	fetchCourse(state) {
 		state.page += 1
 		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=view&null=asc'

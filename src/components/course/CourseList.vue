@@ -52,6 +52,7 @@ export default {
 		return {
 			flag: true,
 			isactive: true,
+			window_height: 0,
 		}
 	},
 	computed: {
@@ -60,6 +61,7 @@ export default {
 			'position',
 			'back',
 			'isend',
+			'page',
 		]),
 	},
 	created() {
@@ -72,23 +74,38 @@ export default {
 			this.flag = true
 			this.turnFlag()
 		} else {
+			// 初始化数据
+			this.initCourse()
 			const p = this.fetchCourse()
 		}
+		this.changePageFlagN('is_index')
+		this.changePageFlagY('is_all')
 	},
 	methods: {
 		...mapActions([
 			'fetchCourse',
 			'getPosition',
 			'turnFlag',
+			'changePageFlagN',
+			'changePageFlagY',
+			'initCourse',
 		]),
 		scrollHandler() {
 			const scroll_height = document.body.scrollTop
 			const doc_height = document.body.scrollHeight
-			const window_height = window.innerHeight
-			const height = scroll_height + window_height
+			if (!this.window_height) {
+				this.window_height = window.innerHeight
+			}
+			console.log(scroll_height)
+			console.log(doc_height)
+			console.log(this.window_height)
+			const height = scroll_height + this.window_height
 			if (height == doc_height && this.flag == true) {
 				this.flag = false
 				this.fetchCourse()
+			}
+			if(scroll_height <= 100) {
+
 			}
 		},
 		reSort() {
@@ -113,6 +130,10 @@ export default {
 		this.getPosition(document.body.scrollTop)
 		// 跳转到detail还会有个莫名其妙的滚动
 		this.flag = false
+		this.changePageFlagY('is_index')
+		this.changePageFlagN('is_all')
+		console.log(this.$store.state.is_index)
+		console.log(this.$router.currentRoute.name)
 		next()
 	},
 }

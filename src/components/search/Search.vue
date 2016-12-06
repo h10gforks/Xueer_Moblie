@@ -16,12 +16,12 @@
 				</div>
 			</div>
 		</div>
-		<div @click="hideSearch" :class="[$style.circle, $style.circle_fadeIn]"></div>
+		<div @click="hiddenSearch" :class="[$style.circle, $style.circle_fadeIn]"></div>
 	</div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 
 export default {
 	mounted() {
@@ -31,6 +31,10 @@ export default {
 		...mapGetters([
 			'hot',
 			'show_search',
+			'snaps'
+		]),
+		...mapState([
+			'page_snaps',
 		]),
 		link() {
 			return 'search/?page=1&per_page=20&keywords=' + this.hot
@@ -40,7 +44,21 @@ export default {
 		...mapActions([
 			'fetchHot',
 			'hideSearch',
+			'changePageFlagN',
+			'changePageFlagY',
 		]),
+		hiddenSearch() {
+			console.log(this.page_snaps)
+			this.hideSearch()
+			this.changePageFlagN('is_search')
+			for(var key in this.page_snaps) {
+				if(this.page_snaps[key]) {
+					this.changePageFlagY(key)
+				} else {
+					this.changePageFlagN(key)
+				}
+			}
+		}
 	},
 }
 </script>

@@ -35,33 +35,38 @@ export default {
 </script>
 
 <style lang='sass' module>
-@import '../assets/reset.scss';
-@import '../assets/value.scss';
+@import '../../assets/reset.scss';
+@import '../../assets/value.scss';
 .index {
 	flex: 1;
 	margin-top: 56px;
-}
+ }
+
 .home {
 	font-family: 'STHeiti';
 	height: 100%;
 }
+
 .tabs {
 	height: 48px;
 	padding: 0 16px;
 	font-size: 0;
 	background: $shallow_silver;
 }
+
 .item {
 	width: 80px;
 	display: inline-block;
 	font-size: 14px;
 	text-align: center;
 }
+			
 .link {
 	display: inline-block;
 	color: #666666;
 	line-height: 44px;
 }
+ 
 .active {
 	border-bottom: 4px solid currentColor;
 	color: #EEAB5D;
