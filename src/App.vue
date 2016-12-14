@@ -1,11 +1,12 @@
 <template>
 	<div :class="$style.app" id='app'>
-		<iconSvg></iconSvg>
+		<!--<iconSvg></iconSvg>
 		<navBar></navBar>
 		<search></search>
 		<index></index>
-		<Foot></Foot>
-		<Loading></Loading>
+		<foot></foot>
+		<loading></loading>-->
+		<filte></filte>
 	</div>
 </template>
 
@@ -17,6 +18,8 @@ import Index from './components/index/Index.vue'
 import Foot from './components/common/Foot.vue'
 import Loading from './components/common/Loading.vue'
 
+import Filte from './components/common/Filter.vue'
+
 export default {
 	components: {
 		IconSvg,
@@ -25,6 +28,7 @@ export default {
 		Index,
 		Foot,
 		Loading,
+		Filte,
 	},
 }
 </script>

@@ -1,4 +1,4 @@
-<template>heart_f
+<template>
     <svg style="display:none">
         <symbol id="views_count" viewBox="0 0 20 10">
             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
