@@ -6,8 +6,6 @@
 		<index></index>
 		<foot></foot>
 		<loading></loading>
-		<!--<filte></filte>-->
-		<!--<cAddress></cAddress>-->
 	</div>
 </template>
 
@@ -19,9 +17,6 @@ import Index from './components/index/Index.vue'
 import Foot from './components/common/Foot.vue'
 import Loading from './components/common/Loading.vue'
 
-import Filte from './components/common/Filter.vue'
-import CAddress from './components/course/Address.vue'
-
 export default {
 	components: {
 		IconSvg,
@@ -30,8 +25,6 @@ export default {
 		Index,
 		Foot,
 		Loading,
-		Filte,
-		CAddress,
 	},
 }
 </script>

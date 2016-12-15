@@ -1,12 +1,14 @@
 <template>
-    <div :class="$style.filter">
+    <div :class="$style.selector">
+        <div :class="$style.selector_cont">
+            <div :class="$style.items">
+                <div id="aa" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">公共课</div>
+                <div id="bb" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">专业课</div>
+                <div id="cc" @click="addTag" :class="[$style.item, $style.tag]">通选课</div>
+                <div id="dd" @click="addTag" :class="[$style.item, $style.tag]">素质课</div>
+            </div>
+            <div :class="[$style.bt, $style.item]">确定</div>
         <div>
-            <div id="aa" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">公共课</div>
-            <div id="bb" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">专业课</div>
-            <div id="cc" @click="addTag" :class="[$style.item, $style.tag]">通选课</div>
-            <div id="dd" @click="addTag" :class="[$style.item, $style.tag]">素质课</div>
-        </div>
-        <div :class="[$style.bt, $style.item]">确定</div>
     </div>
 </template>
 <script>
@@ -35,10 +37,22 @@ export default {
 }
 </script>
 <style lang="sass" module>
-.filter {
-    padding: 16px 13px 20px;
-    font-size: 0;
+body {
+    overflow: hidden;
+}
+.selector {
+    position: absolute;
+    height: 100%;
     text-align: center;
+    background: rgba(0,0,0, .5);
+}
+.selector_cont {
+    padding: 16px 13px 20px;
+    display: inline-block;
+    background: #fff;
+}
+.items {
+    font-size: 0;
 }
 .item {
     width: 156px;

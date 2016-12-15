@@ -2,14 +2,21 @@
 	<div v-scroll="scrollHandler" :class="$style.course_list">
 		<div :class="[$style.menu, $style.space]">
 			<div @click="reSort" :class="$style.sort">
-				<span>排序方式：</span>
+				<span :class="$style.s_item">排序方式：</span>
 				<span id="view" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
 					评论最多
 				&nbsp;&nbsp;</span>
 				<span id="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
 				&nbsp;&nbsp;点赞最多</span>
 			</div>
+			<div @click="showSelector" :class="$style.selector">
+				<span :class="$style.s_item">筛选</span>
+				<svg :class="[$style.s_item, $style.icon_selector, {[$style.selected]: is_selected}]">
+					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selector"></use>
+				</svg>
+			</div>
 		</div>
+		<selector v-if="is_selected"></selector>
 		<div id="js_courses_list" :class="$style.list">
 			<div v-for="item in courses" :class="$style.item">
 				<router-link :to="{ name: 'course', params: { id: item.id }}">
@@ -47,6 +54,8 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import { subStr } from '../../filters/filter.js'
 import scroll from '../../directives/scroll.js'
 
+import Selector from './Selector.vue'
+
 export default {
 	data() {
 		return {
@@ -54,6 +63,7 @@ export default {
 			isactive: true,
 			window_height: 0,
 			is_db: '',
+			is_selected: false,
 		}
 	},
 	computed: {
@@ -68,6 +78,9 @@ export default {
 			'is_loading',
 			'page_snaps',
 		]),
+	},
+	components: {
+		Selector,
 	},
 	methods: {
 		...mapActions([
@@ -108,6 +121,9 @@ export default {
 			}
 			this.is_db = id
 		},
+		showSelector() {
+			this.is_selected = !this.is_selected
+		}
 	},
 	watch: {
 		// 有bug
@@ -178,15 +194,21 @@ export default {
 	z-index: 0;
 	background-color: #ececec;
 	line-height: 48px;
+	font-size: 0;
 	color: #666;
 	position: relative;
 }	
 .sort {
-	font-size: 28px; /*px*/
+	height: 100%;
+	display: inline-block;
 	padding-left: 19px;
-	width: 72.3%;
+	width: 292px;
 	box-sizing: border-box;
 	text-align: left;
+}
+.s_item {
+	vertical-align: middle;
+	font-size: 28px; /*px*/
 }
 .comment {
 	border-right: 2px solid #666; /*px*/
@@ -263,5 +285,23 @@ export default {
 }
 .active {
 	color: #eeab5d;
+}
+.selector {
+	height: 100%;
+	line-height: 48px;
+	font-size: 0;
+	display: inline-block;
+}
+.icon_selector {
+	width: 12px;
+	height: 6px;
+	margin-left: 5px;
+}
+.icon_selector use {
+	width: 100%;
+	height: 100%;
+}
+.selected {
+	transform: rotate(180deg);
 }
 </style>

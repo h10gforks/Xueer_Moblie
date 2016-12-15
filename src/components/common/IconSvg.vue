@@ -13,6 +13,13 @@
                 </g>
             </g>
         </symbol>
+        <symbol id="selector" width="12px" height="7px" viewBox="0 0 12 7">
+            <g id="2.0改版页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="课程筛选" transform="translate(-322.000000, -100.000000)" fill="#666666">
+                    <polygon id="Path-465" transform="translate(328.379129, 103.619999) scale(1, -1) translate(-328.379129, -103.619999) " points="322.78233 100.803083 333.975928 100.803083 328.379129 106.436915"></polygon>
+                </g>
+            </g>
+        </symbol>
         <symbol id="heart_f" viewBox="0 0 13 12">
             <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
                 <g id="outline" transform="translate(-305.000000, -423.000000)">

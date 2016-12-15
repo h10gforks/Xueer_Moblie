@@ -23,7 +23,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 import Comment from './Comments.vue'
 import Info from './Info.vue'
 import BackToTop from '../common/BackToTop.vue'
@@ -44,6 +43,7 @@ export default {
 		]),
 	},
 	created() {
+		this.changePageFlagN('is_index')
 		this.fetchComments(this.$route.params.id)
 		this.fetchHotComments(this.$route.params.id)
 		this.isLoading(true)
@@ -55,6 +55,7 @@ export default {
 			'fetchHotComments',
 			'turnFlag',
 			'isLoading',
+			'changePageFlagN',
 		]),
 		moreComments() {
 			this.fetchComments(this.$route.params.id)
