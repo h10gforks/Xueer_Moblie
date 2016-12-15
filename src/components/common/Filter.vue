@@ -1,10 +1,10 @@
 <template>
     <div :class="$style.filter">
         <div>
-            <div :class="[$style.item, $style.tag, $style.first_line, {[$style.active]: isactive}]">公共课</div>
-            <div :class="[$style.item, $style.tag, $style.first_line, {[$style.active]: isactive}]">专业课</div>
-            <div :class="[$style.item, $style.tag, {[$style.active]: isactive}]">通选课</div>
-            <div :class="[$style.item, $style.tag, {[$style.active]: isactive}]">素质课</div>
+            <div id="aa" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">公共课</div>
+            <div id="bb" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">专业课</div>
+            <div id="cc" @click="addTag" :class="[$style.item, $style.tag]">通选课</div>
+            <div id="dd" @click="addTag" :class="[$style.item, $style.tag]">素质课</div>
         </div>
         <div :class="[$style.bt, $style.item]">确定</div>
     </div>
@@ -13,7 +13,23 @@
 export default {
     data(){
         return {
-            isactive: true
+            isactive: true,
+            selected: []
+        }
+    },
+    methods: {
+        addTag(e){
+            const index = this.selected.indexOf(e.target.id)
+            if(index == -1) {
+                this.selected.push(e.target.id)
+                e.target.className += ' filter-active'
+            } else {
+                this.selected.splice(index)
+                let arr = e.target.className.split(' ')
+                arr.pop()
+                e.target.className = arr.join(' ')
+            }
+            console.log(e.target.className)
         }
     }
 }
@@ -48,8 +64,5 @@ export default {
 }
 .first_line {
     margin-bottom: 16px;
-}
-.active {
-    background: #2BBB8F;
 }
 </style>

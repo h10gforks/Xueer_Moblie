@@ -62,6 +62,8 @@ export default {
 .artical_cont {
 	margin: 16px 16px 0;
 	border: 1px solid $shallow_silver;
+	border-radius: 2px;
+	overflow: hidden;
 	box-shadow: 0 0 0 0, 
 		0 0 0 0, 
 		0 2px 3px -2px currentColor,

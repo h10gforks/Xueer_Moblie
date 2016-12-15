@@ -11,9 +11,12 @@
 	                <div :class="$style.body">{{ item.body }}</div>
 	                <div :class="$style.like">
 	                    <div :class="$style.touch_area">
-	                        <svg :class="$style.like_icon ">
-	                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
-	                        </svg>
+							<div @click.capture="likeComments" :class="$style.like_bt">
+								<div :class="$style.like_anim">+1</div>
+								<svg :class="$style.like_icon">
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
+								</svg>
+							</div>
 	                        <span :class="$style.like_count">{{ item.likes }}</span>
 	                    </div>
 					</div>
@@ -33,12 +36,20 @@
 <script>
 /* eslint no-underscore-dangle:0 */
 export default {
+	data() {
+		return {
+			isliked: false
+		}
+	},
 	props: ['comments'],
 	methods: {
 		showMore(item) {
 			item.body = item._body
 			item._body = ''
 		},
+		likeComments(e) {
+			e.target.className += ' liked'
+		}
 	},
 }
 </script>
@@ -113,5 +124,21 @@ export default {
 	font-size: 28px; /*px*/
     text-align: center;
     color: #999;
+}
+.like_bt {
+	display: inline-block;
+	position: relative;
+}
+.like_anim {
+	width: 40px;
+    text-align: center;
+    height: 30px;
+	line-height: 30px;
+	font-size: 28px; /*px*/
+	position: absolute;
+	color: #ec6941;
+	opacity:0;
+	left: -50%;
+	top: -50%;
 }
 </style>

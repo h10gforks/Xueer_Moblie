@@ -1,12 +1,13 @@
 <template>
-	<div :class="$style.app" id='app'>
-		<!--<iconSvg></iconSvg>
+	<div class="app" id='app'>
+		<iconSvg></iconSvg>
 		<navBar></navBar>
 		<search></search>
 		<index></index>
 		<foot></foot>
-		<loading></loading>-->
-		<filte></filte>
+		<loading></loading>
+		<!--<filte></filte>-->
+		<!--<cAddress></cAddress>-->
 	</div>
 </template>
 
@@ -19,6 +20,7 @@ import Foot from './components/common/Foot.vue'
 import Loading from './components/common/Loading.vue'
 
 import Filte from './components/common/Filter.vue'
+import CAddress from './components/course/Address.vue'
 
 export default {
 	components: {
@@ -29,11 +31,14 @@ export default {
 		Foot,
 		Loading,
 		Filte,
+		CAddress,
 	},
 }
 </script>
 
-<style lang='sass' module>
+<style lang='sass'>
+@import './assets/common.scss';
+@import './assets/reset.scss';
 .app {
 	display: flex;
 	flex-flow: column;
