@@ -25,6 +25,12 @@ const mutations = {
 	isLoading(state, flag) {
 		state.is_loading = flag
 	},
+	showSelector(state, flag) {
+		state.is_selected = flag
+	},
+	showLogin(state, flag) {
+		state.is_logined ? '' : state.show_login = flag
+	},
 }
 
 export default mutations

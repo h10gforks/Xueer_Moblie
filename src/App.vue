@@ -6,6 +6,7 @@
 		<index></index>
 		<foot></foot>
 		<loading></loading>
+		<loginDialog></loginDialog>
 	</div>
 </template>
 
@@ -16,6 +17,7 @@ import Search from './components/search/Search.vue'
 import Index from './components/index/Index.vue'
 import Foot from './components/common/Foot.vue'
 import Loading from './components/common/Loading.vue'
+import LoginDialog from './components/common/LoginDialog.vue'
 
 export default {
 	components: {
@@ -25,6 +27,7 @@ export default {
 		Index,
 		Foot,
 		Loading,
+		LoginDialog,
 	},
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<div :class="$style.address">
-        <div :class="$style.title">课程安排</div>
+        <h2 :class="$style.title">课程安排</h2>
         <div :class="$style.course_info">
             <span :class="$style.item">时间3：星期三第1-4节{2-6周}xg</span><br>
             <span :class="$style.item">时间2：星期四第3-4节{1-19周(单)</span><br>
@@ -15,9 +15,13 @@ export default {
 </script>
 
 <style lang='sass' module>
+.address {
+    padding: 0 13px 9px;
+}
 .title {
     height: 36px;
     font-size: 32px; /*px*/
+    color: #666;
     line-height: 16px;
     box-sizing: border-box;
     padding-bottom: 16px;

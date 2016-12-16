@@ -30,11 +30,17 @@ const actions = {
 	}, id) {
 		commit('fetchHotComments', id)
 	},
+	courseLike({
+		commit,
+	}, id) {
+		commit('courseLike', id)
+	},
 }
+/* eslint no-underscore-dangle:0 */
 const preprocess = (json) => {
 	json.forEach(element => {
 		if (element.body.length >= 60) {
-			element.body = element.body
+			element._body = element.body
 			element.body = element.body.substr(0, 60)
 		}
 	})
@@ -48,7 +54,8 @@ const mutations = {
 			response.json().then(json => {
 				state.info = json
 				state.views = json.views
-				const hot_tags = json.hot_tags.split(' ')
+				let hot_tags
+				json.hot_tags ? hot_tags = json.hot_tags.split(' ') : hot_tags=[]
 				hot_tags.unshift(json.main_category)
 				state.hot_tags = hot_tags
 			})
@@ -66,7 +73,7 @@ const mutations = {
 					return
 				}
 				state.comments = state.comments.concat(json)
-				if (state.comments.length >= state.views) {
+				if (state.comments.length >= state.views || state.comments.length <= 10) {
 					state.more = false
 				}
 			})
@@ -79,6 +86,19 @@ const mutations = {
 			response.json().then(json => {
 				preprocess(json)
 				state.hot_comments = state.hot_comments.concat(json)
+			})
+		})
+	},
+	courseLike(state, id) {
+		const url = '/api/v1.0/courses/51/like/'
+		fetch(url, {
+			method: 'POST',
+			header: {
+				Authorization: 'Basic ZXlKcFpDSTZNVGc1ZlEuTnRTZzNTbjAwU05PYV9Nc09hYll4Tjc4b0pnOg==',
+			},
+		}).then(response => {
+			response.json().then(json => {
+				console.log(json)
 			})
 		})
 	},

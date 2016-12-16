@@ -11,7 +11,7 @@
 	                <div :class="$style.body">{{ item.body }}</div>
 	                <div :class="$style.like">
 	                    <div :class="$style.touch_area">
-							<div @click.capture="likeComments" :class="$style.like_bt">
+							<div @click="likeComments" :class="$style.like_bt">
 								<div :class="$style.like_anim">+1</div>
 								<svg :class="$style.like_icon">
 									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
@@ -22,35 +22,49 @@
 					</div>
 	            </div>
 	            <div v-if="item._body" @click="showMore(item)" :class="$style.more">
-	                <svg :class="$style.more_icon">
+	                <svg :class="[more ? '' : [$style.icon_up], $style.more_icon]">
 	                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down"></use>
 	                </svg>
-	                <span :class="$style.more_text">查看全文</span>
+					<span v-if="more" :class="$style.more_text">收起</span>
+	                <span v-else :class="$style.more_text">查看全文</span>
 	            </div>
 	        </div>
 	    </li>
-	    <div :class="$style.no_comments">∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div></div></div>
 	</div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 /* eslint no-underscore-dangle:0 */
 export default {
 	data() {
 		return {
-			isliked: false
+			isliked: false,
+			more: false,
+			body: '',
 		}
 	},
 	props: ['comments'],
 	methods: {
+		...mapActions([
+			'showLogin',
+			'courseLike',
+		]),
 		showMore(item) {
+			this.more = !this.more
+			console.log(this.more)
+			if(!this.more) {
+				item.body = this.body
+				return;
+			}
+			this.body = item.body
 			item.body = item._body
-			item._body = ''
 		},
 		likeComments(e) {
 			e.target.className += ' liked'
+			this.courseLike()
 		}
-	},
+	}
 }
 </script>
 
@@ -115,15 +129,12 @@ export default {
 	height: 5px;
 	margin-right: 6px;
 }
+.icon_up {
+	transform: rotate(180deg);
+}
 .more_text {
 	font-size: 28px; /*px*/
 	color: $shallow_grey;
-}
-.no_comments {
-	padding-top: 15px;
-	font-size: 28px; /*px*/
-    text-align: center;
-    color: #999;
 }
 .like_bt {
 	display: inline-block;

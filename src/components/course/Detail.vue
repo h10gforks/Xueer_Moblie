@@ -4,7 +4,8 @@
 		<div :class="$style.tags">
 			<span v-for="item in hot_tags" :class="$style.tags_item">{{ item }}</span>
 		</div>
-		<div :class="$style.comments">
+		<addition></addition>
+		<div v-if="hot_comments.length != 0" :class="$style.comments">
 			<h2 :class="$style.comments_title">热门评论</h2>
 			<comment :comments="hot_comments"></comment>
 		</div>
@@ -12,11 +13,12 @@
 			<h2 :class="[$style.comments_title, $style.title_all]">所有评论</h2>
 			<comment :comments="comments"></comment>
 			<div v-if="more" @click="moreComments" :class="$style.more_comments">展开更多评价</div>
-			<div v-else :class="$style.no_more_comments">
+			<div v-if="!more && comments.length != 0" :class="$style.no_more_comments">
 				∑(っ °Д °;)っ
 				<br>没有更多评价了。
 			</div>
 		</div>
+		<div v-if="comments.length == 0" :class="$style.no_comments">∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。</div>
 		<backToTop></backToTop>
 	</div>
 </template>
@@ -26,6 +28,7 @@ import { mapGetters, mapActions } from 'vuex'
 import Comment from './Comments.vue'
 import Info from './Info.vue'
 import BackToTop from '../common/BackToTop.vue'
+import Addition from './Addition.vue'
 
 export default {
 	data() {
@@ -65,6 +68,7 @@ export default {
 		Comment,
 		Info,
 		BackToTop,
+		Addition,
 	},
 	beforeRouteLeave(to, from, next) {
 		this.turnFlag()
@@ -123,5 +127,11 @@ export default {
 	width: 120px;
 	margin: 0 auto;
 	padding: 15px 0;
+}
+.no_comments {
+	padding-top: 15px;
+	font-size: 28px; /*px*/
+    text-align: center;
+    color: #999;
 }
 </style>

@@ -21,10 +21,13 @@ export default {
 	},
 	methods: {
 		...mapActions([
-			'likeThis',
+			'showLogin',
 		]),
 		backIndex() {
 			history.go(-1)
+		},
+		likeThis(){
+			this.showLogin(true)
 		},
 	},
 }

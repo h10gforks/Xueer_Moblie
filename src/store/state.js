@@ -8,6 +8,9 @@ const state = {
 	is_sub: false,
 	page_snaps: {},
 	is_loading: false,
+	is_selected: false,
+	show_login: false,
+	is_logined: false,
 }
 
 export default state

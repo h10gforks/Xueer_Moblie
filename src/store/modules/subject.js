@@ -40,15 +40,6 @@ const mutations = {
 			})
 		})
 	},
-	/* eslint no-unused-vars:0 */
-	likeThis(state) {
-		// const url = '/api/v1.0/comments/' + state.subject_id + '/like/'
-		// fetch(url)
-		// .then(response => {
-		//     response.json().then(json => {
-		//     })
-		// })
-	},
 }
 export default {
 	state,

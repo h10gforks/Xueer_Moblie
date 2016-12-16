@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.selector">
+    <div @click.self="hideSelector" :class="$style.selector">
         <div :class="$style.selector_cont">
             <div :class="$style.items">
                 <div id="aa" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">公共课</div>
@@ -12,6 +12,8 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     data(){
         return {
@@ -20,6 +22,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'showSelector',
+        ]),
         addTag(e){
             const index = this.selected.indexOf(e.target.id)
             if(index == -1) {
@@ -31,17 +36,18 @@ export default {
                 arr.pop()
                 e.target.className = arr.join(' ')
             }
-            console.log(e.target.className)
+        },
+        hideSelector(){
+            this.showSelector(false)
         }
     }
 }
 </script>
 <style lang="sass" module>
-body {
-    overflow: hidden;
-}
 .selector {
+    padding-top: 103px;
     position: absolute;
+    top: 0;
     height: 100%;
     text-align: center;
     background: rgba(0,0,0, .5);

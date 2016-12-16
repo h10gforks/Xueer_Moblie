@@ -3,13 +3,13 @@
 		<h2 :class="$style.title">{{ info.title }}</h2>
 		<div :class="$style.teacher">{{ info.teacher }}</div>
 		<div :class="$style.btns">
-			<div :class="$style.btn" id="course_like">
+			<div @click="likeCourse" :class="$style.btn" id="course_like">
 				   <svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon]">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_s"></use>
 				   </svg>
 				   <span :class="$style.btn_text">{{ info.likes }}</span>
 			</div>
-			<div :class="$style.btn" id="w_comment">
+			<div @click="writeComment" :class="$style.btn" id="w_comment">
 				<svg viewBox="0 0 17 14" :class="[$style.icon, $style.comment_icon]">
 					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments"></use>
 				</svg>
@@ -35,7 +35,18 @@ export default {
 	methods: {
 		...mapActions([
 			'fetchInfo',
+			'showLogin',
+			'courseLike',
 		]),
+		likeCourse(){
+			this.showLogin(true)
+			this.courseLike()
+			console.log("hello world!")
+		},
+		writeComment(){
+			this.showLogin(true)
+			console.log("hello world!")
+		},
 	},
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
 	<div v-scroll="scrollHandler" :class="$style.course_list">
+		<selector v-if="is_selected"></selector>
 		<div :class="[$style.menu, $style.space]">
 			<div @click="reSort" :class="$style.sort">
 				<span :class="$style.s_item">排序方式：</span>
@@ -9,14 +10,13 @@
 				<span id="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
 				&nbsp;&nbsp;点赞最多</span>
 			</div>
-			<div @click="showSelector" :class="$style.selector">
+			<div @click="Selector" :class="$style.selector">
 				<span :class="$style.s_item">筛选</span>
 				<svg :class="[$style.s_item, $style.icon_selector, {[$style.selected]: is_selected}]">
 					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selector"></use>
 				</svg>
 			</div>
 		</div>
-		<selector v-if="is_selected"></selector>
 		<div id="js_courses_list" :class="$style.list">
 			<div v-for="item in courses" :class="$style.item">
 				<router-link :to="{ name: 'course', params: { id: item.id }}">
@@ -63,7 +63,6 @@ export default {
 			isactive: true,
 			window_height: 0,
 			is_db: '',
-			is_selected: false,
 		}
 	},
 	computed: {
@@ -77,6 +76,7 @@ export default {
 		...mapState([
 			'is_loading',
 			'page_snaps',
+			'is_selected',
 		]),
 	},
 	components: {
@@ -92,6 +92,7 @@ export default {
 			'initCourse',
 			'fetchCourseN',
 			'isLoading',
+			'showSelector',
 		]),
 		scrollHandler() {
 			const scroll_height = document.body.scrollTop
@@ -121,8 +122,9 @@ export default {
 			}
 			this.is_db = id
 		},
-		showSelector() {
-			this.is_selected = !this.is_selected
+		Selector() {
+			this.showSelector(!this.is_selected)
+			this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
 		}
 	},
 	watch: {

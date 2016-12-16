@@ -1,5 +1,5 @@
 <template>
-	<div v-if="flag" :class="$style.dialog">
+	<div v-if="show_login" :class="$style.dialog">
 	    <div :class="$style.dialog_top">
 	        <div :class="$style.dialog_img"></div>
 	        <div :class="$style.dialog_text">请登录后操作</div>
@@ -10,17 +10,25 @@
 	    </div> 
 	 </div>
 </template>
-
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
 	data() {
 		return {
 			flag: true,
 		}
 	},
+    computed: {
+        ...mapState([
+            'show_login'
+        ]),
+    },
 	methods: {
+        ...mapActions([
+            'showLogin'
+        ]),
 		cancel() {
-			this.flag = false
+			this.showLogin(false)
 		},
 	},
 }

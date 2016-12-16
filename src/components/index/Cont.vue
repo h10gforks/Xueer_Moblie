@@ -5,23 +5,21 @@
 				<div :class="$style.img_cont">
 					<img :src="item.img_url">
 				</div>
+				<p :class="$style.title">
+					{{ item.title }}
+				</p>
 			</router-link>
 			<div :class="$style.overview">
-				<router-link :to="{ name: 'tip', params: { id: item.id }}">
-					<p :class="$style.intro">
-						{{ item.title }}
-					</p>
-				</router-link>
 				<div :class="$style.like">
 					<div :class="$style.view">
 						<svg :class="$style.icon_views">
-  							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#views_count"></use>
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#views_count"></use>
 						</svg>
 						<span :class="$style.count">{{ item.views }}</span>
 					</div>
 					<div :class="$style.liked">
 						<svg :class="$style.icon_likes">
-  							<use :class="$style.use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
+							<use :class="$style.use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
 						</svg>
 						<span :class="$style.count">{{ item.likes }}</span>
 					</div>
@@ -75,15 +73,15 @@ export default {
 .overview {
 	z-index: -100;
 	position: relative;
-	padding: 16px;
+	padding: 18px 16px 16px;
 }
-.intro {
+.title {
+	padding: 0 16px;
 	font-size: 20px;
 	line-height: 28px;
 	color: $shallow_black;
 }
 .like {
-	margin: 22px 0 0;
 	font-size: 0;
 	color: #FFF;
 }
