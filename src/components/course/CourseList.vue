@@ -1,36 +1,32 @@
 <template>
-	<div v-scroll="scrollHandler" :class="$style.course_list">
-		<selector v-if="is_selected"></selector>
-		<reSort></reSort>
-		<div id="js_courses_list" :class="$style.list">
-			<div v-for="item in courses" :class="$style.item">
-				<router-link :to="{ name: 'course', params: { id: item.id }}">
-					<div :class="[$style.course, $style.space]">
-						<div :class="$style.avatar">{{ item.main_category | subStr }}</div>
-						<div :class="$style.content">
-							<div :class="[$style.title, $style.c_link]">{{ item.title }}</div>
-							<div :class="[$style.info, $style.space]">
-								<span :class="[$style.va_item, $style.teacher]">{{ item.teacher }}</span>
-								<span :class="[$style.va_item, $style.comments]">
-									<svg>
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments_fill"></use>
-									</svg>
-									<span>{{ item.views }}</span>
-								</span>
-								<span :class="[$style.va_item, $style.likes]">
-									<svg>
-										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
-									</svg>
-									<span>{{ item.likes }}</span>
-								</span>
-							</div>
+	<div v-scroll="scrollHandler" id="js_courses_list" :class="$style.list">
+		<div v-for="item in courses" :class="$style.item">
+			<router-link :to="{ name: 'course', params: { id: item.id }}">
+				<div :class="[$style.course, $style.space]">
+					<div :class="$style.avatar">{{ item.main_category | subStr }}</div>
+					<div :class="$style.content">
+						<div :class="[$style.title, $style.c_link]">{{ item.title }}</div>
+						<div :class="[$style.info, $style.space]">
+							<span :class="[$style.va_item, $style.teacher]">{{ item.teacher }}</span>
+							<span :class="[$style.va_item, $style.comments]">
+								<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments_fill"></use>
+								</svg>
+								<span>{{ item.views }}</span>
+							</span>
+							<span :class="[$style.va_item, $style.likes]">
+								<svg>
+									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
+								</svg>
+								<span>{{ item.likes }}</span>
+							</span>
 						</div>
 					</div>
-				</router-link>
-			</div>
-			<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
-			<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
+				</div>
+			</router-link>
 		</div>
+		<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
+		<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
 	</div>
 </template>
 
@@ -46,9 +42,7 @@ export default {
 	data() {
 		return {
 			flag: true,
-			isactive: true,
 			window_height: 0,
-			is_db: '',
 			is_recommend: false,
 		}
 	},
@@ -68,7 +62,7 @@ export default {
 	},
 	components: {
 		Selector,
-		ReSort,
+        ReSort,
 	},
 	methods: {
 		...mapActions([
@@ -80,7 +74,6 @@ export default {
 			'initCourse',
 			'fetchCourseN',
 			'isLoading',
-			'showSelector',
 		]),
 		scrollHandler() {
 			const scroll_height = document.body.scrollTop
@@ -98,22 +91,6 @@ export default {
 				this.fetchCourseN(this.$route.params.sort)
 			}
 		},
-		reSort(e) {
-			const id = e.target.id
-			if (this.is_db == id) {
-				return false
-			} else {
-				this.isLoading(true)
-				this.isactive = !this.isactive
-				this.initCourse()
-				this.fetchCourse(id)
-			}
-			this.is_db = id
-		},
-		Selector() {
-			this.showSelector(!this.is_selected)
-			this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
-		}
 	},
 	watch: {
 		// 有bug
@@ -131,20 +108,6 @@ export default {
 	filters: {
 		subStr,
 	},
-	beforeRouteLeave(to, from, next) {
-		this.getPosition(document.body.scrollTop)
-		// 跳转到detail还会有个莫名其妙的滚动
-		this.flag = false
-		if(to.name === 'course') {
-			this.changePageFlagN('is_index')
-			this.changePageFlagN('is_all')
-			this.changePageFlagY('is_course')
-		}
-		this.changePageFlagN('is_search')
-		this.changePageFlagY('is_index')
-		this.changePageFlagN('is_all')
-		next()
-	},
 	mounted() {
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
@@ -156,6 +119,7 @@ export default {
 			this.fetchCourse(sort)
 			this.isLoading(true)
 		}
+
 		if (this.back) {
 			// 这里为什么要setTimeout
 			setTimeout(() => {
@@ -174,31 +138,6 @@ export default {
 </script>
 
 <style lang='sass' module>
-.menu {
-	width: 100%;
-	height: 48px;
-	z-index: 0;
-	background-color: #ececec;
-	line-height: 48px;
-	font-size: 0;
-	color: #666;
-	position: relative;
-}	
-.sort {
-	height: 100%;
-	display: inline-block;
-	padding-left: 19px;
-	width: 292px;
-	box-sizing: border-box;
-	text-align: left;
-}
-.s_item {
-	vertical-align: middle;
-	font-size: 28px; /*px*/
-}
-.comment {
-	border-right: 2px solid #666; /*px*/
-}
 .list {
 	width: 100%;
 }
@@ -259,35 +198,11 @@ export default {
 .list use {
 	fill: #999;
 }
-.likes svg {
-	margin-left: 16px;
-}
 .hint {
 	font-size: 24px; /*px*/
     text-align: center;
     color: #999;
     margin-top: 16px;
     margin-bottom: 34px;
-}
-.active {
-	color: #eeab5d;
-}
-.selector {
-	height: 100%;
-	line-height: 48px;
-	font-size: 0;
-	display: inline-block;
-}
-.icon_selector {
-	width: 12px;
-	height: 6px;
-	margin-left: 5px;
-}
-.icon_selector use {
-	width: 100%;
-	height: 100%;
-}
-.selected {
-	transform: rotate(180deg);
 }
 </style>
