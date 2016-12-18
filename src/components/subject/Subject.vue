@@ -16,6 +16,7 @@ import Btns from './Btns.vue'
 
 export default {
 	created() {
+		console.log(this.$route.params)
 		this.fetchSubject(this.$route.params.id)
 		this.changePageFlagN('is_index')
 		this.changePageFlagY('is_sub')

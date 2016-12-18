@@ -46,9 +46,7 @@ export default {
 	data() {
 		return {
 			flag: true,
-			isactive: true,
 			window_height: 0,
-			is_db: '',
 			is_recommend: false,
 		}
 	},
@@ -68,7 +66,7 @@ export default {
 	},
 	components: {
 		Selector,
-		ReSort,
+        ReSort,
 	},
 	methods: {
 		...mapActions([
@@ -80,7 +78,6 @@ export default {
 			'initCourse',
 			'fetchCourseN',
 			'isLoading',
-			'showSelector',
 		]),
 		scrollHandler() {
 			const scroll_height = document.body.scrollTop
@@ -98,22 +95,6 @@ export default {
 				this.fetchCourseN(this.$route.params.sort)
 			}
 		},
-		reSort(e) {
-			const id = e.target.id
-			if (this.is_db == id) {
-				return false
-			} else {
-				this.isLoading(true)
-				this.isactive = !this.isactive
-				this.initCourse()
-				this.fetchCourse(id)
-			}
-			this.is_db = id
-		},
-		Selector() {
-			this.showSelector(!this.is_selected)
-			this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
-		}
 	},
 	watch: {
 		// 有bug
@@ -174,31 +155,6 @@ export default {
 </script>
 
 <style lang='sass' module>
-.menu {
-	width: 100%;
-	height: 48px;
-	z-index: 0;
-	background-color: #ececec;
-	line-height: 48px;
-	font-size: 0;
-	color: #666;
-	position: relative;
-}	
-.sort {
-	height: 100%;
-	display: inline-block;
-	padding-left: 19px;
-	width: 292px;
-	box-sizing: border-box;
-	text-align: left;
-}
-.s_item {
-	vertical-align: middle;
-	font-size: 28px; /*px*/
-}
-.comment {
-	border-right: 2px solid #666; /*px*/
-}
 .list {
 	width: 100%;
 }
@@ -259,35 +215,11 @@ export default {
 .list use {
 	fill: #999;
 }
-.likes svg {
-	margin-left: 16px;
-}
 .hint {
 	font-size: 24px; /*px*/
     text-align: center;
     color: #999;
     margin-top: 16px;
     margin-bottom: 34px;
-}
-.active {
-	color: #eeab5d;
-}
-.selector {
-	height: 100%;
-	line-height: 48px;
-	font-size: 0;
-	display: inline-block;
-}
-.icon_selector {
-	width: 12px;
-	height: 6px;
-	margin-left: 5px;
-}
-.icon_selector use {
-	width: 100%;
-	height: 100%;
-}
-.selected {
-	transform: rotate(180deg);
 }
 </style>

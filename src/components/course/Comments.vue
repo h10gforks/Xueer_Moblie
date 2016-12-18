@@ -11,7 +11,7 @@
 	                <div :class="$style.body">{{ item.body }}</div>
 	                <div :class="$style.like">
 	                    <div :class="$style.touch_area">
-							<div @click="likeComments" :class="$style.like_bt">
+							<div :id="item.likes" @click="likeComments" :class="$style.like_bt">
 								<div :class="$style.like_anim">+1</div>
 								<svg :class="$style.like_icon">
 									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
@@ -25,7 +25,7 @@
 	                <svg :class="[more ? '' : [$style.icon_up], $style.more_icon]">
 	                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down"></use>
 	                </svg>
-					<span v-if="more" :class="$style.more_text">收起</span>
+					<span v-if="item.body == item._body" :class="$style.more_text">收起</span>
 	                <span v-else :class="$style.more_text">查看全文</span>
 	            </div>
 	        </div>
@@ -52,7 +52,6 @@ export default {
 		]),
 		showMore(item) {
 			this.more = !this.more
-			console.log(this.more)
 			if(!this.more) {
 				item.body = this.body
 				return;

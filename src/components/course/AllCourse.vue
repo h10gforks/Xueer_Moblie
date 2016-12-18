@@ -1,7 +1,21 @@
 <template>
 	<div v-scroll="scrollHandler" :class="$style.course_list">
 		<selector v-if="is_selected"></selector>
-		<reSort></reSort>
+		<div :class="[$style.menu, $style.space]">
+			<div @click="reSort" :class="$style.sort">
+				<span :class="$style.s_item">排序方式：</span>
+				<span id="view" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
+				评论最多&nbsp;&nbsp;</span>
+				<span id="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
+				&nbsp;&nbsp;点赞最多</span>
+			</div>
+			<div @click="Selector" :class="$style.selector">
+				<span :class="$style.s_item">筛选</span>
+				<svg :class="[$style.s_item, $style.icon_selector, {[$style.selected]: is_selected}]">
+					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selector"></use>
+				</svg>
+			</div>
+		</div>
 		<div id="js_courses_list" :class="$style.list">
 			<div v-for="item in courses" :class="$style.item">
 				<router-link :to="{ name: 'course', params: { id: item.id }}">
@@ -40,7 +54,6 @@ import { subStr } from '../../filters/filter.js'
 import scroll from '../../directives/scroll.js'
 
 import Selector from './Selector.vue'
-import ReSort from './ReSort.vue'
 
 export default {
 	data() {
@@ -68,7 +81,6 @@ export default {
 	},
 	components: {
 		Selector,
-		ReSort,
 	},
 	methods: {
 		...mapActions([

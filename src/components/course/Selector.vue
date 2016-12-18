@@ -2,12 +2,12 @@
     <div @click.self="hideSelector" :class="$style.selector">
         <div :class="$style.selector_cont">
             <div :class="$style.items">
-                <div id="aa" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">公共课</div>
-                <div id="bb" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">专业课</div>
-                <div id="cc" @click="addTag" :class="[$style.item, $style.tag]">通选课</div>
-                <div id="dd" @click="addTag" :class="[$style.item, $style.tag]">素质课</div>
+                <div id="gg_cat" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">公共课</div>
+                <div id="zy_cat" @click="addTag" :class="[$style.item, $style.tag, $style.first_line]">专业课</div>
+                <div id="ts_cat" @click="addTag" :class="[$style.item, $style.tag]">通选课</div>
+                <div id="sz_cat" @click="addTag" :class="[$style.item, $style.tag]">素质课</div>
             </div>
-            <div :class="[$style.bt, $style.item]">确定</div>
+            <div @click="selector" :class="[$style.bt, $style.item]">确定</div>
         <div>
     </div>
 </template>
@@ -24,6 +24,8 @@ export default {
     methods: {
         ...mapActions([
             'showSelector',
+            'fetchSelector',
+            'initCourse'
         ]),
         addTag(e){
             const index = this.selected.indexOf(e.target.id)
@@ -31,14 +33,22 @@ export default {
                 this.selected.push(e.target.id)
                 e.target.className += ' filter-active'
             } else {
-                this.selected.splice(index)
+                this.selected.splice(index,1)
                 let arr = e.target.className.split(' ')
                 arr.pop()
                 e.target.className = arr.join(' ')
             }
+            console.log(this.selected)
         },
         hideSelector(){
             this.showSelector(false)
+        },
+        selector(){
+            this.hideSelector()
+            this.initCourse()
+            this.fetchSelector(this.selected)
+            this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
+            this.selected = []
         }
     }
 }

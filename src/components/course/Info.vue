@@ -3,13 +3,13 @@
 		<h2 :class="$style.title">{{ info.title }}</h2>
 		<div :class="$style.teacher">{{ info.teacher }}</div>
 		<div :class="$style.btns">
-			<div @click="likeCourse" :class="$style.btn" id="course_like">
+			<div @click="likeCourse" :class="$style.btn" :id="info.id">
 				   <svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon]">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_s"></use>
 				   </svg>
 				   <span :class="$style.btn_text">{{ info.likes }}</span>
 			</div>
-			<div @click="writeComment" :class="$style.btn" id="w_comment">
+			<div @click="writeComment" :class="$style.btn" :id="info.id">
 				<svg viewBox="0 0 17 14" :class="[$style.icon, $style.comment_icon]">
 					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments"></use>
 				</svg>
@@ -56,8 +56,6 @@ export default {
 .info {
 	position: relative;
 	padding: 16px 0;
-	background-image: url('../../assets/course_bg.jpg');
-	z-index: -100;
 	color: #FFF;
 }
 .info::before {
@@ -70,6 +68,17 @@ export default {
 	opacity: .8;
 	filter: alpha(opacity=.8);
 	background-color: $_yellow;
+	width: 100%;
+	height: 100%;
+}
+.info::after {
+	content: '.';
+	font-size: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -200;
+	background-image: url('../../assets/course_bg.jpg');
 	width: 100%;
 	height: 100%;
 }

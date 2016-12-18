@@ -2,13 +2,13 @@
 	<div :class="$style.index">
 		<div v-if="is_index && !is_search" :class="$style.tabs">
 			<div :class="$style.item">
-				<router-link :class="[$style.active,$style.link]" to="/">首页</router-link>
+				<router-link :class="[$style.active,$style.link]" :to="{ name: 'index', params: { page: 'index' }}">首页</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link :class="$style.link" to="/recommend">推荐课程</router-link>
+				<router-link :class="$style.link" :to="{ name: 'recommend', params: { page: 'recommend', sort: 'score' }}">推荐课程</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link :class="$style.link" to="/recommend">所有课程</router-link>
+				<router-link :class="$style.link" :to="{ name: 'all', params: { page: 'all', sort: 'view' }}">所有课程</router-link>
 			</div>
 		</div>
 		<div>

@@ -13,6 +13,9 @@ const getters = {
 	comments: () => state.comments,
 	hot_comments: () => state.hot_comments,
 	more: () => state.more,
+	loctime: () => {
+		return state.info.loctime ? state.info.loctime.split(',') : ''
+	},
 }
 const actions = {
 	fetchInfo({
@@ -90,15 +93,25 @@ const mutations = {
 		})
 	},
 	courseLike(state, id) {
-		const url = '/api/v1.0/courses/51/like/'
+		console.log(state.comments)
+		const url = 'api/v1.0/comments/1244/like/'
+		const payload = {
+			c_id: 591,
+		}
+		const HEADERS = {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+		}
+		const data = JSON.stringify(payload)
 		fetch(url, {
 			method: 'POST',
-			header: {
-				Authorization: 'Basic ZXlKcFpDSTZNVGc1ZlEuTnRTZzNTbjAwU05PYV9Nc09hYll4Tjc4b0pnOg==',
-			},
+			headers: new Headers(Object.assign(HEADERS, {
+				Authorization: 'Basic ' + btoa('eyJpZCI6MTg5fQ.NtSg3Sn00SNOa_MsOabYxN78oJg:'),
+			})),
+			body: data,
 		}).then(response => {
 			response.json().then(json => {
-				console.log(json)
+				
 			})
 		})
 	},
