@@ -16,7 +16,6 @@ const getters = {
 	back: () => state.back,
 	isend: () => state.isend,
 }
-/* eslint no-undef:0 */
 const actions = {
 	fetchCourse({
 		commit,
@@ -51,30 +50,45 @@ const actions = {
 }
 
 const GetData = function () {
-	this.url = 'api/v1.0/courses/?page=1&'
+	this.url = 'api/v1.0/courses/?sort='
 	this.json = null
+}
+GetData.prototype.getUrl = function (state, sort) {
+	if (!sort) {
+		sort = 'view'
+	}
+	this.url += sort + '&page='
 }
 GetData.prototype.fetch = function () {
 	const self = this
-	return fetch(self.url).then(response => {
-		response.json().then(json => {
-			self.json = json
-		}).then(() => {
-			self.preData(0, 20)
+	const p = new Promise((resolve) => {
+		fetch(self.url).then(response => {
+			response.json().then(json => {
+				self.json = json
+				resolve()
+			})
 		})
 	})
+	return p
 }
-GetData.prototype.preData = function (start, end) {
-	state.courses = state.courses.concat(this.json)
+GetData.prototype.preData = function (state, count, end, flag) {
+	if (flag == -1) {
+		state.courses = this.json.concat(state.courses)
+	} else {
+		state.courses = state.courses.concat(this.json)
+	}
 	if (this.json.length == 0) {
 		state.isend = true
 	}
 	if (state.courses.length >= 60) {
-		state.courses.splice(start, end)
+		state.courses.splice(count, end)
+	}
+	if (flag == -1) {
+		document.body.scrollTop = state.height
+	} else {
 		document.body.scrollTop = (state.scrollTop - state.height)
 	}
 }
-// test
 GetData.prototype.getHeight = (state) => {
 	if (state.courses.length == 20) {
 		const courses_list = document.getElementById('js_courses_list')
@@ -83,65 +97,38 @@ GetData.prototype.getHeight = (state) => {
 		}
 	}
 }
-const getHeight = (state) => {
-	if (state.courses.length == 20) {
-		const courses_list = document.getElementById('js_courses_list')
-		if (courses_list) {
-			state.height = courses_list.offsetHeight
-		}
+GetData.prototype.getTop = (state) => {
+	if (state.courses.length == 40) {
+		state.scrollTop = document.body.scrollTop
 	}
 }
-const preData = (state, start, end, json) => {
-	state.courses = state.courses.concat(json)
-	if (json.length == 0) {
-		state.isend = true
-	}
-	if (state.courses.length >= 60) {
-		state.courses.splice(start, end)
-		document.body.scrollTop = (state.scrollTop - state.height)
-	}
-}
-const sendFetch = (state, url) => {
-	fetch(url).then(response => {
-		response.json().then(json => {
-			preData(state, 0, 20, json)
-		})
-	}).then(() => {
-		getHeight(state)
-	})
-}
-
 const mutations = {
-	/* eslint no-unused-vars:0 */
-	initCourse(state, page) {
+	initCourse(state) {
 		state.page = 0
 		state.courses = []
 	},
 	fetchSelector(state, sort) {
 		state.page += 1
 		sort.forEach((item, index, arr) => { arr[index] = item + '=1' })
-		if (state.courses.length == 40) {
-			state.scrollTop = document.body.scrollTop
-		}
 		const send = new GetData()
+		send.getTop(state)
+		send.getUrl(state, sort)
 		send.url += sort.join('&')
-		send.fetch()
+		send.fetch().then(() => {
+			send.preData(state, 0, 20, 1)
+		})
 	},
 	fetchCourse(state, sort) {
-		if (!sort) {
-			sort = 'view'
-		}
 		state.page += 1
-		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=' + sort + '&null=asc'
-		if (state.courses.length == 40) {
-			state.scrollTop = document.body.scrollTop
-		}
-		const send = new GetData(state)
-		send.url = url
+		const send = new GetData()
+		send.getUrl(state, sort)
+		send.url += state.page + '&per_page=20&null=asc'
+		send.getTop(state)
 		send.fetch().then(() => {
+			send.preData(state, 0, 20, 1)
+		}).then(() => {
 			send.getHeight(state)
 		})
-		// sendFetch(state, url)
 	},
 	getPosition(state, position) {
 		state.position = position
@@ -155,19 +142,14 @@ const mutations = {
 		} else {
 			return false
 		}
-		if (!sort) {
-			sort = 'view'
-		}
-		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=' + sort + '&null=asc'
-		if (state.courses.length == 40) {
-			state.scrollTop = document.body.scrollTop
-		}
-		fetch(url).then(response => {
-			response.json().then(json => {
-				preData(state, state.courses.length - 20, 20, json)
-			})
+		const send = new GetData()
+		send.getUrl(state, sort)
+		send.url += state.page + '&per_page=20&null=asc'
+		send.getTop(state)
+		send.fetch().then(() => {
+			send.preData(state, state.courses.length + 1, 20, -1)
 		}).then(() => {
-			getHeight(state)
+			send.getHeight(state)
 		})
 		return true
 	},

@@ -51,7 +51,7 @@ export default {
 				this.changePageFlagN('fetch_flag')
 				this.fetchCourse(this.$route.params.sort)
 			}
-			if (scroll_height <= 100 && this.fetch_flag == true) {
+			if (scroll_height == 0 && this.fetch_flag == true) {
 				this.changePageFlagN('fetch_flag')
 				this.fetchCourseN(this.$route.params.sort)
 			}
