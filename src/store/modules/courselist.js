@@ -75,6 +75,14 @@ GetData.prototype.preData = function (start, end) {
 	}
 }
 // test
+GetData.prototype.getHeight = (state) => {
+	if (state.courses.length == 20) {
+		const courses_list = document.getElementById('js_courses_list')
+		if (courses_list) {
+			state.height = courses_list.offsetHeight
+		}
+	}
+}
 const getHeight = (state) => {
 	if (state.courses.length == 20) {
 		const courses_list = document.getElementById('js_courses_list')
@@ -128,10 +136,12 @@ const mutations = {
 		if (state.courses.length == 40) {
 			state.scrollTop = document.body.scrollTop
 		}
-		// const send = new GetData()
-		// send.url += sort.join('&')
-		// send.fetch()
-		sendFetch(state, url)
+		const send = new GetData(state)
+		send.url = url
+		send.fetch().then(() => {
+			send.getHeight(state)
+		})
+		// sendFetch(state, url)
 	},
 	getPosition(state, position) {
 		state.position = position
