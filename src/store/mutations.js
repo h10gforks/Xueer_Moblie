@@ -31,6 +31,9 @@ const mutations = {
 	showLogin(state, flag) {
 		state.is_logined ? '' : state.show_login = flag
 	},
+	initData(state, data) {
+		state[data] = ''
+	},
 }
 
 export default mutations

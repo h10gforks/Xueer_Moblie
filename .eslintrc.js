@@ -42,6 +42,8 @@ module.exports = {
         'arrow-parens': 0,
         'prefer-template': 0,
         'no-param-reassign': 0,
-        'no-shadow': 0
+        'no-shadow': 0,
+        'func-names': 0,
+        'no-unused-expressions': 0,
     }
 }

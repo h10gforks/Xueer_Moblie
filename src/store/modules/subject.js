@@ -1,17 +1,9 @@
 const state = {
-	cont: '',
-	title: '',
-	author: '',
-	date: '',
-	subject_likes: '',
+	sub_info: {},
 	subject_id: '',
 }
 const getters = {
-	cont: () => state.cont,
-	title: () => state.title,
-	author: () => state.author,
-	date: () => state.date,
-	subject_likes: () => state.subject_likes,
+	sub_info: () => state.sub_info,
 	subject_id: () => state.subject_id,
 }
 const actions = {
@@ -32,13 +24,10 @@ const mutations = {
 		const url = '/api/v1.0/tips/' + id
 		fetch(url).then(response => {
 			response.json().then(json => {
-				state.cont = json.body
-				state.title = json.title
-				state.author = json.author
-				state.date = json.date
-				state.subject_likes = json.likes
+				state.sub_info = json
 			})
 		})
+		return true
 	},
 }
 export default {

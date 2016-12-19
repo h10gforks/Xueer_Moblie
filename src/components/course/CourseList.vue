@@ -1,5 +1,5 @@
 <template>
-	<div v-scroll="scrollHandler" id="js_courses_list" :class="$style.list">
+	<div id="js_courses_list" :class="$style.list">
 		<div v-for="item in courses" :class="$style.item">
 			<router-link :to="{ name: 'course', params: { id: item.id }}">
 				<div :class="[$style.course, $style.space]">
@@ -9,13 +9,13 @@
 						<div :class="[$style.info, $style.space]">
 							<span :class="[$style.va_item, $style.teacher]">{{ item.teacher }}</span>
 							<span :class="[$style.va_item, $style.comments]">
-								<svg>
+								<svg :class="$style.logo">
 									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#comments_fill"></use>
 								</svg>
 								<span>{{ item.views }}</span>
 							</span>
 							<span :class="[$style.va_item, $style.likes]">
-								<svg>
+								<svg :class="$style.logo">
 									<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
 								</svg>
 								<span>{{ item.likes }}</span>
@@ -25,15 +25,12 @@
 				</div>
 			</router-link>
 		</div>
-		<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
-		<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
 	</div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { subStr } from '../../filters/filter.js'
-import scroll from '../../directives/scroll.js'
 
 import Selector from './Selector.vue'
 import ReSort from './ReSort.vue'
@@ -41,7 +38,6 @@ import ReSort from './ReSort.vue'
 export default {
 	data() {
 		return {
-			flag: true,
 			window_height: 0,
 			is_recommend: false,
 		}
@@ -51,13 +47,13 @@ export default {
 			'courses',
 			'position',
 			'back',
-			'isend',
 			'page',
 		]),
 		...mapState([
 			'is_loading',
 			'page_snaps',
 			'is_selected',
+			'fetch_flag',
 		]),
 	},
 	components: {
@@ -75,22 +71,6 @@ export default {
 			'fetchCourseN',
 			'isLoading',
 		]),
-		scrollHandler() {
-			const scroll_height = document.body.scrollTop
-			const doc_height = document.body.scrollHeight
-			if (!this.window_height) {
-				this.window_height = window.innerHeight
-			}
-			const height = scroll_height + this.window_height
-			if (height == doc_height && this.flag == true) {
-				this.flag = false
-				this.fetchCourse(this.$route.params.sort)
-			}
-			if (scroll_height <= 100 && this.flag == true) {
-				this.flag = false
-				this.fetchCourseN(this.$route.params.sort)
-			}
-		},
 	},
 	watch: {
 		// 有bug
@@ -99,11 +79,8 @@ export default {
 			if(this.courses.length > 0) {
 				this.isLoading(false)
 			}
-			this.flag = true
+			this.changePageFlagY('fetch_flag')
 		},
-	},
-	directives: {
-		scroll,
 	},
 	filters: {
 		subStr,
@@ -125,7 +102,7 @@ export default {
 			setTimeout(() => {
 				window.scrollTo(0, this.position)
 			}, 0)
-			this.flag = true
+			this.changePageFlagY('fetch_flag')
 			this.turnFlag()
 		} else {
 			// 初始化数据
@@ -188,21 +165,14 @@ export default {
 	display: inline-block;
 	vertical-align: top;
 }
-.list svg {
+.logo {
 	display: inline-block;
 	width: 13px;
 	height: 12px;
 	vertical-align: -2px;
 	margin-right: 6px;
 }
-.list use {
+.logo use {
 	fill: #999;
-}
-.hint {
-	font-size: 24px; /*px*/
-    text-align: center;
-    color: #999;
-    margin-top: 16px;
-    margin-bottom: 34px;
 }
 </style>

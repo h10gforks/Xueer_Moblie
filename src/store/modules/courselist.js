@@ -49,6 +49,60 @@ const actions = {
 		commit('fetchSelector', sort)
 	},
 }
+
+const GetData = function () {
+	this.url = 'api/v1.0/courses/?page=1&'
+	this.json = null
+}
+GetData.prototype.fetch = function () {
+	const self = this
+	return fetch(self.url).then(response => {
+		response.json().then(json => {
+			self.json = json
+		}).then(() => {
+			self.preData(0, 20)
+		})
+	})
+}
+GetData.prototype.preData = function (start, end) {
+	state.courses = state.courses.concat(this.json)
+	if (this.json.length == 0) {
+		state.isend = true
+	}
+	if (state.courses.length >= 60) {
+		state.courses.splice(start, end)
+		document.body.scrollTop = (state.scrollTop - state.height)
+	}
+}
+// test
+const getHeight = (state) => {
+	if (state.courses.length == 20) {
+		const courses_list = document.getElementById('js_courses_list')
+		if (courses_list) {
+			state.height = courses_list.offsetHeight
+		}
+	}
+}
+const preData = (state, start, end, json) => {
+	state.courses = state.courses.concat(json)
+	if (json.length == 0) {
+		state.isend = true
+	}
+	if (state.courses.length >= 60) {
+		state.courses.splice(start, end)
+		document.body.scrollTop = (state.scrollTop - state.height)
+	}
+}
+const sendFetch = (state, url) => {
+	fetch(url).then(response => {
+		response.json().then(json => {
+			preData(state, 0, 20, json)
+		})
+	}).then(() => {
+		getHeight(state)
+	})
+}
+
 const mutations = {
 	/* eslint no-unused-vars:0 */
 	initCourse(state, page) {
@@ -58,29 +112,12 @@ const mutations = {
 	fetchSelector(state, sort) {
 		state.page += 1
 		sort.forEach((item, index, arr) => { arr[index] = item + '=1' })
-		const url = 'api/v1.0/courses/?page=1&' + sort.join('&')
-		if (state.courses.length == 20) {
-			const courses_list = document.getElementById('js_courses_list')
-			if (courses_list) {
-				state.height = courses_list.offsetHeight
-			}
-		}
 		if (state.courses.length == 40) {
 			state.scrollTop = document.body.scrollTop
 		}
-		fetch(url).then(response => {
-			response.json().then(json => {
-				console.log(json)
-				state.courses = state.courses.concat(json)
-				if (json.length == 0) {
-					state.isend = true
-				}
-				if (state.courses.length >= 60) {
-					state.courses.splice(0, 20)
-					document.body.scrollTop = (state.scrollTop - state.height)
-				}
-			})
-		})
+		const send = new GetData()
+		send.url += sort.join('&')
+		send.fetch()
 	},
 	fetchCourse(state, sort) {
 		if (!sort) {
@@ -88,27 +125,13 @@ const mutations = {
 		}
 		state.page += 1
 		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=' + sort + '&null=asc'
-		if (state.courses.length == 20) {
-			const courses_list = document.getElementById('js_courses_list')
-			if (courses_list) {
-				state.height = courses_list.offsetHeight
-			}
-		}
 		if (state.courses.length == 40) {
 			state.scrollTop = document.body.scrollTop
 		}
-		fetch(url).then(response => {
-			response.json().then(json => {
-				state.courses = state.courses.concat(json)
-				if (json.length == 0) {
-					state.isend = true
-				}
-				if (state.courses.length >= 60) {
-					state.courses.splice(0, 20)
-					document.body.scrollTop = (state.scrollTop - state.height)
-				}
-			})
-		})
+		// const send = new GetData()
+		// send.url += sort.join('&')
+		// send.fetch()
+		sendFetch(state, url)
 	},
 	getPosition(state, position) {
 		state.position = position
@@ -126,26 +149,15 @@ const mutations = {
 			sort = 'view'
 		}
 		const url = 'api/v1.0/courses/?page=' + state.page + '&per_page=20&sort=' + sort + '&null=asc'
-		if (state.courses.length == 20) {
-			const courses_list = document.getElementById('js_courses_list')
-			if (courses_list) {
-				state.height = courses_list.offsetHeight
-			}
-		}
 		if (state.courses.length == 40) {
 			state.scrollTop = document.body.scrollTop
 		}
 		fetch(url).then(response => {
 			response.json().then(json => {
-				state.courses = json.concat(state.courses)
-				if (json.length == 0) {
-					state.isend = true
-				}
-				if (state.courses.length >= 60) {
-					state.courses.splice(state.courses.length - 20, 20)
-					document.body.scrollTop = (state.scrollTop - state.height)
-				}
+				preData(state, state.courses.length - 20, 20, json)
 			})
+		}).then(() => {
+			getHeight(state)
 		})
 		return true
 	},

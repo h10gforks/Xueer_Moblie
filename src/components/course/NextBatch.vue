@@ -1,0 +1,65 @@
+<template>
+    <div :class="$style.next_batch">
+        <div :class="$style.text">
+            <div>ヾ (o ° ω ° O ) ノ゙ </div>
+            <div>以上是学而觉得你可能会喜欢的课程。</div>
+            <div :class="$style.last">不感兴趣？</div>
+        </div>
+        <div @click="nextBatch" :class="$style.bt">
+            <svg :class="$style.logo">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#circulation"></use>
+            </svg>
+            <span :class="$style.bt_text">换一批</span>
+        </div>
+    </div>
+</template>
+<script>
+import { mapActions } from 'vuex'
+export default {
+    methods: {
+        ...mapActions([
+            'fetchCourse',
+        ]),
+        nextBatch(){
+            this.fetchCourse()
+        }
+    }
+}
+</script>
+<style lang="sass" module>
+.next_batch {
+    padding-bottom: 34px;
+}
+.text {
+    padding: 17px 0 0 72px;
+    font-size: 28px; /*px*/
+    color: #999999;
+    line-height: 1;
+}
+.last {
+    padding: 14px 0;
+}
+.bt {
+    width: 156px;
+    height: 40px;
+    margin: 0 auto;
+    border: 1px solid #EEAB5D;
+    border-radius: 2px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 0;
+}
+.bt_text {
+    display: inline-block;
+    font-size: 32px; /*px*/
+    color: #EEAB5D;
+}
+.logo {
+    width: 13px;
+    height: 13px;
+    margin-right: 9px;
+}
+.logo use {
+    fill: #EEAB5D;
+}
+</style>

@@ -17,6 +17,9 @@ const actions = {
 	showLogin({ commit }, flag) {
 		commit('showLogin', flag)
 	},
+	initData({ commit }, data) {
+		commit('initData', data)
+	}
 }
 
 export default actions

@@ -11,6 +11,7 @@ const state = {
 	is_selected: false,
 	show_login: false,
 	is_logined: false,
+	fetch_flag: true,
 }
 
 export default state
