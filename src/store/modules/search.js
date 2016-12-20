@@ -22,6 +22,11 @@ const actions = {
 	}) {
 		commit('hideSearch')
 	},
+	searchCourse({
+		commit,
+	}, info) {
+		commit('searchCourse', info)
+	},
 }
 const mutations = {
 	fetchHot(state) {
@@ -36,6 +41,13 @@ const mutations = {
 	},
 	hideSearch(state) {
 		state.show_search = false
+	},
+	searchCourse(state) {
+		return fetch('/api/v1.0/search/?page=1&per_page=20&keywords=%E7%A4%BE%E4%BC%9A%E5%AD%A6').then(response => {
+			response.json().then(json => {
+				state.courses = json
+			})
+		})
 	},
 }
 export default {

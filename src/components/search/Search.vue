@@ -1,10 +1,12 @@
 <template>
-	<div v-if="show_search" :class="[$style.search_view, {[$style.search_active]: show_search}]">
+	<div :class="[$style.search_view, {[$style.search_active]: show_search}]">
 		<div :class="[$style.warpper, $style.warpper_fadeIn, $style.warpper_fadeOut]">
 			<div :class="$style.container">
 				<div :class="[$style.search_box, $style.space]">
-					<input type="text" :class="$style.search_input">
-					<button :class="$style.search_btn">搜索</button>
+					<input v-model="info" type="text" :class="$style.search_input">
+					<!--<router-link :class="$style.link" :to="{ name: 'search_res', params: { page: 'search_res', sort: 'view' }}">-->
+						<button @click="search" :class="$style.search_btn">搜索</button>
+					<!--</router-link>-->
 				</div>
 				<div :class="$style.hot">
 					<p :class="$style.title">大家都在搜</p>
@@ -24,6 +26,11 @@
 import { mapGetters, mapState, mapActions } from 'vuex'
 
 export default {
+	data(){
+		return {
+			info: '',
+		}
+	},
 	mounted() {
 		this.fetchHot()
 	},
@@ -31,7 +38,8 @@ export default {
 		...mapGetters([
 			'hot',
 			'show_search',
-			'snaps'
+			'snaps',
+			'courses',
 		]),
 		...mapState([
 			'page_snaps',
@@ -40,12 +48,19 @@ export default {
 			return 'search/?page=1&per_page=20&keywords=' + this.hot
 		},
 	},
+	// watch: {
+	// 	courses() {
+	// 		console.log(this.courses)
+	// 	}
+	// },
 	methods: {
 		...mapActions([
 			'fetchHot',
 			'hideSearch',
 			'changePageFlagN',
 			'changePageFlagY',
+			'searchCourse',
+			'isLoading',
 		]),
 		hiddenSearch() {
 			console.log(this.page_snaps)
@@ -58,7 +73,12 @@ export default {
 					this.changePageFlagN(key)
 				}
 			}
-		}
+		},
+		search(){
+			// this.isLoading(true)
+			var self = this
+			this.searchCourse()
+		},
 	},
 }
 </script>
@@ -71,20 +91,28 @@ export default {
 	top: 56px;
 	left: 0;
 	visibility: hidden;
+	transition: all 1s;
 }
 .search_active {
 	visibility: visible;
 }
 .search_active .warpper_fadeIn {
 	opacity: 1;
+	transition: all 1s;
 }
 .search_hidden .warpper_fadeOut {
 	transition-delay: 0s;
+	transition: all 1s;
 }
 .warpper {
+	width: 100%;
+	position: absolute;
+	z-index: 300;
+	left: 0;
+	top: 0;
 	opacity: 0;
 	filter: alpha(opacity=0);
-	transition: 1s all;
+	transition: all 1s;
 	transition-delay: .5s;
 }
 .container {
@@ -139,10 +167,9 @@ export default {
 .search_active .circle_fadeIn {
 	transform: translate(-50%,-50%) scale(1);
 	opacity: .8;
+	transition: all 1s;
 }
 .circle {
-	position: absolute;
-	top: 0;
 	margin-left: 75%;
 	width: 1400px;
 	height: 1400px;
@@ -150,6 +177,6 @@ export default {
 	background-color: #fff;
 	transform: translate(-50%,-50%) scale(0);
 	opacity: 0;
-	transition: 1s all;
+	transition: all 1s;
 }
 </style>

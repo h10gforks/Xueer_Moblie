@@ -41,10 +41,10 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'courses',
 			'position',
 			'back',
 			'page',
+			'courses',
 		]),
 		...mapState([
 			'is_loading',
@@ -82,27 +82,28 @@ export default {
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
+		console.log(this.courses)
 		// 判断是否是从课程详情返回
-		if(this.position === undefined) {
-			let sort
-			this.$route.name == 'recommend' ? sort = 'score' : ''
-			this.fetchCourse(sort)
-			this.isLoading(true)
-		}
+		// if(this.position === undefined) {
+		// 	let sort
+		// 	this.$route.name == 'recommend' ? sort = 'score' : ''
+		// 	this.fetchCourse(sort)
+		// 	this.isLoading(true)
+		// }
 
-		if (this.back) {
-			// 这里为什么要setTimeout
-			setTimeout(() => {
-				window.scrollTo(0, this.position)
-			}, 0)
-			this.changePageFlagY('fetch_flag')
-			this.turnFlag()
-		} else {
-			// 初始化数据
-			this.initCourse()
-			this.fetchCourse(this.$route.params.sort)
-			this.isLoading(true)
-		}
+		// if (this.back) {
+		// 	// 这里为什么要setTimeout
+		// 	setTimeout(() => {
+		// 		window.scrollTo(0, this.position)
+		// 	}, 0)
+		// 	this.changePageFlagY('fetch_flag')
+		// 	this.turnFlag()
+		// } else {
+		// 	// 初始化数据
+		// 	this.initCourse()
+		// 	this.fetchCourse(this.$route.params.sort)
+		// 	this.isLoading(true)
+		// }
 	},
 }
 </script>
