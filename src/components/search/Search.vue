@@ -113,7 +113,7 @@ export default {
 }
 .search_hidden .warpper_fadeOut {
 	transition-delay: 0s;
-	transition: all 1s;
+	transition: all .6s;
 }
 .warpper {
 	width: 100%;
@@ -123,7 +123,7 @@ export default {
 	top: 0;
 	opacity: 0;
 	filter: alpha(opacity=0);
-	transition: all 1s;
+	transition: all .6s;
 }
 .container {
 	width: 328px;

@@ -61,7 +61,6 @@ export default {
 			'getSnaps',
 		]),
 		backStep() {
-			this.getSnaps(this.snaps)
 			history.back()
 		},
 		displaySearch() {
