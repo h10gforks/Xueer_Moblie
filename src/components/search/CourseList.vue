@@ -1,6 +1,6 @@
 <template>
 	<div id="js_courses_list" :class="$style.list">
-		<div v-for="item in courses" :class="$style.item">
+		<div v-for="item in result" :class="$style.item">
 			<router-link :to="{ name: 'course', params: { id: item.id }}">
 				<div :class="[$style.course, $style.space]">
 					<div :class="$style.avatar">{{ item.main_category | subStr }}</div>
@@ -44,7 +44,7 @@ export default {
 			'position',
 			'back',
 			'page',
-			'courses',
+			'result',
 		]),
 		...mapState([
 			'is_loading',
@@ -63,13 +63,15 @@ export default {
 			'initCourse',
 			'fetchCourseN',
 			'isLoading',
+			'searchCourse',
 		]),
 	},
 	watch: {
 		// 有bug
 		courses() {
+			console.log(this.result)
 			// 控制只发一次请求
-			if(this.courses.length > 0) {
+			if(this.result.length > 0) {
 				this.isLoading(false)
 			}
 			this.changePageFlagY('fetch_flag')
@@ -82,7 +84,6 @@ export default {
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
-		console.log(this.courses)
 		// 判断是否是从课程详情返回
 		// if(this.position === undefined) {
 		// 	let sort

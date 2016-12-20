@@ -4,9 +4,7 @@
 			<div :class="$style.container">
 				<div :class="[$style.search_box, $style.space]">
 					<input v-model="info" type="text" :class="$style.search_input">
-					<!--<router-link :class="$style.link" :to="{ name: 'search_res', params: { page: 'search_res', sort: 'view' }}">-->
-						<button @click="search" :class="$style.search_btn">搜索</button>
-					<!--</router-link>-->
+					<button @click="search" :class="$style.search_btn">搜索</button>
 				</div>
 				<div :class="$style.hot">
 					<p :class="$style.title">大家都在搜</p>
@@ -39,7 +37,7 @@ export default {
 			'hot',
 			'show_search',
 			'snaps',
-			'courses',
+			'result',
 		]),
 		...mapState([
 			'page_snaps',
@@ -48,11 +46,11 @@ export default {
 			return 'search/?page=1&per_page=20&keywords=' + this.hot
 		},
 	},
-	// watch: {
-	// 	courses() {
-	// 		console.log(this.courses)
-	// 	}
-	// },
+	watch: {
+		result() {
+			this.$router.push('search_res')
+		}
+	},
 	methods: {
 		...mapActions([
 			'fetchHot',

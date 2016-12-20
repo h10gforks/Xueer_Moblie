@@ -1,9 +1,11 @@
 const state = {
 	hot: [],
 	show_search: false,
+	result: [],
 }
 const getters = {
 	hot: () => state.hot,
+	result: () => state.result,
 	show_search: () => state.show_search,
 }
 const actions = {
@@ -45,7 +47,7 @@ const mutations = {
 	searchCourse(state) {
 		return fetch('/api/v1.0/search/?page=1&per_page=20&keywords=%E7%A4%BE%E4%BC%9A%E5%AD%A6').then(response => {
 			response.json().then(json => {
-				state.courses = json
+				state.result = json
 			})
 		})
 	},
