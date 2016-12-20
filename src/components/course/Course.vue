@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 import Selector from './Selector.vue'
 import ReSort from './ReSort.vue'
@@ -26,11 +26,15 @@ export default {
 		this.$route.params.page == 'all' ? '' : this.flag = false
 	},
 	computed: {
-		...mapState([
-			'is_selected',
+		...mapGetters([
 			'isend',
 			'fetch_flag',
+			'is_search'
 		]),
+		...mapState([
+			'is_selected',
+			'fetch_flag',
+		])
 	},
 	methods: {
 		...mapActions([

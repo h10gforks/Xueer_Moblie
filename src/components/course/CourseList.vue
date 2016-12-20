@@ -45,12 +45,14 @@ export default {
 			'position',
 			'back',
 			'page',
+			'txt',
 		]),
 		...mapState([
 			'is_loading',
 			'page_snaps',
 			'is_selected',
 			'fetch_flag',
+			'is_search',
 		]),
 	},
 	methods: {
@@ -74,11 +76,15 @@ export default {
 			}
 			this.changePageFlagY('fetch_flag')
 		},
+		txt() {
+			this.fetchCourse(this.$route.params.sort)
+		}
 	},
 	filters: {
 		subStr,
 	},
 	mounted() {
+		console.log("hhhhhh")
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
@@ -99,7 +105,7 @@ export default {
 			this.turnFlag()
 		} else {
 			// 初始化数据
-			this.initCourse()
+			// this.initCourse()
 			this.fetchCourse(this.$route.params.sort)
 			this.isLoading(true)
 		}

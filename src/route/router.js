@@ -5,7 +5,6 @@ import Course from '../components/course/Course'
 import Recommend from '../components/course/Recommend'
 import Detail from '../components/course/Detail'
 import Subject from '../components/subject/Subject'
-import SearchRes from '../components/search/SearchRes.vue'
 
 Vue.use(VueRouter)
 module.exports = new VueRouter({
@@ -24,11 +23,6 @@ module.exports = new VueRouter({
 		name: 'all',
 		path: '/all',
 		component: Course,
-	},
-	{
-		name: 'search_res',
-		path: '/search_res',
-		component: SearchRes,
 	},
 	{
 		name: 'tip',

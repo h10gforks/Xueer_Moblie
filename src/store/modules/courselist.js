@@ -6,6 +6,8 @@ const state = {
 	height: 0,
 	back: false,
 	isend: false,
+	txt: '',
+	search: false,
 }
 const getters = {
 	courses: () => state.courses,
@@ -15,6 +17,7 @@ const getters = {
 	height: () => state.height,
 	back: () => state.back,
 	isend: () => state.isend,
+	txt: () => state.txt,
 }
 const actions = {
 	fetchCourse({
@@ -34,8 +37,8 @@ const actions = {
 	},
 	initCourse({
 		commit,
-	}, page) {
-		commit('initCourse', page)
+	}, info, search) {
+		commit('initCourse', info, search)
 	},
 	fetchCourseN({
 		commit,
@@ -77,7 +80,7 @@ GetData.prototype.preData = function (state, count, end, flag) {
 	} else {
 		state.courses = state.courses.concat(this.json)
 	}
-	if (this.json.length == 0) {
+	if (this.json.length == 0 || this.json.length < 20) {
 		state.isend = true
 	}
 	if (state.courses.length >= 60) {
@@ -103,26 +106,44 @@ GetData.prototype.getTop = (state) => {
 	}
 }
 const mutations = {
-	initCourse(state) {
+	initCourse(state, info, search) {
 		state.page = 0
 		state.courses = []
+		state.txt = info
+		state.search = true,
+		state.isend = false,
+		console.log(info)
 	},
 	fetchSelector(state, sort) {
+		if (state.isend) {
+			return
+		}
 		state.page += 1
 		sort.forEach((item, index, arr) => { arr[index] = item + '=1' })
 		const send = new GetData()
 		send.getTop(state)
 		send.getUrl(state, sort)
-		send.url += sort.join('&')
+		if (!state.search) {
+			send.url += sort.join('&')
+		} else {
+			send.url = '/api/v1.0/search/?page=2&per_page=20&keywords=' + state.txt
+		}
 		send.fetch().then(() => {
 			send.preData(state, 0, 20, 1)
 		})
 	},
 	fetchCourse(state, sort) {
+		if (state.isend) {
+			return
+		}
 		state.page += 1
 		const send = new GetData()
 		send.getUrl(state, sort)
-		send.url += state.page + '&per_page=20&null=asc'
+		if (!state.search) {
+			send.url += state.page + '&per_page=20&null=asc'
+		} else {
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt
+		}
 		send.getTop(state)
 		send.fetch().then(() => {
 			send.preData(state, 0, 20, 1)
@@ -137,14 +158,21 @@ const mutations = {
 		state.back = !state.back
 	},
 	fetchCourseN(state, sort) {
+		if (state.isend) {
+			return
+		}
 		if (state.page >= 2) {
 			state.page -= 1
 		} else {
-			return false
+			return
 		}
 		const send = new GetData()
 		send.getUrl(state, sort)
-		send.url += state.page + '&per_page=20&null=asc'
+		if (!state.search) {
+			send.url += state.page + '&per_page=20&null=asc'
+		} else {
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt
+		}
 		send.getTop(state)
 		send.fetch().then(() => {
 			send.preData(state, state.courses.length + 1, 20, -1)

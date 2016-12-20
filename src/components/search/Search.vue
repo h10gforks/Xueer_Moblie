@@ -4,7 +4,9 @@
 			<div :class="$style.container">
 				<div :class="[$style.search_box, $style.space]">
 					<input v-model="info" type="text" :class="$style.search_input">
-					<button @click="search" :class="$style.search_btn">搜索</button>
+					<router-link :class="[$style.active,$style.link]" :to="{ name: 'all', params: { page: 'all', txt: this.txt }}">
+						<button @click="search" :class="$style.search_btn">搜索</button>
+					</router-link>
 				</div>
 				<div :class="$style.hot">
 					<p :class="$style.title">大家都在搜</p>
@@ -38,6 +40,7 @@ export default {
 			'show_search',
 			'snaps',
 			'result',
+			'txt',
 		]),
 		...mapState([
 			'page_snaps',
@@ -48,10 +51,10 @@ export default {
 		},
 	},
 	watch: {
-		result() {
-			this.$router.push('search_res')
+		txt() {
 			this.isLoading(false)
 			this.hiddenSearch()
+			console.log("hello")
 		}
 	},
 	methods: {
@@ -62,6 +65,7 @@ export default {
 			'changePageFlagY',
 			'searchCourse',
 			'isLoading',
+			'initCourse'
 		]),
 		hiddenSearch() {
 			this.hideSearch()
@@ -75,9 +79,13 @@ export default {
 			}
 		},
 		search(){
-			this.isLoading(true)
 			const info = encodeURIComponent(this.info)
-			this.searchCourse(info)
+			if (info == this.txt) {
+				this.hiddenSearch()
+				return
+			}
+			this.isLoading(true)
+			this.initCourse(info,true)
 		},
 	},
 }
