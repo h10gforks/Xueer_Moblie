@@ -51,6 +51,7 @@ export default {
 			'page_snaps',
 			'is_selected',
 			'fetch_flag',
+			'key_word',
 		]),
 	},
 	methods: {
@@ -64,12 +65,12 @@ export default {
 			'fetchCourseN',
 			'isLoading',
 			'searchResScroll',
+			'searchCourse',
 		]),
 	},
 	watch: {
 		// 有bug
 		courses() {
-			console.log(this.result)
 			// 控制只发一次请求
 			if(this.result.length > 0) {
 				this.isLoading(false)
@@ -86,10 +87,7 @@ export default {
 		this.changePageFlagY('is_all')
 		//判断是否是从课程详情返回
 		if(this.position === undefined) {
-			let sort
-			this.$route.name == 'recommend' ? sort = 'score' : ''
-			this.searchResScroll()
-			this.isLoading(true)
+			
 		}
 
 		if (this.back) {
@@ -102,8 +100,6 @@ export default {
 		} else {
 			// 初始化数据
 			this.initCourse()
-			this.searchResScroll()
-			this.isLoading(true)
 		}
 	},
 }
