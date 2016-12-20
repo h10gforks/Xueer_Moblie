@@ -168,4 +168,7 @@ export default {
 .logo use {
 	fill: #999;
 }
+.comments {
+	margin-right: 16px;
+}
 </style>
