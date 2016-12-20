@@ -85,11 +85,11 @@ GetData.prototype.preData = function (state, count, end, flag) {
 	}
 	if (state.courses.length >= 60) {
 		state.courses.splice(count, end)
-	}
-	if (flag == -1) {
-		document.body.scrollTop = state.height
-	} else {
-		document.body.scrollTop = (state.scrollTop - state.height)
+		if (flag == -1) {
+			document.body.scrollTop = state.height
+		} else {
+			document.body.scrollTop = (state.scrollTop - state.height)
+		}
 	}
 }
 GetData.prototype.getHeight = (state) => {

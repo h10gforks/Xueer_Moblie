@@ -54,9 +54,11 @@ export default {
 			if (height == doc_height && this.fetch_flag == true) {
 				this.changePageFlagN('fetch_flag')
 				this.fetchCourse(this.$route.params.sort)
+				console.log("shang")
 			}
 			if (scroll_height == 0 && this.fetch_flag == true) {
 				this.changePageFlagN('fetch_flag')
+				console.log("xia")
 				this.fetchCourseN(this.$route.params.sort)
 			}
 		},
