@@ -73,10 +73,14 @@ export default {
 			// 控制只发一次请求
 			if(this.courses.length > 0) {
 				this.isLoading(false)
+				this.changePageFlagY('fetch_flag')
 			}
-			this.changePageFlagY('fetch_flag')
 		},
 		txt() {
+			this.isLoading(true)
+			if (this.$route.params.sort) {
+				return
+			}
 			this.fetchCourse(this.$route.params.sort)
 		}
 	},
@@ -84,6 +88,7 @@ export default {
 		subStr,
 	},
 	mounted() {
+		this.isLoading(true)
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
@@ -109,8 +114,6 @@ export default {
 			}
 			// 初始化数据
 			this.fetchCourse(this.$route.params.sort)
-			console.log("hhhhhh哈哈")
-			this.isLoading(true)
 		}
 	},
 }
