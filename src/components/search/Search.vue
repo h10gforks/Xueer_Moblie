@@ -54,7 +54,6 @@ export default {
 		txt() {
 			this.isLoading(false)
 			this.hiddenSearch()
-			console.log("hello")
 		}
 	},
 	methods: {
@@ -85,7 +84,11 @@ export default {
 				return
 			}
 			this.isLoading(true)
-			this.initCourse(info,true)
+			const option = {
+				info: info,
+				search: true
+			}
+			this.initCourse(option)
 		},
 	},
 }

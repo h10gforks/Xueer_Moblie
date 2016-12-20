@@ -37,8 +37,8 @@ const actions = {
 	},
 	initCourse({
 		commit,
-	}, info, search) {
-		commit('initCourse', info, search)
+	}, option) {
+		commit('initCourse', option)
 	},
 	fetchCourseN({
 		commit,
@@ -106,13 +106,15 @@ GetData.prototype.getTop = (state) => {
 	}
 }
 const mutations = {
-	initCourse(state, info, search) {
+	initCourse(state, option) {
+		if (!option) {
+			option = {}
+		}
+		state.txt = option.info
+		state.search = option.search
 		state.page = 0
 		state.courses = []
-		state.txt = info
-		state.search = true,
-		state.isend = false,
-		console.log(info)
+		state.isend = false
 	},
 	fetchSelector(state, sort) {
 		if (state.isend) {
@@ -179,7 +181,6 @@ const mutations = {
 		}).then(() => {
 			send.getHeight(state)
 		})
-		return true
 	},
 }
 export default {

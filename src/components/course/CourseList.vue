@@ -84,18 +84,18 @@ export default {
 		subStr,
 	},
 	mounted() {
-		console.log("hhhhhh")
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
 		// 判断是否是从课程详情返回
+		console.log(this.position)
 		if(this.position === undefined) {
 			let sort
 			this.$route.name == 'recommend' ? sort = 'score' : ''
 			this.fetchCourse(sort)
 			this.isLoading(true)
 		}
-
+		console.log(this.back)
 		if (this.back) {
 			// 这里为什么要setTimeout
 			setTimeout(() => {
@@ -104,9 +104,12 @@ export default {
 			this.changePageFlagY('fetch_flag')
 			this.turnFlag()
 		} else {
+			if (this.$route.params.sort) {
+				this.initCourse()
+			}
 			// 初始化数据
-			// this.initCourse()
 			this.fetchCourse(this.$route.params.sort)
+			console.log("hhhhhh哈哈")
 			this.isLoading(true)
 		}
 	},
