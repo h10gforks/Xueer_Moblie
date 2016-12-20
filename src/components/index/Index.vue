@@ -1,6 +1,6 @@
 <template>
 	<div :class="$style.index">
-		<div v-if="is_index || is_search" :class="$style.tabs">
+		<div v-if="is_index" :class="$style.tabs">
 			<div :class="$style.item">
 				<router-link :class="[$style.active,$style.link]" :to="{ name: 'index', params: { page: 'index' }}">首页</router-link>
 			</div>

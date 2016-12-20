@@ -18,7 +18,13 @@ export default {
 	computed: {
 		...mapState([
 			'is_selected',
+			'is_index',
 		]),
+	},
+	mounted() {
+		console.log(new Date())
+		this.changePageFlagN('is_index')
+		console.log("is_index: " + this.is_index)
 	},
 	methods: {
 		...mapActions([
@@ -34,7 +40,6 @@ export default {
 	},
 	beforeRouteLeave(to, from, next) {
 		this.getPosition(document.body.scrollTop)
-		// 跳转到detail还会有个莫名其妙的滚动
 		this.flag = false
 		if(to.name === 'course') {
 			this.changePageFlagN('is_index')

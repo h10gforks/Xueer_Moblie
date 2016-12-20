@@ -40,17 +40,17 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
 	computed: {
 		...mapState([
+			'page_flag',
+		]),
+		...mapGetters([
+			'snaps',
 			'is_index',
 			'is_recommend',
 			'is_all',
 			'is_search',
 			'is_auth',
-			'page_flag',
 			'is_course',
 			'is_sub',
-		]),
-		...mapGetters([
-			'snaps',
 		]),
 	},
 	methods: {
@@ -61,12 +61,13 @@ export default {
 			'getSnaps',
 		]),
 		backStep() {
+			this.getSnaps(this.snaps)
 			history.back()
 		},
 		displaySearch() {
 			this.getSnaps(this.snaps)
 			this.showSearch(),
-			this.changePageFlagY(['is_search','is_index'])
+			this.changePageFlagY(['is_search'])
 			this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
 		},
 	},
