@@ -63,7 +63,7 @@ export default {
 			'initCourse',
 			'fetchCourseN',
 			'isLoading',
-			'searchCourse',
+			'searchResScroll',
 		]),
 	},
 	watch: {
@@ -84,27 +84,27 @@ export default {
 		this.changePageFlagN('is_index')
 		this.changePageFlagN('is_course')
 		this.changePageFlagY('is_all')
-		// 判断是否是从课程详情返回
-		// if(this.position === undefined) {
-		// 	let sort
-		// 	this.$route.name == 'recommend' ? sort = 'score' : ''
-		// 	this.fetchCourse(sort)
-		// 	this.isLoading(true)
-		// }
+		//判断是否是从课程详情返回
+		if(this.position === undefined) {
+			let sort
+			this.$route.name == 'recommend' ? sort = 'score' : ''
+			this.searchResScroll()
+			this.isLoading(true)
+		}
 
-		// if (this.back) {
-		// 	// 这里为什么要setTimeout
-		// 	setTimeout(() => {
-		// 		window.scrollTo(0, this.position)
-		// 	}, 0)
-		// 	this.changePageFlagY('fetch_flag')
-		// 	this.turnFlag()
-		// } else {
-		// 	// 初始化数据
-		// 	this.initCourse()
-		// 	this.fetchCourse(this.$route.params.sort)
-		// 	this.isLoading(true)
-		// }
+		if (this.back) {
+			// 这里为什么要setTimeout
+			setTimeout(() => {
+				window.scrollTo(0, this.position)
+			}, 0)
+			this.changePageFlagY('fetch_flag')
+			this.turnFlag()
+		} else {
+			// 初始化数据
+			this.initCourse()
+			this.searchResScroll()
+			this.isLoading(true)
+		}
 	},
 }
 </script>

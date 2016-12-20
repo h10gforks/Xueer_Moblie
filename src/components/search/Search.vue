@@ -41,6 +41,7 @@ export default {
 		]),
 		...mapState([
 			'page_snaps',
+			'search_page',
 		]),
 		link() {
 			return 'search/?page=1&per_page=20&keywords=' + this.hot
@@ -49,6 +50,8 @@ export default {
 	watch: {
 		result() {
 			this.$router.push('search_res')
+			this.isLoading(false)
+			this.hiddenSearch()
 		}
 	},
 	methods: {
@@ -61,7 +64,6 @@ export default {
 			'isLoading',
 		]),
 		hiddenSearch() {
-			console.log(this.page_snaps)
 			this.hideSearch()
 			this.changePageFlagN('is_search')
 			for(var key in this.page_snaps) {
@@ -73,9 +75,9 @@ export default {
 			}
 		},
 		search(){
-			// this.isLoading(true)
-			var self = this
-			this.searchCourse()
+			this.isLoading(true)
+			const info = encodeURIComponent(this.info)
+			this.searchCourse(info)
 		},
 	},
 }
@@ -111,7 +113,6 @@ export default {
 	opacity: 0;
 	filter: alpha(opacity=0);
 	transition: all 1s;
-	transition-delay: .5s;
 }
 .container {
 	width: 328px;

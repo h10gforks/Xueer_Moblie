@@ -2,6 +2,8 @@ const state = {
 	hot: [],
 	show_search: false,
 	result: [],
+	search_page: 1,
+	key_word: '',
 }
 const getters = {
 	hot: () => state.hot,
@@ -29,6 +31,11 @@ const actions = {
 	}, info) {
 		commit('searchCourse', info)
 	},
+	searchResScroll({
+		commit,
+	}) {
+		commit('searchResScroll')
+	},
 }
 const mutations = {
 	fetchHot(state) {
@@ -44,13 +51,24 @@ const mutations = {
 	hideSearch(state) {
 		state.show_search = false
 	},
-	searchCourse(state) {
-		return fetch('/api/v1.0/search/?page=1&per_page=20&keywords=%E7%A4%BE%E4%BC%9A%E5%AD%A6').then(response => {
+	searchCourse(state, info) {
+		state.key_word = info
+		const url = '/api/v1.0/search/?page=1&per_page=20&keywords=' + info
+		return fetch(url).then(response => {
 			response.json().then(json => {
 				state.result = json
 			})
 		})
 	},
+	searchResScroll(state) {
+		state.search_page += 1
+		const url = '/api/v1.0/search/?page=' + state.search_page + '&per_page=20&keywords=' + state.key_word
+		return fetch(url).then(response => {
+			response.json().then(json => {
+				state.result = state.result.concat(json)
+			})
+		})
+	}
 }
 export default {
 	state,
