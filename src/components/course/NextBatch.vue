@@ -5,7 +5,7 @@
             <div>以上是学而觉得你可能会喜欢的课程。</div>
             <div :class="$style.last">不感兴趣？</div>
         </div>
-        <div @click="nextBatch" :class="$style.bt">
+        <div @click="nextBatch" :class="[{[$style.active]: is_active}, $style.bt]">
             <svg :class="$style.logo">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#circulation"></use>
             </svg>
@@ -14,13 +14,29 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
+    data() {
+        return {
+            is_active: false,
+        }
+    },
+    computed: {
+       ...mapGetters([
+           'courses'
+       ])
+    },
+    watch: {
+        courses() {
+            this.is_active = false
+        }
+    },
     methods: {
         ...mapActions([
             'fetchCourse',
         ]),
         nextBatch(){
+            this.is_active = true
             this.fetchCourse()
         }
     }
@@ -54,6 +70,11 @@ export default {
     font-size: 32px; /*px*/
     color: #EEAB5D;
 }
+@keyframes trans_rorate
+{
+    from {transform: rotate(0)}
+    to {transform: rotate(360deg)}
+}
 .logo {
     width: 13px;
     height: 13px;
@@ -61,5 +82,8 @@ export default {
 }
 .logo use {
     fill: #EEAB5D;
+}
+.active .logo {
+    animation: trans_rorate linear 1s infinite;
 }
 </style>

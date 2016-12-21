@@ -11,7 +11,7 @@
 				<div :class="$style.hot">
 					<p :class="$style.title">大家都在搜</p>
 					<div :class="[$style.items, $style.space]">
-						<span v-for='item in hot' :data-link="link" :class="$style.item">
+						<span @click="searchHot(e, item)" v-for='item in hot' :data-link="link" :class="$style.item">
 							{{ item }}
 						</span>
 					</div>
@@ -77,7 +77,7 @@ export default {
 				}
 			}
 		},
-		search(){
+		search() {
 			const info = encodeURIComponent(this.info)
 			if (info == this.txt) {
 				this.hiddenSearch()
@@ -90,6 +90,12 @@ export default {
 			}
 			this.initCourse(option)
 		},
+		searchHot(e, item) {
+			console.log(item)
+			this.info = item
+			this.search()
+			this.$router.push({ name: 'all', params: { page: 'all', txt: this.txt }})
+		}
 	},
 }
 </script>

@@ -60,7 +60,7 @@ GetData.prototype.getUrl = function (state, sort) {
 	if (!sort) {
 		sort = 'view'
 	}
-	this.url += sort + '&page='
+	this.url = this.url + sort + '&page='
 }
 GetData.prototype.fetch = function () {
 	const self = this
@@ -124,11 +124,11 @@ const mutations = {
 		sort.forEach((item, index, arr) => { arr[index] = item + '=1' })
 		const send = new GetData()
 		send.getTop(state)
-		send.getUrl(state, sort)
+		send.getUrl(state, 'view')
 		if (!state.search) {
-			send.url += sort.join('&')
+			send.url = send.url + state.page + '&' + sort.join('&')
 		} else {
-			send.url = '/api/v1.0/search/?page=2&per_page=20&keywords=' + state.txt
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view'
 		}
 		send.fetch().then(() => {
 			send.preData(state, 0, 20, 1)
@@ -144,7 +144,7 @@ const mutations = {
 		if (!state.search) {
 			send.url += state.page + '&per_page=20&null=asc'
 		} else {
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view'
 		}
 		send.getTop(state)
 		send.fetch().then(() => {
