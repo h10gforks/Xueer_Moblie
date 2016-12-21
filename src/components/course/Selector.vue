@@ -38,14 +38,22 @@ export default {
                 arr.pop()
                 e.target.className = arr.join(' ')
             }
-            console.log(this.selected)
         },
         hideSelector(){
             this.showSelector(false)
         },
         selector(){
             this.hideSelector()
-            this.initCourse()
+            const info = this.$route.params.txt
+            if (info) {
+                const option = {
+                    info: info,
+                    search: true
+                }
+                this.initCourse(option)
+            } else {
+                this.initCourse()
+            }
             this.fetchSelector(this.selected)
             this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
             this.selected = []

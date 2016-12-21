@@ -22,7 +22,6 @@ export default {
 			const scrollTop = document.body.scrollTop
 			if (scrollTop > 10) {
 				this.back_to_top = true
-				console.log(this.back_to_top)
 			} else {
 				this.back_to_top = false
 			}

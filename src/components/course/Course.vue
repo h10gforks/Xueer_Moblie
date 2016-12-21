@@ -30,7 +30,8 @@ export default {
 		...mapGetters([
 			'isend',
 			'fetch_flag',
-			'is_search'
+			'is_search',
+			'is_recommend',
 		]),
 		...mapState([
 			'is_selected',
@@ -55,11 +56,9 @@ export default {
 			if (height == doc_height && this.fetch_flag == true) {
 				this.changePageFlagN('fetch_flag')
 				this.fetchCourse(this.$route.params.sort)
-				console.log("shang")
 			}
 			if (scroll_height == 0 && this.fetch_flag == true) {
 				this.changePageFlagN('fetch_flag')
-				console.log("xia")
 				this.fetchCourseN(this.$route.params.sort)
 			}
 		},
@@ -81,9 +80,8 @@ export default {
 			this.changePageFlagN('is_all')
 			this.changePageFlagY('is_course')
 		}
-		this.changePageFlagN('is_search')
+		this.changePageFlagN(['is_search','is_all','is_recommend'])
 		this.changePageFlagY('is_index')
-		this.changePageFlagN('is_all')
 		next()
 	},
 }

@@ -4,9 +4,7 @@
 			<div :class="$style.container">
 				<div :class="[$style.search_box, $style.space]">
 					<input v-model="info" type="text" :class="$style.search_input">
-					<router-link :class="[$style.active,$style.link]" :to="{ name: 'all', params: { page: 'all', txt: this.txt }}">
-						<button @click="search" :class="$style.search_btn">搜索</button>
-					</router-link>
+					<button @click="search" :class="$style.search_btn">搜索</button>
 				</div>
 				<div :class="$style.hot">
 					<p :class="$style.title">大家都在搜</p>
@@ -79,7 +77,7 @@ export default {
 		},
 		search() {
 			const info = encodeURIComponent(this.info)
-			if (info == this.txt) {
+			if (info == this.txt || !this.info) {
 				this.hiddenSearch()
 				return
 			}
@@ -89,12 +87,11 @@ export default {
 				search: true
 			}
 			this.initCourse(option)
+			this.$router.push({ name: 'all', params: { page: 'all', txt: this.txt }})
 		},
 		searchHot(e, item) {
-			console.log(item)
 			this.info = item
 			this.search()
-			this.$router.push({ name: 'all', params: { page: 'all', txt: this.txt }})
 		}
 	},
 }

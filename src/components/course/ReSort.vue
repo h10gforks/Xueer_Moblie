@@ -45,7 +45,16 @@ export default {
 			} else {
 				this.isLoading(true)
 				this.isactive = !this.isactive
-				this.initCourse()
+				const info = this.$route.params.txt
+				if (info) {
+					const option = {
+						info: info,
+						search: true
+					}
+					this.initCourse(option)
+				} else {
+					this.initCourse()
+				}
 				this.fetchCourse(id)
 			}
 			this.is_db = id

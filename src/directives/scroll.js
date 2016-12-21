@@ -10,11 +10,12 @@ export default {
 	inserted(el, binding) {
 		const fn = binding.value
 		if (typeof fn !== 'function') {
-			return console.error('The param of directive v-scroll must be a function!')
+			console.error('The param of directive v-scroll must be a function!')
+			return
 		}
 		callBackWarpped = scrollCallback.bind({}, binding.value)
 		window.addEventListener('scroll', callBackWarpped)
-		return true
+		return
 	},
 	unbind() {
 		window.removeEventListener('scroll', callBackWarpped)

@@ -41,11 +41,9 @@ export default {
 		likeCourse(){
 			this.showLogin(true)
 			this.courseLike()
-			console.log("hello world!")
 		},
 		writeComment(){
 			this.showLogin(true)
-			console.log("hello world!")
 		},
 	},
 }

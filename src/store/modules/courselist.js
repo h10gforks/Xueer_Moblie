@@ -6,7 +6,7 @@ const state = {
 	height: 0,
 	back: false,
 	isend: false,
-	txt: '',
+	txt: ' ',
 	search: false,
 }
 const getters = {
@@ -128,7 +128,7 @@ const mutations = {
 		if (!state.search) {
 			send.url = send.url + state.page + '&' + sort.join('&')
 		} else {
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view'
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view&' + sort.join('&')
 		}
 		send.fetch().then(() => {
 			send.preData(state, 0, 20, 1)

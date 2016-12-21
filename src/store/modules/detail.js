@@ -93,7 +93,6 @@ const mutations = {
 		})
 	},
 	courseLike(state, id) {
-		console.log(state.comments)
 		const url = 'api/v1.0/comments/1244/like/'
 		const payload = {
 			c_id: 591,

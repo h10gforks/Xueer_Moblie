@@ -56,7 +56,6 @@ const mutations = {
 		const url = '/api/v1.0/search/?page=1&per_page=20&keywords=' + info
 		return fetch(url).then(response => {
 			response.json().then(json => {
-				console.log(json.length + '22')
 				state.result = json
 			})
 		})
@@ -66,7 +65,6 @@ const mutations = {
 		const url = '/api/v1.0/search/?page=' + state.search_page + '&per_page=20&keywords=' + state.key_word
 		return fetch(url).then(response => {
 			response.json().then(json => {
-				console.log(json.length + '11')
 				state.result = state.result.concat(json)
 			})
 		})

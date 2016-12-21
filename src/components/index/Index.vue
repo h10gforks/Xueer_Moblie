@@ -23,7 +23,8 @@ export default {
 	computed: mapState([
 		'is_index',
 		'is_search',
-	]),
+		'is_recommend',
+	])
 }
 </script>
 

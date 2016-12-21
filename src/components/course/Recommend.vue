@@ -22,9 +22,7 @@ export default {
 		]),
 	},
 	mounted() {
-		console.log(new Date())
 		this.changePageFlagN('is_index')
-		console.log("is_index: " + this.is_index)
 	},
 	methods: {
 		...mapActions([
@@ -46,6 +44,7 @@ export default {
 			this.changePageFlagN('is_all')
 			this.changePageFlagY('is_course')
 		}
+		this.changePageFlagN('is_recommend')
 		this.changePageFlagN('is_search')
 		this.changePageFlagY('is_index')
 		this.changePageFlagN('is_all')

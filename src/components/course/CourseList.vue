@@ -46,6 +46,7 @@ export default {
 			'back',
 			'page',
 			'txt',
+			'isend',
 		]),
 		...mapState([
 			'is_loading',
@@ -82,6 +83,9 @@ export default {
 				return
 			}
 			this.fetchCourse(this.$route.params.sort)
+		},
+		isend() {
+			this.isLoading(false)
 		}
 	},
 	filters: {
@@ -89,18 +93,15 @@ export default {
 	},
 	mounted() {
 		this.isLoading(true)
-		this.changePageFlagN('is_index')
-		this.changePageFlagN('is_course')
-		this.changePageFlagY('is_all')
+		this.changePageFlagN(['is_index','is_course','is_all'])
+		this.changePageFlagY('is_recommend')
 		// 判断是否是从课程详情返回
-		console.log(this.position)
 		if(this.position === undefined) {
 			let sort
 			this.$route.name == 'recommend' ? sort = 'score' : ''
 			this.fetchCourse(sort)
 			this.isLoading(true)
 		}
-		console.log(this.back)
 		if (this.back) {
 			// 这里为什么要setTimeout
 			setTimeout(() => {
@@ -116,6 +117,9 @@ export default {
 			this.fetchCourse(this.$route.params.sort)
 		}
 	},
+	beforeDestory() {
+		this.changePageFlagN('is_recommend')
+	}
 }
 </script>
 
