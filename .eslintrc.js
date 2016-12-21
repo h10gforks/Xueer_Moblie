@@ -45,5 +45,6 @@ module.exports = {
         'no-shadow': 0,
         'func-names': 0,
         'no-unused-expressions': 0,
+        'arrow-body-style': 0,
     }
 }

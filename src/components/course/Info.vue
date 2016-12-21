@@ -46,7 +46,8 @@ export default {
 			this.courseLike()
 		},
 		writeComment(){
-			this.showLogin(true)
+			this.$router.push('comment')
+			// this.showLogin(true)
 		},
 	},
 }

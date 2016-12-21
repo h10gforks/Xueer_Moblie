@@ -33,6 +33,11 @@ const actions = {
 	}, id) {
 		commit('fetchHotComments', id)
 	},
+	commentsLike({
+		commit,
+	}, id) {
+		commit('commentsLike', id)
+	},
 	courseLike({
 		commit,
 	}, id) {

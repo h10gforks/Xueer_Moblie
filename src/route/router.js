@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Index from '../components/index/Cont'
 import Course from '../components/course/Course'
 import Recommend from '../components/course/Recommend'
+import NewComment from '../components/course/NewComment'
 import Detail from '../components/course/Detail'
 import Subject from '../components/subject/Subject'
 
@@ -28,6 +29,11 @@ module.exports = new VueRouter({
 		name: 'tip',
 		path: '/tip/:id',
 		component: Subject,
+	},
+	{
+		name: 'comment',
+		path: '/course/:id',
+		component: NewComment,
 	},
 	{
 		name: 'course',

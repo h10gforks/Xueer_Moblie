@@ -64,6 +64,7 @@ export default {
 @import '../../assets/value.scss';
 
 .new_comment {
+	padding-top: 17px;
 	line-height: 14px;
 	font-size: 0;
 }

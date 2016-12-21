@@ -48,7 +48,7 @@ export default {
 	methods: {
 		...mapActions([
 			'showLogin',
-			'courseLike',
+			'commentsLike',
 		]),
 		showMore(item) {
 			this.more = !this.more
@@ -61,7 +61,7 @@ export default {
 		},
 		likeComments(e) {
 			e.target.className += ' liked'
-			this.courseLike()
+			this.commentsLike()
 		}
 	}
 }
