@@ -22,7 +22,13 @@ export default {
 		]),
 	},
 	mounted() {
-		this.changePageFlagN('is_index')
+		var self = this
+		// self.changePageFlagY(['is_recommend'])
+		// self.changePageFlagN(['is_index'])
+		setTimeout(function(){
+			self.changePageFlagY(['is_recommend'])
+			self.changePageFlagN(['is_index'])
+		},0)
 	},
 	methods: {
 		...mapActions([
@@ -40,15 +46,15 @@ export default {
 		this.getPosition(document.body.scrollTop)
 		this.flag = false
 		if(to.name === 'course') {
-			this.changePageFlagN('is_index')
-			this.changePageFlagN('is_all')
+			this.changePageFlagN(['is_index','is_all'])
 			this.changePageFlagY('is_course')
 		}
-		this.changePageFlagN('is_recommend')
-		this.changePageFlagN('is_search')
+		this.changePageFlagN(['is_recommend','is_search','is_all'])
 		this.changePageFlagY('is_index')
-		this.changePageFlagN('is_all')
 		next()
+	},
+	beforeDestory() {
+		this.changePageFlagN('is_recommend')
 	},
 }
 </script>

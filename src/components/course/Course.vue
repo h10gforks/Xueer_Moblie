@@ -23,7 +23,8 @@ export default {
 		}
 	},
 	mounted(){
-		this.changePageFlagN('is_index')
+		this.changePageFlagN(['is_index','is-recommend'])
+		this.changePageFlagY(['is_all'])
 		this.$route.params.page == 'all' ? '' : this.flag = false
 	},
 	computed: {
