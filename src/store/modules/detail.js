@@ -49,6 +49,30 @@ const preprocess = (json) => {
 	})
 	return json
 }
+const Like = function (url, id) {
+	this.url = url
+	this.id = id
+}
+Like.prototype.fetch = function () {
+	const payload = {
+		c_id: this.id,
+	}
+	const HEADERS = {
+		Accept: 'application/json',
+		'Content-Type': 'application/json',
+		Authorization: 'Basic ' + btoa('eyJpZCI6MTg5fQ.NtSg3Sn00SNOa_MsOabYxN78oJg:'),
+	}
+	const data = JSON.stringify(payload)
+	fetch(this.url, {
+		method: 'POST',
+		headers: new Headers(HEADERS),
+		body: data,
+	}).then(response => {
+		response.json().then(json => {
+			
+		})
+	})
+}
 const mutations = {
 	fetchInfo(state, id) {
 		state.course_id = id
@@ -93,26 +117,16 @@ const mutations = {
 		})
 	},
 	courseLike(state, id) {
-		const url = 'api/v1.0/comments/1244/like/'
-		const payload = {
-			c_id: 591,
-		}
-		const HEADERS = {
-			Accept: 'application/json',
-			'Content-Type': 'application/json',
-		}
-		const data = JSON.stringify(payload)
-		fetch(url, {
-			method: 'POST',
-			headers: new Headers(Object.assign(HEADERS, {
-				Authorization: 'Basic ' + btoa('eyJpZCI6MTg5fQ.NtSg3Sn00SNOa_MsOabYxN78oJg:'),
-			})),
-			body: data,
-		}).then(response => {
-			response.json().then(json => {
-				
-			})
-		})
+		id = 591
+		const url = 'api/v1.0/courses/' + id + '/like/'
+		const fetchLike = new Like(url, id)
+		fetchLike.fetch()
+	},
+	commentsLike(state, id) {
+		id = 1201
+		const url = '/api/v1.0/comments/' + id + '/like/'
+		const fetchLike = new Like(url, id)
+		fetchLike.fetch()
 	},
 }
 export default {

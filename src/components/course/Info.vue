@@ -4,10 +4,13 @@
 		<div :class="$style.teacher">{{ info.teacher }}</div>
 		<div :class="$style.btns">
 			<div @click="likeCourse" :class="$style.btn" :id="info.id">
-				   <svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon]">
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_s"></use>
-				   </svg>
-				   <span :class="$style.btn_text">{{ info.likes }}</span>
+				<svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon_filled]">
+					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_f"></use>
+				</svg>
+				<svg viewBox="0 0 17 15" :class="[$style.icon, $style.heart_icon]">
+					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#heart_s"></use>
+				</svg>
+				<span :class="$style.btn_text">{{ info.likes }}</span>
 			</div>
 			<div @click="writeComment" :class="$style.btn" :id="info.id">
 				<svg viewBox="0 0 17 14" :class="[$style.icon, $style.comment_icon]">
@@ -99,6 +102,7 @@ export default {
 	border: 2px solid #fff; /*px*/
 	border-radius: 4px; /*px*/
 	vertical-align: top;
+	overflow: hidden;
 	font-size: 0;
 	line-height: 14px;
 	text-align: left;
@@ -121,5 +125,34 @@ export default {
 	min-width: 48px;
 	text-align: center;
 	font-size: 28px; /*px*/
+}
+.heart_icon, .heart_icon_filled {
+	transform: translateX(-5.555556rem);
+}
+.heart_icon {
+	animation-fill-mode: forwards;
+	animation: heart_s ease-in-out 1s;
+}
+.heart_icon_filled {
+	position: absolute;
+	fill: #fff;
+	animation: heart_f 1s ease-in-out 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes heart_s {
+	0% {
+		transform: translateX(0) rotate(0deg);
+	}
+	100% {
+		transform: translateX(667%) rotate(400deg);
+	}
+}
+@keyframes heart_f {
+	0% {
+		transform: translateX(-667%) rotate(-400deg);
+	}
+	100% {
+		transform: translateX(0) rotate(0deg);
+	}
 }
 </style>

@@ -22,7 +22,7 @@
 					</div>
 	            </div>
 	            <div v-if="item._body" @click="showMore(item)" :class="$style.more">
-	                <svg :class="[more ? '' : [$style.icon_up], $style.more_icon]">
+	                <svg :class="[item.body == item._body ? '' : [$style.icon_up], $style.more_icon]">
 	                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down"></use>
 	                </svg>
 					<span v-if="item.body == item._body" :class="$style.more_text">收起</span>
@@ -74,6 +74,9 @@ export default {
 	font-size: 0;
 	padding-top: 21px;
 	border-bottom: 2px solid #ececec; /*px*/
+}
+.comment_item:last-child {
+	margin-bottom: 16px;
 }
 .avatar, .content {
 	display: inline-block;
