@@ -1,24 +1,23 @@
 {
-  "name": "fecademy_fe",
+  "name": "xueer_moblie",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --quiet --config webpack.build.config.js",
     "dev": "ninja start",
     "lint": "eslint --ext .js,.vue src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Muxi-Studio/Fecademy_fe.git"
+    "url": "git+https://github.com/Muxi-Studio/Xueer_Moblie.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Muxi-Studio/Fecademy_fe/issues"
+    "url": "https://github.com/Muxi-Studio/Xueer_Moblie/issues"
   },
-  "homepage": "https://github.com/Muxi-Studio/Fecademy_fe#readme",
+  "homepage": "https://github.com/Muxi-Studio/Xueer_Moblie",
   "dependencies": {
     "eslint-loader": "^1.6.1",
     "vue": "^2.0.5",
