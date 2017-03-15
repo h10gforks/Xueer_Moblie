@@ -179,7 +179,7 @@ export default {
 }
 .search_active .circle_fadeIn {
 	transform: translate(-50%,-50%) scale(1);
-	opacity: .8;
+	opacity: .9;
 	transition: all 1s;
 }
 .circle {

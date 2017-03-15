@@ -84,7 +84,8 @@ export default {
 	position: fixed;
 	width: 100%;
 	background: #fff;
-	z-index: 100;
+	z-index: 101;
+	box-shadow: 0 0 0.111111rem rgba(0,0,0,0.3);
 }
 .container {
 	width: 328px;

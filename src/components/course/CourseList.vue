@@ -165,7 +165,7 @@ export default {
 	width: 72px;
 	height: 12px;
 	overflow: hidden;
-	margin-right: 121px;
+	margin-right: 100px;
 }
 .va_item {
 	font-size: 24px; /*px*/

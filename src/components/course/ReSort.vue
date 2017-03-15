@@ -1,10 +1,10 @@
 <template>
     <div :class="[$style.menu, $style.space]">
-        <div @click="reSort" :class="$style.sort">
+        <div :class="$style.sort">
             <span :class="$style.s_item">排序方式：</span>
-            <span id="view" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
+            <span id="view" @click="reSort" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
             评论最多&nbsp;&nbsp;</span>
-            <span id="like" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
+            <span id="like" @click="reSort" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
             &nbsp;&nbsp;点赞最多</span>
         </div>
         <div @click="Selector" :class="$style.selector">

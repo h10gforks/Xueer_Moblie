@@ -8,7 +8,7 @@
                 <div id="sz_cat" @click="addTag" :class="[$style.item, $style.tag]">素质课</div>
             </div>
             <div @click="selector" :class="[$style.bt, $style.item]">确定</div>
-        <div>
+        </div>
     </div>
 </template>
 <script>
