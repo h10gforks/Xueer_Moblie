@@ -88,7 +88,7 @@ export default {
 }
 </script>
 
-<style lang="sass" module>
+<style lang="scss" module>
 .hint {
 	font-size: 24px; /*px*/
     text-align: center;

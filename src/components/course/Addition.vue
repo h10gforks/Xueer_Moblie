@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style lang='sass' module>
+<style lang='scss' module>
 .address {
     padding: 0 13px 9px;
 }

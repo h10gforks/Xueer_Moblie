@@ -61,7 +61,7 @@ export default {
     }
 }
 </script>
-<style lang="sass" module>
+<style lang="scss" module>
 .selector {
     padding-top: 103px;
     position: absolute;

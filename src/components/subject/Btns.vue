@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style lang='sass' module>
+<style lang='scss' module>
 .btns {
 	font-size: 0;
 	text-align: center;

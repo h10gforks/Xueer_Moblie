@@ -15,7 +15,7 @@ export default {
     ])
 }
 </script>
-<style lang='sass' module>
+<style lang='scss' module>
 .loading {
     width: 100%;
     height: 100%;

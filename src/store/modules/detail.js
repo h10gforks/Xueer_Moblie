@@ -81,7 +81,7 @@ Like.prototype.fetch = function () {
 const mutations = {
 	fetchInfo(state, id) {
 		state.course_id = id
-		const url = '/api/v1.0/courses/' + state.course_id
+		const url = '/api/v1.0/courses/' + state.course_id + '/'
 		fetch(url).then(response => {
 			response.json().then(json => {
 				state.info = json

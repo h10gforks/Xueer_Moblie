@@ -97,7 +97,7 @@ export default {
 }
 </script>
 
-<style lang='sass' module>
+<style lang='scss' module>
 .search_view {
 	z-index: 100;
 	position: fixed;

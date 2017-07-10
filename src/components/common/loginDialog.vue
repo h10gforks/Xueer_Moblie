@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style lang='sass' module>
+<style lang='scss' module>
 .dialog {
 	z-index: 5;
     background-color: #fff;

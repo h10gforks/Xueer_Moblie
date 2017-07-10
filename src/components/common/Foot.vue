@@ -11,7 +11,7 @@
         <div :class="$style.copyright">Proudly Prowered by Vue &amp; Flask</div>
     </div>
 </template>
-<style lang='sass' module>
+<style lang='scss' module>
 .footer {
 	width: 100%;
     min-height: 124px;

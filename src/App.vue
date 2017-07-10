@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang='sass'>
+<style lang='scss'>
 @import './assets/common.scss';
 @import './assets/reset.scss';
 .app {

@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang='sass' module>
+<style lang='scss' module>
 .back_to_top {
 	height: 40px;
     width: 40px;

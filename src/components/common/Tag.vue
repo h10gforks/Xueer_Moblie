@@ -37,7 +37,7 @@ export default {
 	},
 }
 </script>
-<style lang='sass' module>
+<style lang='scss' module>
 .tags {
 	padding: 22px 28px 1px 34px;
 }
