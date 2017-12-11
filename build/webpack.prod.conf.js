@@ -7,14 +7,11 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var env = config.build.env
-var faviconsWebpackPlugin = require('favicons-webpack-plugin')
+// var faviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 var webpackConfig = merge(baseWebpackConfig, {
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        alias: {
-            'vue$': 'vue/dist/vue.runtime.min.js'
-        }
+        extensions: ['.js', '.vue', '.json']
     },
     module: {
         noParse: /vue\.runtime\.min\.js/
@@ -26,10 +23,10 @@ var webpackConfig = merge(baseWebpackConfig, {
     },
     devtool: config.build.productionSourceMap ? '#source-map' : false,
     plugins: [
-        new faviconsWebpackPlugin({
-            logo: './src/assets/favicon.png',
-            prefix: 'favicon/',
-        }),
+        // new faviconsWebpackPlugin({
+        //     logo: './src/assets/favicon.png',
+        //     prefix: 'favicon/',
+        // }),
         // http://vuejs.github.io/vue-loader/en/workflow/production.html
         new webpack.DefinePlugin({
             'process.env': env

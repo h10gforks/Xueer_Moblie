@@ -7,10 +7,10 @@
 						<svg :class="[$style.nav_icon, $style.logo]">
 							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo"></use>
 						</svg>
-						<span v-if="is_search" :class="[$style.title_s, $style.title]">搜索</span>
+						<!-- <span v-if="is_search" :class="[$style.title_s, $style.title]">搜索</span> -->
 					</router-link>
 				</div>
-				<div @click="backStep">
+				<!-- <div @click="backStep">
 					<svg  v-if="!is_index" viewBox="0 0 34 34" :class="[$style.back, $style.nav_icon]">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back"></use>
 					</svg>
@@ -20,7 +20,7 @@
 					<span v-if="is_auth" :class="[$style.title_l, $style.title]">我的学而</span>
 					<span v-if="is_course" :class="[$style.title_l, $style.title]">课程详情</span>
 					<span v-if="is_sub" :class="[$style.title_l, $style.title]">专题</span>
-				</div>
+				</div> -->
 			</div>
 			<div :class="$style.icon_set">
 				<div @click="displaySearch" data-link="/search" :class="[$style.nav_icon, $style.search]">
@@ -28,7 +28,7 @@
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
 					</svg>
 				</div>
-				<div data-link="/user" :class="[$style.nav_icon, $style.user, $style.link]">
+				<div @click="toLogin" :class="[$style.nav_icon, $style.user, $style.link]">
 					<svg viewBox="0 0 34 34">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
 					</svg>
@@ -69,10 +69,13 @@ export default {
 		},
 		displaySearch() {
 			this.getSnaps(this.snaps)
-			this.showSearch(),
-			this.changePageFlagY(['is_search'])
-			this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
+			this.showSearch()
+			// this.changePageFlagY(['is_search'])
+			// this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
 		},
+		toLogin() {
+			window.location = "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing"
+		}
 	},
 }
 </script>

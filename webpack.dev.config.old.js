@@ -74,7 +74,7 @@ module.exports = {
     },
     devtool: '#eval-source-map',
     resolve: {
-        extensions: ['', '.js', '.scss', '.vue'],
+        extensions: ['', '.js', '.scss', '.vue']
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),

@@ -6,7 +6,8 @@
 	    </div> 
 	    <div :class="$style.dialog_btns">
 	        <div @click="cancel" :class="[$style.dialog_btn, $style.dialog_btn_cancel]">等会再说</div>
-	        <div :class="[$style.dialog_btn, $style.dialog_btn_login]">去登录</div>
+	       <!-- 去登录：跳转到木犀通行证 -->
+            <div @click="toLogin" :class="[$style.dialog_btn, $style.dialog_btn_login]">去登录</div>
 	    </div> 
 	 </div>
 </template>
@@ -29,7 +30,10 @@ export default {
         ]),
 		cancel() {
 			this.showLogin(false)
-		},
+        },
+        toLogin() {
+            window.location = "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing"
+        }
 	},
 }
 </script>

@@ -9,6 +9,7 @@
             <svg :class="$style.logo">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#circulation"></use>
             </svg>
+            <!-- 建议：把换一批改成查看更多 -->
             <span :class="$style.bt_text">换一批</span>
         </div>
     </div>

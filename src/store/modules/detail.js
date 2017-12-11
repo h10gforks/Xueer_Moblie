@@ -74,7 +74,7 @@ Like.prototype.fetch = function () {
 		body: data,
 	}).then(response => {
 		response.json().then(json => {
-			
+			//
 		})
 	})
 }
