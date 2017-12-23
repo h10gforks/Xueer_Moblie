@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --config ./build/webpack.prod.conf.js",
+    "build": "rm -rf ./dist/* && node ./build/build.js",
     "dev": "ninja start",
     "lint": "eslint --ext .js,.vue src"
   },

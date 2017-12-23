@@ -19,6 +19,7 @@ module.exports = {
         output: {
             path: path.join(__dirname, "../"),
             filename: '[name].js',
+            // publicPath: config.build.assetsPublicPath,
             publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
         },
         module: {

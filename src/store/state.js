@@ -12,6 +12,7 @@ const state = {
 	show_login: false,
 	is_logined: false,
 	fetch_flag: true,
+	token: ""
 }
 
 export default state

@@ -74,7 +74,8 @@ export default {
 			// this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
 		},
 		toLogin() {
-			window.location = "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing"
+			//window.location = "https://user.muxixyz.com/?http://xueer.muxixyz.com/landing"
+			window.location.href = "/landing/?email=1045671796%40qq.com&token=eyJhbGciOiJIUzI1NiIsImV4cCI6MTUxNDAzMDQyNywiaWF0IjoxNTE0MDI2ODI3fQ.eyJpZCI6MjY3fQ.bOgABI7EbpNgqhd1IT-6xvRiq4PHrTkZKkYe6zQxnNc"
 		}
 	},
 }

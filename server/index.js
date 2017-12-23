@@ -18,31 +18,18 @@ router.get('/', function(ctx, next){
         httpOnly: false,
     })
     let template = swig.compileFile(path.resolve(templateRoot, "index.html"));
-    ctx.body = template({})
+    ctx.body = template({});
 });
 
-router.get('/recommend',function(ctx, next){
+router.get('/landing', function(ctx, next){
+    ctx.cookies.set("landing", ctx.request.query.landing, {
+        httpOnly: false,
+    })
     let template = swig.compileFile(path.resolve(templateRoot, "index.html"));
-    ctx.body = template({})
-})
+    ctx.body = template({});
+});
 
-router.get('/all',function(ctx, next){
-    let template = swig.compileFile(path.resolve(templateRoot, "index.html"));
-    ctx.body = template({})
-})
-
-router.get('/tip/:id',function(ctx, next){
-    let template = swig.compileFile(path.resolve(templateRoot, "index.html"));
-    ctx.body = template({})
-})
-
-router.get('/course/:id',function(ctx, next){
-    let template = swig.compileFile(path.resolve(templateRoot, "index.html"));
-    ctx.body = template({})
-})
-
-
-router.get(/^\/static(?:\/|$)/, async (ctx) => {
+router.get(/^\/static(?:\/|$)/, async(ctx) => {
     let filePath = ctx.path.replace(/static\//, "")
      await send(ctx, filePath, {
          root: path.join(__dirname, "../dist")

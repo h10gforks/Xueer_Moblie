@@ -29,11 +29,13 @@
 .copyright {
     padding-top: 16px;
 }
+.copyright, .item {
+    font-size: 12px;
+}
 .item {
     display: inline-block;
     width: 33.3%;
     box-sizing: border-box;
-    font-size: 12px;
     color: #999;
 }
 .item:nth-child(1),

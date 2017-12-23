@@ -1,3 +1,5 @@
+import { SignService } from '../service/sign'
+
 const mutations = {
 	changePageFlagN(state, flag) {
 		if (Object.prototype.toString.call(flag) === '[object String]') {
@@ -33,6 +35,12 @@ const mutations = {
 	},
 	initData(state, data) {
 		state[data] = ''
+	},
+	getToken(state, token) {
+		SignService.getToken()
+		    .then(res => {
+				state.token = res.token
+		    })
 	},
 }
 

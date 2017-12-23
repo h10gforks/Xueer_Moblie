@@ -8,11 +8,13 @@
 	 </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
-    computed: mapState([
-        'is_loading',
-    ])
+    computed: {
+        ...mapState([
+            'is_loading',
+        ])
+    }
 }
 </script>
 <style lang='scss' module>

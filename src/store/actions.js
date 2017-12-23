@@ -19,6 +19,9 @@ const actions = {
 	},
 	initData({ commit }, data) {
 		commit('initData', data)
+	},
+	getToken({commit}, token) {
+		commit('getToken', token)
 	}
 }
 
