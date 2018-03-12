@@ -1,3 +1,4 @@
+import CListService from "../../service/courselist"
 const state = {
 	courses: [],
 	page: 0,
@@ -56,12 +57,14 @@ const GetData = function () {
 	this.url = 'api/v1.0/courses/?sort='
 	this.json = null
 }
+
 GetData.prototype.getUrl = function (state, sort) {
 	if (!sort) {
 		sort = 'view'
 	}
 	this.url = this.url + sort + '&page='
 }
+
 GetData.prototype.fetch = function () {
 	const self = this
 	const p = new Promise((resolve) => {
@@ -74,6 +77,7 @@ GetData.prototype.fetch = function () {
 	})
 	return p
 }
+
 GetData.prototype.preData = function (state, count, end, flag) {
 	if (flag == -1) {
 		state.courses = this.json.concat(state.courses)
@@ -124,15 +128,28 @@ const mutations = {
 		sort.forEach((item, index, arr) => { arr[index] = item + '=1' })
 		const send = new GetData()
 		send.getTop(state)
-		send.getUrl(state, 'view')
+		/*send.getUrl(state, 'view')*/
 		if (!state.search) {
+			CListService.viewCourse(state.page)
+				.then(() => {
+				send.preData(state, 0, 20, 1)
+			})
+			/*
 			send.url = send.url + state.page + '&' + sort.join('&')
+			*/
 		} else {
+			CListService.viewSearch(state.page, state.txt)
+				.then(() => {
+				send.preData(state, 0, 20, 1)
+			})
+			/*
 			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view&' + sort.join('&')
+			*/
 		}
+		/*
 		send.fetch().then(() => {
 			send.preData(state, 0, 20, 1)
-		})
+		}) */
 	},
 	fetchCourse(state, sort) {
 		if (state.isend) {
@@ -140,18 +157,38 @@ const mutations = {
 		}
 		state.page += 1
 		const send = new GetData()
-		send.getUrl(state, sort)
-		if (!state.search) {
-			send.url += state.page + '&per_page=20&null=asc'
-		} else {
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view'
-		}
+		/*send.getUrl(state, sort)*/
 		send.getTop(state)
+
+		if (!state.search) {
+			/*
+			send.url += state.page + '&per_page=20&null=asc'
+			*/
+			CListService.getCourse(state.page)
+				.then(() => {
+				send.preData(state, 0, 20, 1)
+			}).then(() => {
+				send.getHeight(state)
+			})
+		} else {
+			/*
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view'
+			*/
+			CListService.viewSearch(state.page, state.txt)
+			.then(() => {
+				send.preData(state, 0, 20, 1)
+			}).then(() => {
+				send.getHeight(state)
+			})
+		}
+	
+		/*
 		send.fetch().then(() => {
 			send.preData(state, 0, 20, 1)
 		}).then(() => {
 			send.getHeight(state)
 		})
+		*/
 	},
 	getPosition(state, position) {
 		state.position = position
@@ -170,17 +207,36 @@ const mutations = {
 		}
 		const send = new GetData()
 		send.getUrl(state, sort)
-		if (!state.search) {
-			send.url += state.page + '&per_page=20&null=asc'
-		} else {
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt
-		}
 		send.getTop(state)
+		if (!state.search) {
+			/*
+			send.url += state.page + '&per_page=20&null=asc'
+			*/
+			CListService.getCourse(state.page)
+			.then(() => {
+				send.preData(state, state.courses.length + 1, 20, -1)
+			}).then(() => {
+				send.getHeight(state)
+			})
+		} else {
+			/*
+			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt
+			*/
+			CListService.viewSearch(state.page, state.txt)
+			.then(() => {
+				send.preData(state, state.courses.length + 1, 20, -1)
+			}).then(() => {
+				send.getHeight(state)
+			})
+		}
+		
+		/*
 		send.fetch().then(() => {
 			send.preData(state, state.courses.length + 1, 20, -1)
 		}).then(() => {
 			send.getHeight(state)
 		})
+		*/
 	},
 }
 export default {

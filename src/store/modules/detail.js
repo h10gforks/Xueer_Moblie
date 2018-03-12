@@ -1,3 +1,4 @@
+import {DetailService}from '../../service/detail'
 const state = {
 	info: {},
 	hot_tags: [],
@@ -58,14 +59,15 @@ const Like = function (url, id) {
 	this.url = url
 	this.id = id
 }
+/*
 Like.prototype.fetch = function () {
 	const payload = {
 		c_id: this.id,
 	}
 	const HEADERS = {
-		Accept: 'application/json',
+		'Accept': 'application/json',
 		'Content-Type': 'application/json',
-		Authorization: 'Basic ' + btoa('eyJpZCI6MTg5fQ.NtSg3Sn00SNOa_MsOabYxN78oJg:'),
+		'Authorization': 'Basic ' + btoa('eyJpZCI6MTg5fQ.NtSg3Sn00SNOa_MsOabYxN78oJg:'),
 	}
 	const data = JSON.stringify(payload)
 	fetch(this.url, {
@@ -78,12 +80,16 @@ Like.prototype.fetch = function () {
 		})
 	})
 }
+	*/
 const mutations = {
 	fetchInfo(state, id) {
 		state.course_id = id
-		const url = '/api/v1.0/courses/' + state.course_id + '/'
+		/*const url = '/api/v1.0/courses/' + state.course_id + '/'
 		fetch(url).then(response => {
-			response.json().then(json => {
+			response.json()
+			*/
+			DetailService.getTinfo(state.course_id)
+			.then(json => {
 				state.info = json
 				state.views = json.views
 				let hot_tags
@@ -91,14 +97,17 @@ const mutations = {
 				hot_tags.unshift(json.main_category)
 				state.hot_tags = hot_tags
 			})
-		})
 	},
 	fetchComments(state, id) {
 		state.course_id = id
 		state.page += 1
+		/*
 		const url = '/api/v1.0/courses/' + state.course_id + '/comments/?page=' + state.page + '&per_page=10'
 		fetch(url).then(response => {
-			response.json().then(json => {
+			response.json().
+			*/
+		DetailService.getComments(state.id, state.page)
+			.then(json => {
 				preprocess(json)
 				if (json.length == 0) {
 					state.more = false
@@ -109,29 +118,37 @@ const mutations = {
 					state.more = false
 				}
 			})
-		})
 	},
 	fetchHotComments(state, id) {
 		state.course_id = id
 		const url = '/api/v1.0/courses/' + state.course_id + '/comments/hot/'
+		/*
 		fetch(url).then(response => {
-			response.json().then(json => {
+			response.json()
+			*/
+		DetailService.getHotComments(state.course_id)
+			.then(json => {
 				preprocess(json)
 				state.hot_comments = state.hot_comments.concat(json)
 			})
-		})
 	},
-	courseLike(state, id) {
+	courseLike(id, token) {
+		/*
 		id = 591
 		const url = 'api/v1.0/courses/' + id + '/like/'
 		const fetchLike = new Like(url, id)
 		fetchLike.fetch()
+		*/
+		DetailService.likeCourse(id, token)
 	},
-	commentsLike(state, id) {
+	commentsLike(id, token) {
+		/*
 		id = 1201
 		const url = '/api/v1.0/comments/' + id + '/like/'
 		const fetchLike = new Like(url, id)
 		fetchLike.fetch()
+		*/
+		DetailService.likeComment(id, token)
 	},
 }
 export default {

@@ -30,7 +30,7 @@
     padding-top: 16px;
 }
 .copyright, .item {
-    font-size: 12px;
+    font-size: 24px; /*px*/
 }
 .item {
     display: inline-block;

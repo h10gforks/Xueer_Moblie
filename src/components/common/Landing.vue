@@ -1,6 +1,5 @@
 <template>
     <div>
-        hahahah
         <Loading></Loading>
     </div>
 </template>
@@ -37,7 +36,6 @@ export default {
         SignService.register(this.username, this.email)
             .then((res => {
                 this.getToken();
-                console.log("seccuess")
             }))
     }
 }

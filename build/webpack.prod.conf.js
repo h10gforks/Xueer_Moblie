@@ -11,7 +11,10 @@ var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
     resolve: {
-        extensions: ['.js', '.vue', '.json']
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            'vue$': 'vue/dist/vue.runtime.min.js'
+        }
     },
     module: {
         noParse: /vue\.runtime\.min\.js/

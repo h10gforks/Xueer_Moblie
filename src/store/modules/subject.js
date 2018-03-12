@@ -1,3 +1,5 @@
+import SubjectService from "../../service/subject";
+
 const state = {
 	sub_info: {},
 	subject_id: '',
@@ -21,13 +23,13 @@ const actions = {
 const mutations = {
 	fetchSubject(state, id) {
 		state.subject_id = id
-		const url = '/api/v1.0/tips/' + id + '/'
-		console.log(url)
+		/* const url = '/api/v1.0/tips/' + id + '/'
 		fetch(url).then(response => {
-			response.json().then(json => {
+			response.json() */
+			SubjectService.oneTip
+			.then(json => {
 				state.sub_info = json
 			})
-		})
 		return true
 	},
 }

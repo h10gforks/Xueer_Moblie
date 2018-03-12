@@ -1,6 +1,6 @@
 <template>
 	<div :class="$style.cont">
-		<div v-for="item in tips" :class="$style.artical_cont">
+		<div v-for="item in tips" :class="$style.artical_cont" :key="item.id">
 			<router-link :to="{ name: 'tip', params: { id: item.id }}">
 				<div :class="$style.img_cont">
 					<img :src="item.img_url">
@@ -78,7 +78,9 @@ export default {
 .title {
 	padding: 0 16px;
 	font-size: 20px;
+	//font-size: 40px;
 	line-height: 28px;
+	margin-top: 16px;
 	color: $shallow_black;
 }
 .like {

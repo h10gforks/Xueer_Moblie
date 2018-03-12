@@ -1,3 +1,5 @@
+import SearchService from '../../service/search'
+
 const state = {
 	hot: [],
 	show_search: false,
@@ -39,11 +41,12 @@ const actions = {
 }
 const mutations = {
 	fetchHot(state) {
-		fetch('/api/v1.0/search/hot/').then(response => {
-			response.json().then(json => {
+		SearchService.getHot()
+		/* fetch('/api/v1.0/search/hot/').then(response => {
+			response.json() */
+			.then(json => {
 				state.hot = json
 			})
-		})
 	},
 	showSearch(state) {
 		state.show_search = true
@@ -53,21 +56,23 @@ const mutations = {
 	},
 	searchCourse(state, info) {
 		state.key_word = info
-		const url = '/api/v1.0/search/?page=1&per_page=20&keywords=' + info
+		/* const url = '/api/v1.0/search/?page=1&per_page=20&keywords=' + info
 		return fetch(url).then(response => {
-			response.json().then(json => {
+			response.json() */
+			SearchService.searchCourse()
+			.then(json => {
 				state.result = json
 			})
-		})
 	},
 	searchResScroll(state) {
 		state.search_page += 1
-		const url = '/api/v1.0/search/?page=' + state.search_page + '&per_page=20&keywords=' + state.key_word
+		/* const url = '/api/v1.0/search/?page=' + state.search_page + '&per_page=20&keywords=' + state.key_word
 		return fetch(url).then(response => {
-			response.json().then(json => {
+			response.json() */
+			SearchService.searchRes(state.search_page,state.key_word)
+			.then(json => {
 				state.result = state.result.concat(json)
 			})
-		})
 	}
 }
 export default {

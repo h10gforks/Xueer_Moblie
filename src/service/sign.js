@@ -1,6 +1,6 @@
 import Fetch from './fetch.js'
 
-let service = {
+let SignService = {
     getEmail() {
         return window.location.href.split('?')[1].split('&')[0].split('=')[1]
     },
@@ -32,4 +32,4 @@ let service = {
         })
     }
 }
-export default service
+export default SignService

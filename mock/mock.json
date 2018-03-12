@@ -1,20 +1,238 @@
 {
-	"routes": [
-		{
-			"name" : "index",
-			"endpoint": "/",
-			"template": "index",
-			"async": false
-		},
-		{
-			"name": "api.courses",
-			"endpoint": "/api/v1.0/courses",
-			"async": true
-		}
-	],
-	"data":{
-		"home" : {
-			"content" : "Hello 胡圣喜!"
-		}
-	}
+  "routes": [
+    {
+      "name": "index",
+      "endpoint": "/",
+      "template": "index",
+      "async": false
+    },
+    {
+      "name": "courses",
+      "endpoint": "/api/v1.0/courses",
+      "async": true
+    },
+    {
+      "name": "tips",
+      "endpoint": "/api/v1.0/tips/",
+      "async": true
+    },
+    {
+      "name": "313",
+      "endpoint": "/course/313",
+      "async": true
+    }
+  ],
+  "data": {
+    "tips": [
+      {
+        "body":
+          "<p>学而是华师的公共课程选课经验分享平台，你的每一条评价将成为全校同学以及后世学弟学妹们选课时参考的宝贵建议！</p><p>为了使这些评价能更好的帮到大家，我们希望你：</p><ul><li>不写无意义的评价，如“赞”，“好课”等。</li><li>评价之前请确认课程/老师是准确的，如果在学而中搜不到自己上过的课程，可以向木犀反馈。</li><li>对课程的评价可以从教学的内容，老师讲课水平，自己的收获，作业量，考勤情况，期末的考察方式（开/闭卷考试/论文/PPT汇报），以及给分的情况（强烈建议写清成绩的具体数字，如90+，因为大家对给分高低的标准不同）以上的评课建议可以根据具体课程不同自行调整，比如体育课就不用写考勤情况了，因为基本都会点名。</li><li>有的同学希望找到好过的课程，有的同学希望找到好玩的课程。所以你的评价可以是写上课时有趣的经历，或者是有趣的老师，也可以是简洁的描述一下考勤和作业，大家各取所需。</li><li>加标签时请尽量选择已有的热门标签。</li><li>我们欢迎长篇/优质的评论。</li></ul>",
+        "date": "None",
+        "likes": 35,
+        "banner_url": "木犀运营狗",
+        "title": "学而评课须知",
+        "url": "http://xueer.xueer.svc.cluster.local:5488/api/v1.0/tips/3/",
+        "views": 564,
+        "img_url":
+          "https://occc3ev3l.qnssl.com/xueer/banner/xueer_mobile_2.jpg",
+        "id": 3
+      },
+      {
+        "body":
+          "<p>又到了抢课的时候，你是否在为选什么通识课头疼？马基毛概这么多课堂，哪个老师比较好呢？时隔两年，华师的选课经验挖掘机-——学而又重出江湖了。下面就让小犀带你看看学而上的十大热门课程吧</p><p><b>十大热门通识课</b></p><p><b>1.音乐欣赏（胡建）</b></p><p>男神胡建的音乐欣赏是学而上最火爆的课程，足足有42条评论。这些评论的画风大概是这样的：</p><p><img alt=\"Image\" src=\"http://static.muxistudio.com/images/hj.png\" width=\"654\" height=\"1044\"><br></p><p>让我们来看看具体的评论：</p><blockquote><p>老师超级好，帅帅哒，萌萌哒，说话也很温柔，而且老师知识渊博，讲课很生动，学到了不少东西。听音乐学院的说这个老师在音乐学院上课也非常负责！</p></blockquote><p>萌萌哒有木有！帅帅哒有木有！酷酷哒有木有！关键还讲得好！明明可以靠脸吃饭 却偏偏要靠才华。</p><p>这么帅的老师长什么样呢？</p><p><img alt=\"Image\" src=\"http://static.muxistudio.com/images/zpts.jpg\" width=\"198\" height=\"193\"><br></p><p>各位选这门课之后自然就知道了。上完了别忘了来学而给男神点赞！</p><p><b>2.果蔬花卉营养与保鲜</b></p><p>这门课是老牌的通识选修课啦，在学而中有15条评论，我们来看看同学们的评价吧</p><blockquote><p>绝对是任选中的良心课！我是中午的课，老师大中午的非常辛苦但还是很敬业，上课内容很实用也很生动，点名总共才三次，平时没有作业，最后交篇论文给分还很高，起码90+，重点是内容真的很实用啊！一些水果蔬菜的特殊功效，还有生活窍门啥的，绝对不要错过！！！</p></blockquote><p>好过给分好还能学到东西，不能要求更多了。</p><p><b>3.观赏动物学</b></p><p>这门课在学而中有12条评论。</p><blockquote><p>很好哒一门课，对动物感兴趣的同学不要错过，老师人很好，有点小幽默，课堂上经常放各种萌物的视频，每次上完课都母性爆棚！！！而且平时也没什么必须完成的作业，就是期末一篇论文，个人觉得挺不错的。</p></blockquote><blockquote><p>教学质量：不很不错，每次课就是看看各种动物的图片和影片资料，生动有趣，拓展眼界。老师人很好，亲切。最后一次课会去学校标本馆看标本，有蟒蛇大熊猫什么的，挺好。给分比较高哦。</p></blockquote><p>可以去标本馆看标本哦，喜欢萌萌哒小动物的同学不要错过啦</p><p><b>4.苍穹的奥秘</b></p><p>这门课在学而上有9条评论。</p><blockquote><p>这门课超级好，只要平时去上课签到五次，平时分就是100分，而且还有一次观测课，可以观测星星，挺好玩的，虽然他讲的理论我都听不懂。。。期末就是出五道题目，每道题目写一句话就行，基本都可以百度到。</p></blockquote><blockquote><p>这是一门很有爱的课，理论课就2~3节，其他就是实践课。下面萌点来了，实践课根据天气而定，如果当天天气不好，就默认不去上课了，相当之有爱呀。如 果上实践课就可以用很好的仪器观测天体，同样也很好的。而且期末考试灰常简单，自己拿 回家做题然后上交。那个老师人很好，感觉很有见地</p></blockquote><p><br></p><p><b>5. 动画艺术赏析</b></p><p>学友评论：</p><blockquote><p>我很喜欢的一门艺体课，老师上课让我们看动画片，各种年代国家风格的动画片，让我们分析内容和手法，合我口味，但缺点是每节课交动画内容分析，即变相点名。期末观看一个短动画片写分析和一条论述题开放式，简单写写他上课的内容及自己观点就可以了。</p></blockquote><blockquote><p>上过这门课的小犀表示，可以看很多好看的动画片，轻松好过，业界良心。</p></blockquote><p><b>6.家族生命史编撰与研究</b></p><p>学友评论：</p><blockquote><p>老师学术素养很高的，讲的东西很有意思，作业超级少而且人超级好，很值得一上的课超级喜欢的！喜欢历史的孩子去就选吧。</p></blockquote><blockquote><p>老师超级养眼！老师人也很好，带着我们追根溯源</p></blockquote><p>这门课相对冷门一些，喜欢历史的孩子不要错过啦。</p><p><b>7.诗词赏析</b></p><p><span style=\"color: rgb(51, 51, 51); font-size: 14px;\">学友评论：</span><br></p><blockquote><p>老师书法特别好，上课从不点名，期末一篇当堂作文，文学院的课总觉得特别好，并且陈老师知识渊博，犹如在听大师教导之感</p></blockquote><blockquote><p>超级好的老师，大师，教的特别棒，从不点名，没有作业，听课就是一种享受，十星</p></blockquote><p>这门课的老师是文院的大师级老师陈龙海，他的习字与书法艺术也很受欢迎。</p><p><b>8.视唱练耳</b></p><p>这门课算是热门课程之一，小犀就不多说了，大家看评论吧。</p><blockquote><p>感觉不错，老师-田许生-男-超耐心，特别是乐盲可以考虑下， 考试就是对着五线谱唱学过的内容，我都是标简谱的，可能有期中考试，考试比较简单</p></blockquote><blockquote><p>视唱练耳意外地有一点难度，我这个有乐理基础的去上课都觉得有点意外，因为觉得完全没接触过五线谱的同学可能会无法理解这些专业的东西。平时作业都很简单，课堂时间不够所以其实教得并不深入，期末考试是视谱唱，几个人一起的，不会很难老师给分也挺高的</p></blockquote><p><b>9.新闻摄影及作品鉴赏</b></p><p>学友韩一尾评价道：</p><blockquote><p>从未见过如此风趣幽默的老师，课程很有趣，带你欣赏新闻摄影的优秀作品，并教你基本摄影知识，喜欢摄影或是想了解摄影的必选。</p></blockquote><p><b>10.公共关系学</b></p><p><span style=\"color: rgb(51, 51, 51); font-size: 14px;\">学友评论：</span><br></p><blockquote><p>根本不点名，梅老师是一个很好很厉害的老师，上课内容很丰富讲得也很棒，除了口音有点重……平时作业还挺多，大多是结合课堂内容布置的思考题，公共关系是个大领域，有兴趣的同学学了这个任选还可以继续深入下去~~</p></blockquote><p>教学质量：非常好，梅老师很有见识，会让你眼界扩展不少，在轻松愉快的气氛里学到很多知识。 作业：开始几次课都会有作业，但是难度都不大，最后期末考试会有一篇策划案。比起其他选修课总体上作业偏多。点名：从来不点名哦</p><p>好了，如果想看更多的通识课评价，请戳这里。下面我们来看看十大热门公共课。</p><p><b>十大热门公共课</b></p><p><b>1.思想道德修养与法律基础（李春火）</b></p><p>这门课在学而的人气可以和音乐欣赏相比，有30条评论。</p><p>大都是这样的：</p><p><img alt=\"Image\" src=\"http://static.muxistudio.com/images/lch.png\" width=\"592\" height=\"988\"><br></p><p>从评论中看李春火老师是一个幽默风趣上课生动的老师</p><p>他会这样：</p><blockquote><p>大爱春火老师。上课还会唱歌给听。哈哈</p></blockquote><p>他也会这样：</p><blockquote><p>老师上课基本不点名，点名也是随心情.有次有个同学课间跑了，结果老师点名了，他就第二节课跑了回来，老师也是半开玩笑，睁一只眼闭一只眼。上课挺喜欢做课堂拓展的（xianchela），也喜欢放视频，元旦的时候给我们唱了几首歌。平时没什么作业，就交过一片电影观后感的论文。经常会在群里解答同学们的问题。期末考的时候会在群里上传划了重点的文件，挺好过的。总之就是棒棒哒^^</p></blockquote><p>看来春火老师真是一个可爱的老师，大家快去抢他的课吧！</p><p><b>2.思想道德修养与法律基础（薛惠）</b></p><p>学友评价：</p><blockquote><p>薛老师上课很好玩，会根据我们的兴趣调整上课的重点。然后老师很年轻美腻，喜欢和我们交流。平时的作业也很少，还有让我们去外面做问卷调查的任务~~总的来说，是一门很轻松的课。</p></blockquote><blockquote><p>老师上课很认真，虽然点名有点多（一学期三次）。课间还会放放今日说法，很有意思。而且作业是让我们做调研，可以去华科，武大。老师很年轻，沟通起来也很容易！</p></blockquote><p>总的来说，人好，课也好。</p><p><b>3.心理学基础（田媛）</b></p><p>田媛女神的课就不用过多介绍了，看看大家是怎么说的</p><p><span style=\"color: rgb(34, 34, 34); font-size: 11px;\">                                     </span></p><blockquote><p>非常好的课！老师亲切，感觉和她在一起很舒心。老师有思想又不激进，传递正能量又不仅仅只是鸡汤，学到的知识很实用；老师专业扎实并且常伴有最高大上的前沿研究，她的课堂上有喜闻乐见的生活实例也不时有点小清新！大赞！&nbsp;</p></blockquote><p><span style=\"color: rgb(34, 34, 34); font-size: 11px;\">                                 </span><br></p><p><b></b></p><blockquote><p>前所未有的女神老师，上课质量极好，和学生打成一片，关心学生如同高中班主任，在她的课上绝对会有收获，话说圣诞节老师请喝的奶茶味道不错！&nbsp;</p></blockquote><p><b><br></b></p><p><b>4.思想道德修养与法律基础（徐秉国）</b></p><p>学友xuyajing评价道</p><blockquote><p>老师不怎么点名，人很随和，很幽默，上他的课要主动回答问题，期末会统计，每一章会布置一个话题作业，用PPT或论文形式展示均可，会算入平时成绩</p></blockquote><p>学友December评价道</p><blockquote><p>很少点名，但是有时候会点人起来回答问题。性格挺好的，有点猥琐，哈哈哈。上课内容挺丰富的，有拓展有视频，重点画的也多。期中有篇小论文，平时分有些还可以自己定比如上课回答的次数，给的挺高的。</p></blockquote><p><b>5.马克思主义基本原理（张祖林）</b></p><p>学友评价一：</p><blockquote><p>平时分高，不怎么点名，总之，嗯，就是很好</p></blockquote><p>学友评价二：</p><blockquote><p>只点过一次名，只有一次作业，老师人很好，很好过</p></blockquote><p><b>6.马克思主义基本原理（丁茜）</b></p><p>学友评价:</p><blockquote><p>丁茜老师温柔美丽，人特别好，讲课有激情有活力！能把一门看似枯燥的课程讲得很生动，还会有观影环节。给分有原则性而且很高！开卷考试，90分轻松过，我当时被踢了又选回去真是太明智了！！</p></blockquote><p>上过课的小犀表示丁茜老师萌萌哒，给分也高。</p><p><b>7.毛泽东思想和中国特色社会主义理论体系概论（熊复标）</b></p><p>学友雪儿评价道：</p><blockquote><p>期末、期中、论文、汇报，样样都有。最后的小组汇报很有意思，认识了很多别的院的同学，我们小组表演了一个话剧? 。老师超级负责，但是上课不会管你干什么(我一般坐在后排默默敲代码...)，高能预警 点名超多，且随机。祝好。</p></blockquote><p>（真是一个耿直的代码boy</p><p>另一个学友的评价：</p><blockquote><p>老师很认真上课质量也很棒，但是有点太认真了，混合课堂每次面授都要提问，而且作业一定要认真做，因为他会很认真地改、打分，也会很客观地评分。最后，不知道为什么，这学期沒有划重点，没有！</p></blockquote><p>接下去进入体育课的板块啦，大家看看评论最多的体育课是哪几门吧。</p><p><b>8.大学体育 篮球（陆念慈）</b></p><p>学友评价一</p><blockquote><p>老师人超好的，很好说话，考试也简单，还可以补考~~~</p><p>学友评价二</p></blockquote><blockquote><p>在西区篮球场上课，天气热就比较坑，楼主选的周五下午的，一下雨就不上课，一学期统共上了五六次，还包括考试，考试内容除了50和800就是定点投篮和三步上篮，练练就能过，当然要是没有运动细胞就算了，楼主投篮和上篮都挂了最后老师好心总评60险过</p></blockquote><p><b>9.大学体育 滑板</b></p><p>学友评价一</p><blockquote><p>体育课貌似每节都点名 每节课他不管你是不是一直在那 请假也很好请但应该会扣点考勤分 下雨或者地是湿的都不用去 期末的话只要练了都能过 还算轻松 滑板护具都是公共的 不带护具老师是要打人的→_→</p></blockquote><p>学友梁不换表示</p><blockquote><p>每节课都点名 不怕摔的话 还是挺好玩的⊙▽⊙</p></blockquote><p><b>10.大学体育 社交舞（王一民）</b></p><p>学友梁不换（怎么又是你&nbsp;</p><blockquote><p>表示分高 不点名 老师颜值高 有什么理由不选的说⊙▽⊙</p></blockquote><p>另一位学友：</p><blockquote><p>作为当时课堂唯一一个男生表示，王老师的这门课真的特别好！</p></blockquote><p>好了，本次的十大热门课程就介绍到这里啦。是不是还意犹未尽呢？赶紧打开<a href=\"http://xueer.muxixyz.com\" target=\"_blank\">学而</a>查看热门课程吧！</p><p>P.S.小犀偷偷告诉你，学而目前正在进行有奖评课活动！赶紧注册木犀通行证开始评课吧！给学弟学妹分享你的经验，如果你的评论被大家点赞，或是质量很高，都会收到我们的小礼物！</p><p>P.P.S 注册时记得填写QQ或者其他联系方式哦，以便我们和你取得联系发放礼物。</p>",
+        "date": "None",
+        "likes": 20,
+        "banner_url": "木小犀",
+        "title": "邂逅你的男神/女神老师——学而热门课程盘点",
+        "url": "http://xueer.xueer.svc.cluster.local:5488/api/v1.0/tips/4/",
+        "views": 666,
+        "img_url":
+          "https://occc3ev3l.qnssl.com/xueer/banner/xueeer_mobie_1.jpg",
+        "id": 4
+      }
+    ],
+    "courses": [
+      {
+        "available": false,
+        "sub_category": "通识选修课",
+        "views": 47,
+        "credit_category": "艺体",
+        "likes": 18,
+        "id": 313,
+        "main_category": "通识课",
+        "title": "音乐欣赏（胡建）",
+        "teacher": "胡建",
+        "loctime": null,
+        "score": 36
+      },
+      {
+        "available": false,
+        "sub_category": "通识选修课",
+        "views": 5,
+        "credit_category": "文科",
+        "likes": 10,
+        "id": 82,
+        "main_category": "通识课",
+        "title": "新闻摄影及作品鉴赏",
+        "teacher": "刘震",
+        "loctime": null,
+        "score": 4
+      },
+      {
+        "available": false,
+        "sub_category": "无分类",
+        "views": 8,
+        "credit_category": "无分类",
+        "likes": 8,
+        "id": 280,
+        "main_category": "公共课",
+        "title": "马克思主义基本原理（丁茜）",
+        "teacher": "丁茜",
+        "loctime": null,
+        "score": 8
+      },
+      {
+        "available": false,
+        "sub_category": "无分类",
+        "views": 10,
+        "credit_category": "无分类",
+        "likes": 6,
+        "id": 207,
+        "main_category": "公共课",
+        "title": "思想道德修养与法律基础 （梅萍）",
+        "teacher": "梅萍",
+        "loctime": null,
+        "score": 4
+      },
+      {
+        "available": false,
+        "sub_category": "通识选修课",
+        "views": 17,
+        "credit_category": "理科",
+        "likes": 5,
+        "id": 134,
+        "main_category": "通识课",
+        "title": "果蔬花卉营养与保鲜",
+        "teacher": "罗红艺",
+        "loctime": null,
+        "score": 9
+      },
+      {
+        "available": false,
+        "sub_category": "无分类",
+        "views": 30,
+        "credit_category": "无分类",
+        "likes": 5,
+        "id": 190,
+        "main_category": "公共课",
+        "title": "思想道德修养与法律基础 （李春火）",
+        "teacher": "李春火",
+        "loctime": null,
+        "score": 23
+      },
+      {
+        "available": false,
+        "sub_category": "无分类",
+        "views": 4,
+        "credit_category": "无分类",
+        "likes": 5,
+        "id": 231,
+        "main_category": "公共课",
+        "title": "大学体育 网球 （翟寅飞）",
+        "teacher": "翟寅飞",
+        "loctime": null,
+        "score": 3
+      },
+      {
+        "available": false,
+        "sub_category": "无分类",
+        "views": 5,
+        "credit_category": "无分类",
+        "likes": 5,
+        "id": 234,
+        "main_category": "公共课",
+        "title": "大学体育 跆拳道 （朱文敏）",
+        "teacher": "朱文敏",
+        "loctime": null,
+        "score": 4
+      },
+      {
+        "available": false,
+        "sub_category": "通识选修课",
+        "views": 9,
+        "credit_category": "艺体",
+        "likes": 4,
+        "id": 26,
+        "main_category": "通识课",
+        "title": "视唱练耳",
+        "teacher": "田许生",
+        "loctime": null,
+        "score": 3
+      },
+      {
+        "available": false,
+        "sub_category": "通识选修课",
+        "views": 2,
+        "credit_category": "艺体",
+        "likes": 4,
+        "id": 29,
+        "main_category": "通识课",
+        "title": "西方音乐史专题掠影",
+        "teacher": "徐玲",
+        "loctime": null,
+        "score": 2
+      },
+      {
+        "available": false,
+        "sub_category": "通识选修课",
+        "views": 9,
+        "credit_category": "理科",
+        "likes": 4,
+        "id": 32,
+        "main_category": "通识课",
+        "title": "性科学概论",
+        "teacher": "彭晓辉",
+        "loctime": null,
+        "score": 4
+      },
+      {
+        "available": false,
+        "sub_category": "无分类",
+        "views": 14,
+        "credit_category": "无分类",
+        "likes": 4,
+        "id": 211,
+        "main_category": "公共课",
+        "title": "思想道德修养与法律基础 （薛惠）",
+        "teacher": "薛惠",
+        "loctime": null,
+        "score": 10
+      }
+    ],
+    "313": {
+      "available": false,
+      "comment_id": [
+        444,
+        447,
+        448,
+        449,
+        450
+      ],
+      "credit_category": "\u827a\u4f53",
+      "hot_tags":
+        "\u7537\u795e\u8001\u5e08 \u8001\u5e08\u840c\u840c\u54d2 \u4e0d\u70b9\u540d \u671f\u672b\u8bba\u6587",
+      "id": 313,
+      "like_url":
+        "http://xueer.xueer.svc.cluster.local:5488/api/v1.0/courses/313/like/",
+      "liked": false,
+      "likes": 18,
+      "loctime": null,
+      "main_category": "\u901a\u8bc6\u8bfe",
+      "score": 36,
+      "sub_category": "\u901a\u8bc6\u9009\u4fee\u8bfe",
+      "teacher": "\u80e1\u5efa",
+      "title": "\u97f3\u4e50\u6b23\u8d4f\uff08\u80e1\u5efa\uff09",
+      "views": 47
+    }
+  }
 }

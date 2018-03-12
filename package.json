@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Muxi-Studio/Xueer_Moblie",
   "dependencies": {
+    "postcss-px-to-vw": "^1.0.1",
     "vue": "^2.5.9",
     "vue-loader": "^12.2.2",
     "vue-router": "^3.0.1",

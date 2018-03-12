@@ -1,3 +1,5 @@
+import HomeService from '../../service/home'
+
 const state = {
 	tips: '',
 }
@@ -13,11 +15,12 @@ const actions = {
 }
 const mutations = {
 	fetchData(state) {
-		fetch('/api/v1.0/tips/').then((response) => {
-			response.json().then((json) => {
+		HomeService.getTips()
+		/* fetch('/api/v1.0/tips/').then((response) => {
+			response.json() */
+			.then((json) => {
 				state.tips = json
 			})
-		})
 	},
 }
 export default {
