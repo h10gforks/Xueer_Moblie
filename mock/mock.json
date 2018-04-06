@@ -12,6 +12,12 @@
       "async": true
     },
     {
+      "name": "all",
+      "endpoint": "/all",
+      "template": "index",
+      "async": false
+    },
+    {
       "name": "tips",
       "endpoint": "/api/v1.0/tips/",
       "async": true
@@ -211,13 +217,7 @@
     ],
     "313": {
       "available": false,
-      "comment_id": [
-        444,
-        447,
-        448,
-        449,
-        450
-      ],
+      "comment_id": [444, 447, 448, 449, 450],
       "credit_category": "\u827a\u4f53",
       "hot_tags":
         "\u7537\u795e\u8001\u5e08 \u8001\u5e08\u840c\u840c\u54d2 \u4e0d\u70b9\u540d \u671f\u672b\u8bba\u6587",

@@ -2,9 +2,9 @@
     <div :class="[$style.menu, $style.space]">
         <div :class="$style.sort">
             <span :class="$style.s_item">排序方式：</span>
-            <span id="view" @click="reSort" :class="[$style.s_item, $style.comment, {[$style.active]: isactive}]">
+            <span id="view" @click="reSort('view')" :class="[$style.s_item, $style.comment, {[$style.active]: sortMethod === 'view'}]">
             评论最多&nbsp;&nbsp;</span>
-            <span id="like" @click="reSort" :class="[$style.s_item, $style.likes, {[$style.active]: !isactive}]">
+            <span id="like" @click="reSort('like')" :class="[$style.s_item, $style.likes, {[$style.active]: sortMethod === 'like'}]">
             &nbsp;&nbsp;点赞最多</span>
         </div>
         <div @click="Selector" :class="$style.selector">
@@ -17,104 +17,92 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 
 export default {
-	data() {
-		return {
-			isactive: true,
-			is_db: '',
-		}
-	},
-	computed: {
-		...mapState([
-			'is_selected',
-		]),
-	},
-	methods: {
-		...mapActions([
-			'fetchCourse',
-			'isLoading',
-            'initCourse',
-			'showSelector',
-		]),
-		reSort(e) {
-			const id = e.target.id
-			if (this.is_db == id) {
-				return false
-			} else {
-				this.isLoading(true)
-				this.isactive = !this.isactive
-				const info = this.$route.params.txt
-				if (info) {
-					const option = {
-						info: info,
-						search: true
-					}
-					this.initCourse(option)
-				} else {
-					this.initCourse()
-				}
-				this.fetchCourse(id)
-			}
-			this.is_db = id
-		},
-		Selector() {
-			this.showSelector(!this.is_selected)
-			this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
-		}
-	}
-}
+  data() {
+    return {
+      isactive: true,
+      is_db: ""
+    };
+  },
+  computed: {
+    ...mapState(["is_selected"]),
+    ...mapState({
+      sortMethod: state => state.courselist.sort
+    })
+  },
+  methods: {
+    ...mapActions([
+      "fetchCourse",
+      "isLoading",
+      "initCourse",
+      "showSelector",
+      "changeSortMethod",
+      "fetchCoursesList"
+    ]),
+    reSort(method) {
+      this.changeSortMethod(method);
+      this.fetchCoursesList();
+    },
+    Selector() {
+      this.showSelector(!this.is_selected);
+      this.is_selected
+        ? (document.body.className = "no_scroll")
+        : (document.body.className = "");
+    }
+  }
+};
 </script>
 
 <style lang='scss' module>
 .menu {
-	width: 100%;
-	height: 48px;
-	z-index: 0;
-	background-color: #ececec;
-	line-height: 48px;
-	font-size: 0;
-	color: #666;
-	position: relative;
-}	
+  width: 100%;
+  height: 48px;
+  z-index: 0;
+  background-color: #ececec;
+  line-height: 48px;
+  font-size: 0;
+  color: #666;
+  position: relative;
+}
 .sort {
-	height: 100%;
-	display: inline-block;
-	padding-left: 19px;
-	width: 292px;
-	box-sizing: border-box;
-	text-align: left;
+  height: 100%;
+  display: inline-block;
+  padding-left: 19px;
+  width: 292px;
+  box-sizing: border-box;
+  text-align: left;
 }
 .s_item {
-	vertical-align: middle;
-	font-size: 28px; /*px*/
+  vertical-align: middle;
+  font-size: 28px; /*px*/
 }
 .comment {
-	border-right: 2px solid #666; /*px*/
+  border-right: 2px solid #666; /*px*/
 }
 .active {
-	color: #eeab5d;
+  color: #eeab5d;
 }
 .likes svg {
-	margin-left: 16px;
+  margin-left: 16px;
 }
 .selector {
-	height: 100%;
-	line-height: 48px;
-	font-size: 0;
-	display: inline-block;
+  height: 100%;
+  line-height: 48px;
+  font-size: 0;
+  display: inline-block;
 }
 .icon_selector {
-	width: 12px;
-	height: 6px;
-	margin-left: 5px;
+  width: 12px;
+  height: 6px;
+  margin-left: 5px;
 }
 .icon_selector use {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .selected {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 </style>

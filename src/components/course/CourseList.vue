@@ -1,6 +1,6 @@
 <template>
 	<div id="js_courses_list" :class="$style.list">
-		<div v-for="item in courses" :class="$style.item">
+		<div v-for="item in courses" :class="$style.item" :key="item.id">
 			<router-link :to="{ name: 'course', params: { id: item.id }}">
 				<div :class="[$style.course, $style.space]">
 					<div :class="$style.avatar">{{ item.main_category | subStr }}</div>
@@ -29,160 +29,106 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
-import { subStr } from '../../filters/filter.js'
+import { mapState, mapGetters, mapActions } from "vuex";
+import { subStr } from "../../filters/filter.js";
 
 export default {
-	data() {
-		return {
-			window_height: 0,
-			is_recommend: false,
-		}
-	},
-	computed: {
-		...mapGetters([
-			'courses',
-			'position',
-			'back',
-			'page',
-			'txt',
-			'isend',
-		]),
-		...mapState([
-			'is_loading',
-			'page_snaps',
-			'is_selected',
-			'fetch_flag',
-			'is_search',
-		]),
-	},
-	methods: {
-		...mapActions([
-			'fetchCourse',
-			'getPosition',
-			'turnFlag',
-			'changePageFlagN',
-			'changePageFlagY',
-			'initCourse',
-			'fetchCourseN',
-			'isLoading',
-		]),
-	},
-	watch: {
-		// 有bug
-		courses() {
-			// 控制只发一次请求
-			if(this.courses.length > 0) {
-				this.isLoading(false)
-				this.changePageFlagY('fetch_flag')
-			}
-		},
-		txt() {
-			this.isLoading(true)
-			if (this.$route.params.sort) {
-				return
-			}
-			this.fetchCourse(this.$route.params.sort)
-		},
-		isend() {
-			this.isLoading(false)
-		}
-	},
-	filters: {
-		subStr,
-	},
-	mounted() {
-		this.isLoading(true)
-		this.changePageFlagN(['is_index','is_course'])
-		// 判断是否是从课程详情返回
-		console.log(this.position)
-		if(this.position === undefined) {
-			let sort
-			this.$route.name == 'recommend' ? sort = 'score' : ''
-			this.fetchCourse(sort)
-			this.isLoading(true)
-		}
-		console.log(this.back)
-		if (this.back) {
-			// 这里为什么要setTimeout
-			setTimeout(() => {
-				window.scrollTo(0, this.position)
-			}, 0)
-			this.changePageFlagY('fetch_flag')
-			this.turnFlag()
-		} else {
-			if (this.$route.params.sort) {
-				this.initCourse()
-			}
-			// 初始化数据
-			this.fetchCourse(this.$route.params.sort)
-		}
-	},
-}
+  data() {
+    return {
+      window_height: 0,
+      is_recommend: false
+    };
+  },
+  computed: {
+    ...mapGetters(["courses", "position", "back", "page", "txt", "isend"]),
+    ...mapState([
+      "is_loading",
+      "page_snaps",
+      "is_selected",
+      "fetch_flag",
+      "is_search"
+    ])
+  },
+  methods: {
+    ...mapActions([
+      "getPosition",
+      "turnFlag",
+      "changePageFlagN",
+      "changePageFlagY",
+      "initCourse",
+      "isLoading"
+    ])
+  },
+  filters: {
+    subStr
+  },
+  mounted() {}
+};
 </script>
 
 <style lang='scss' module>
 .list {
-	width: 100%;
+  width: 100%;
 }
 .course {
-	font-size: 0;
-	width: 333px;
-	margin: 0 auto;
-	padding: 20px 0 16px;
-	border-bottom: 2px solid #ececec; /*px*/
+  font-size: 0;
+  width: 333px;
+  margin: 0 auto;
+  padding: 20px 0 16px;
+  border-bottom: 2px solid #ececec; /*px*/
 }
 .avatar {
-	font-size: 40px; /*px*/
-	margin-right: 16px;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	color: #fff;
-	border-radius: 50%;
-	overflow: hidden;
-	background-color: #eeab5d;
-	text-align: center;
+  font-size: 40px; /*px*/
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #eeab5d;
+  text-align: center;
 }
-.avatar, .content {
-	display: inline-block;
-	vertical-align: top;
+.avatar,
+.content {
+  display: inline-block;
+  vertical-align: top;
 }
 .content {
-	width: 277px;
+  width: 277px;
 }
 .title {
-	font-size: 32px; /*px*/
-	width: 100%;
-	color: #333;
-	padding-bottom: 12px;
+  font-size: 32px; /*px*/
+  width: 100%;
+  color: #333;
+  padding-bottom: 12px;
 }
 .info {
-	width: 100%;
-	color: #999;
+  width: 100%;
+  color: #999;
 }
 .teacher {
-	width: 72px;
-	height: 12px;
-	overflow: hidden;
-	margin-right: 100px;
+  width: 72px;
+  height: 12px;
+  overflow: hidden;
+  margin-right: 100px;
 }
 .va_item {
-	font-size: 24px; /*px*/
-	display: inline-block;
-	vertical-align: top;
+  font-size: 24px; /*px*/
+  display: inline-block;
+  vertical-align: top;
 }
 .logo {
-	display: inline-block;
-	width: 13px;
-	height: 12px;
-	vertical-align: -2px;
-	margin-right: 6px;
+  display: inline-block;
+  width: 13px;
+  height: 12px;
+  vertical-align: -2px;
+  margin-right: 6px;
 }
 .logo use {
-	fill: #999;
+  fill: #999;
 }
 .comments {
-	margin-right: 16px;
+  margin-right: 16px;
 }
 </style>

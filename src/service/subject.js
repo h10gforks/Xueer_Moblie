@@ -1,9 +1,9 @@
-import Fetch from './fetch.js'
+import Fetch from "./fetch.js";
 
-let SubjectService ={
+let SubjectService = {
   oneTip(id) {
-    return Fetch('/api/v1.0/tips/' + id + '/')
+    return Fetch("/api/v1.0/tips/" + id + "/");
   }
-}
+};
 
-export default SubjectService
+export default SubjectService;

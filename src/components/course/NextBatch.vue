@@ -15,76 +15,75 @@
     </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
-    data() {
-        return {
-            is_active: false,
-        }
-    },
-    computed: {
-       ...mapGetters([
-           'courses'
-       ])
-    },
-    watch: {
-        courses() {
-            this.is_active = false
-        }
-    },
-    methods: {
-        ...mapActions([
-            'fetchCourse',
-        ]),
-        nextBatch(){
-            this.is_active = true
-            this.fetchCourse()
-        }
+  data() {
+    return {
+      is_active: false
+    };
+  },
+  computed: {
+    ...mapGetters(["courses"])
+  },
+  watch: {
+    courses() {
+      this.is_active = false;
     }
-}
+  },
+  methods: {
+    ...mapActions(["fetchCourse"]),
+    nextBatch() {
+      this.is_active = true;
+      this.fetchCourse();
+    }
+  }
+};
 </script>
 <style lang="scss" module>
 .next_batch {
-    padding-bottom: 34px;
+  padding-bottom: 34px;
 }
 .text {
-    padding: 17px 0 0 72px;
-    font-size: 28px; /*px*/
-    color: #999999;
-    line-height: 1;
+  padding: 17px 0 0 72px;
+  font-size: 28px; /*px*/
+  color: #999999;
+  line-height: 1;
 }
 .last {
-    padding: 14px 0;
+  padding: 14px 0;
 }
 .bt {
-    width: 156px;
-    height: 40px;
-    margin: 0 auto;
-    border: 1px solid #EEAB5D;
-    border-radius: 2px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 0;
+  width: 156px;
+  height: 40px;
+  margin: 0 auto;
+  border: 1px solid #eeab5d;
+  border-radius: 2px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 0;
 }
 .bt_text {
-    display: inline-block;
-    font-size: 32px; /*px*/
-    color: #EEAB5D;
+  display: inline-block;
+  font-size: 32px; /*px*/
+  color: #eeab5d;
 }
-@keyframes trans_rorate
-{
-    from {transform: rotate(0)}
-    to {transform: rotate(360deg)}
+@keyframes trans_rorate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .logo {
-    width: 13px;
-    height: 13px;
-    margin-right: 9px;
+  width: 13px;
+  height: 13px;
+  margin-right: 9px;
 }
 .logo use {
-    fill: #EEAB5D;
+  fill: #eeab5d;
 }
 .active .logo {
-    animation: trans_rorate linear 1s infinite;
+  animation: trans_rorate linear 1s infinite;
 }
 </style>

@@ -11,80 +11,77 @@
 	 </div>
 </template>
 <script>
-import Cookie from "../../service/cookie.js"
-import { mapState, mapActions } from 'vuex'
+import Cookie from "../../service/cookie.js";
+import { mapState, mapActions } from "vuex";
 export default {
-	data() {
-		return {
-			flag: true,
-		}
-	},
-    computed: {
-        ...mapState([
-            'show_login'
-        ]),
+  data() {
+    return {
+      flag: true
+    };
+  },
+  computed: {
+    ...mapState(["show_login"])
+  },
+  methods: {
+    ...mapActions(["showLogin"]),
+    cancel() {
+      this.showLogin(false);
     },
-	methods: {
-        ...mapActions([
-            'showLogin'
-        ]),
-		cancel() {
-			this.showLogin(false)
-        },
-        toLogin() {
-            Cookie.setCookie("url", window.location.href)
-            window.location = "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing"
-        }
-	},
-}
+    toLogin() {
+      Cookie.setCookie("url", window.location.href);
+      window.location =
+        "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing";
+    }
+  }
+};
 </script>
 
 <style lang='scss' module>
 .dialog {
-	z-index: 5;
-    background-color: #fff;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 296px;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    border: 2px solid #2bbb8f;
-    border-radius: 2px;
+  z-index: 5;
+  background-color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 296px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border: 2px solid #2bbb8f;
+  border-radius: 2px;
 }
 .dialog_top {
-	margin-top: 16px;
+  margin-top: 16px;
 }
 .dialog_img {
-    width: 217px;
-    height: 101px;
-    margin: 0 auto;
-    background-image: url(http://7oxh2b.com1.z0.glb.clouddn.com/bunny.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+  width: 217px;
+  height: 101px;
+  margin: 0 auto;
+  background-image: url(http://7oxh2b.com1.z0.glb.clouddn.com/bunny.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .dialog_text {
-	font-size: 28px; /*px*/
-    color: #999;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 15px;
+  font-size: 28px; /*px*/
+  color: #999;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
 .dialog_btns {
-	font-size: 0;
-    color: #fff;
-    background-color: #2bbb8f;
+  font-size: 0;
+  color: #fff;
+  background-color: #2bbb8f;
 }
 .dialog_btn {
-    font-size: 28px; /*px*/
-    margin: 3px 0;
-    line-height: 36px;
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-    box-sizing: border-box;
+  font-size: 28px; /*px*/
+  margin: 3px 0;
+  line-height: 36px;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  box-sizing: border-box;
 }
 .dialog_btn_cancel {
-    border-right: 2px solid #fff; /*px*/
+  border-right: 2px solid #fff; /*px*/
 }
 </style>

@@ -1,247 +1,146 @@
-import CListService from "../../service/courselist"
+import CourseListService from "../../service/courselist";
+const MAIN_CAT_MAP = {
+  0: "gg_cat",
+  1: "ts_cat",
+  2: "zy_cat",
+  3: "sz_cat"
+};
+
+// params hepler
+function getQueryParams(state) {
+  let mainCatKey;
+  let obj = {
+    page: state.page,
+    sort: state.sort,
+    pre_page: state.pre_page
+  };
+  if (state.main_cat >= 0) {
+    mainCatKey = MAIN_CAT_MAP[state.main_cat];
+    obj[mainCatKey] = 1;
+  }
+  return obj;
+}
 const state = {
-	courses: [],
-	page: 0,
-	position: undefined,
-	scrollTop: 0,
-	height: 0,
-	back: false,
-	isend: false,
-	txt: ' ',
-	search: false,
-}
+  loadingMore: false,
+  loading: true,
+  courses: [],
+  totalPages: 0,
+  // list params
+  page: 1,
+  sort: "view",
+  pre_page: 20,
+  main_cat: -1,
+  second_cat: -1,
+  // list params end
+  position: undefined,
+  scrollTop: 0,
+  height: 0,
+  back: false,
+  isend: false,
+  txt: " ",
+  search: false
+};
 const getters = {
-	courses: () => state.courses,
-	page: () => state.page,
-	position: () => state.position,
-	scrollTop: () => state.scrollTop,
-	height: () => state.height,
-	back: () => state.back,
-	isend: () => state.isend,
-	txt: () => state.txt,
-}
+  courses: () => state.courses,
+  page: () => state.page,
+  position: () => state.position,
+  scrollTop: () => state.scrollTop,
+  height: () => state.height,
+  back: () => state.back,
+  isend: () => state.isend,
+  txt: () => state.txt
+};
 const actions = {
-	fetchCourse({
-		commit,
-	}, sort) {
-		commit('fetchCourse', sort)
-	},
-	getPosition({
-		commit,
-	}, position) {
-		commit('getPosition', position)
-	},
-	turnFlag({
-		commit,
-	}) {
-		commit('turnFlag')
-	},
-	initCourse({
-		commit,
-	}, option) {
-		commit('initCourse', option)
-	},
-	fetchCourseN({
-		commit,
-	}, sort) {
-		commit('fetchCourseN', sort)
-	},
-	fetchSelector({
-		commit,
-	}, sort) {
-		commit('fetchSelector', sort)
-	},
-}
+  // 加载课程列表，第一次
+  fetchCoursesList({ commit, state }) {
+    commit("reset");
+    CourseListService.getCoursesList(getQueryParams(state)).then(
+      ({ json, headers }) => {
+        // 第一次请求时，把列表的元信息解析一下
+        // link: </api/v1.0/courses/?page=2>; rel="next", </api/v1.0/courses/?page=30>; rel="last"
+        // let totalPages = /page=([d]+)/.exec(headers[0].split(';')[1])
+        let totalPages = Number(
+          /page=([0-9]+)/.exec(headers[0].split(";")[1])[1]
+        );
+        commit("insertCourses", json);
+        commit("setListMetaData", totalPages);
+      }
+    );
+  },
+  // 分页加载课程列表，下一页
+  fetchNextCoursesList({ commit, state }) {
+    commit("beforeFetchNextCoursesList");
+    commit("setPage", state.page + 1);
+    CourseListService.getNextCoursesList(getQueryParams(state)).then(res => {
+      commit("insertCourses", res);
+      commit("afterFetchNextCoursesList");
+    });
+  },
+  changeSortMethod({ commit }, method) {
+    commit("setSort", method);
+  },
 
-const GetData = function () {
-	this.url = 'api/v1.0/courses/?sort='
-	this.json = null
-}
+  getPosition({ commit }, position) {
+    commit("getPosition", position);
+  },
+  turnFlag({ commit }) {
+    commit("turnFlag");
+  },
+  initCourse({ commit }, option) {
+    commit("initCourse", option);
+  },
+  fetchSelector({ commit }, sort) {
+    commit("fetchSelector", sort);
+  }
+};
 
-GetData.prototype.getUrl = function (state, sort) {
-	if (!sort) {
-		sort = 'view'
-	}
-	this.url = this.url + sort + '&page='
-}
-
-GetData.prototype.fetch = function () {
-	const self = this
-	const p = new Promise((resolve) => {
-		fetch(self.url).then(response => {
-			response.json().then(json => {
-				self.json = json
-				resolve()
-			})
-		})
-	})
-	return p
-}
-
-GetData.prototype.preData = function (state, count, end, flag) {
-	if (flag == -1) {
-		state.courses = this.json.concat(state.courses)
-	} else {
-		state.courses = state.courses.concat(this.json)
-	}
-	if (this.json.length == 0 || this.json.length < 20) {
-		state.isend = true
-	}
-	if (state.courses.length >= 60) {
-		state.courses.splice(count, end)
-		if (flag == -1) {
-			document.body.scrollTop = state.height
-		} else {
-			document.body.scrollTop = (state.scrollTop - state.height)
-		}
-	}
-}
-GetData.prototype.getHeight = (state) => {
-	if (state.courses.length == 20) {
-		const courses_list = document.getElementById('js_courses_list')
-		if (courses_list) {
-			state.height = courses_list.offsetHeight
-		}
-	}
-}
-GetData.prototype.getTop = (state) => {
-	if (state.courses.length == 40) {
-		state.scrollTop = document.body.scrollTop
-	}
-}
 const mutations = {
-	initCourse(state, option) {
-		if (!option) {
-			option = {}
-		}
-		state.txt = option.info
-		state.search = option.search
-		state.page = 0
-		state.courses = []
-		state.isend = false
-	},
-	fetchSelector(state, sort) {
-		if (state.isend) {
-			return
-		}
-		state.page += 1
-		sort.forEach((item, index, arr) => { arr[index] = item + '=1' })
-		const send = new GetData()
-		send.getTop(state)
-		/*send.getUrl(state, 'view')*/
-		if (!state.search) {
-			CListService.viewCourse(state.page)
-				.then(() => {
-				send.preData(state, 0, 20, 1)
-			})
-			/*
-			send.url = send.url + state.page + '&' + sort.join('&')
-			*/
-		} else {
-			CListService.viewSearch(state.page, state.txt)
-				.then(() => {
-				send.preData(state, 0, 20, 1)
-			})
-			/*
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view&' + sort.join('&')
-			*/
-		}
-		/*
-		send.fetch().then(() => {
-			send.preData(state, 0, 20, 1)
-		}) */
-	},
-	fetchCourse(state, sort) {
-		if (state.isend) {
-			return
-		}
-		state.page += 1
-		const send = new GetData()
-		/*send.getUrl(state, sort)*/
-		send.getTop(state)
+  initCourse(state, option) {
+    if (!option) {
+      option = {};
+    }
+    state.txt = option.info;
+    state.search = option.search;
+    state.page = 0;
+    state.courses = [];
+    state.isend = false;
+  },
+  fetchSelector(state, sort) {},
 
-		if (!state.search) {
-			/*
-			send.url += state.page + '&per_page=20&null=asc'
-			*/
-			CListService.getCourse(state.page)
-				.then(() => {
-				send.preData(state, 0, 20, 1)
-			}).then(() => {
-				send.getHeight(state)
-			})
-		} else {
-			/*
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt + '&sort=view'
-			*/
-			CListService.viewSearch(state.page, state.txt)
-			.then(() => {
-				send.preData(state, 0, 20, 1)
-			}).then(() => {
-				send.getHeight(state)
-			})
-		}
-	
-		/*
-		send.fetch().then(() => {
-			send.preData(state, 0, 20, 1)
-		}).then(() => {
-			send.getHeight(state)
-		})
-		*/
-	},
-	getPosition(state, position) {
-		state.position = position
-	},
-	turnFlag(state) {
-		state.back = !state.back
-	},
-	fetchCourseN(state, sort) {
-		if (state.isend) {
-			return
-		}
-		if (state.page >= 2) {
-			state.page -= 1
-		} else {
-			return
-		}
-		const send = new GetData()
-		send.getUrl(state, sort)
-		send.getTop(state)
-		if (!state.search) {
-			/*
-			send.url += state.page + '&per_page=20&null=asc'
-			*/
-			CListService.getCourse(state.page)
-			.then(() => {
-				send.preData(state, state.courses.length + 1, 20, -1)
-			}).then(() => {
-				send.getHeight(state)
-			})
-		} else {
-			/*
-			send.url = '/api/v1.0/search/?page=' + state.page + '&per_page=20&keywords=' + state.txt
-			*/
-			CListService.viewSearch(state.page, state.txt)
-			.then(() => {
-				send.preData(state, state.courses.length + 1, 20, -1)
-			}).then(() => {
-				send.getHeight(state)
-			})
-		}
-		
-		/*
-		send.fetch().then(() => {
-			send.preData(state, state.courses.length + 1, 20, -1)
-		}).then(() => {
-			send.getHeight(state)
-		})
-		*/
-	},
-}
+  reset(state) {
+    state.page = 0;
+    state.courses = [];
+  },
+  insertCourses(state, courses) {
+    state.courses = state.courses.concat(courses);
+  },
+  setListMetaData(state, total) {
+    state.totalPages = total;
+  },
+  setPage(state, page) {
+    state.page = page;
+  },
+  setSort(state, sort) {
+    state.sort = sort;
+  },
+  beforeFetchNextCoursesList(state) {
+    state.loadingMore = true;
+  },
+  afterFetchNextCoursesList(state) {
+    state.loadingMore = false;
+  },
+
+  getPosition(state, position) {
+    state.position = position;
+  },
+  turnFlag(state) {
+    state.back = !state.back;
+  },
+  fetchCourseN(state, sort) {}
+};
 export default {
-	state,
-	getters,
-	actions,
-	mutations,
-}
+  state,
+  getters,
+  actions,
+  mutations
+};

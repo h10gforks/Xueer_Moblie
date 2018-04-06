@@ -25,117 +25,112 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import { preTag } from '../../filters/filter.js'
-import Tag from '../common/Tag.vue'
+import { mapGetters, mapActions } from "vuex";
+import { preTag } from "../../filters/filter.js";
+import Tag from "../common/Tag.vue";
 
 export default {
-	data() {
-		return {
-			tags: '',
-		}
-	},
-	computed: {
-		...mapGetters([
-			'tag',
-			'pre_tags',
-		]),
-	},
-	filters: {
-		preTag,
-	},
-	watch: {
-		tags(val) {
-			this.$store.commit('preTags', val)
-			this.tags = this.tag
-		},
-	},
-	methods: {
-		...mapActions([
-			'deleteTag',
-		]),
-	},
-	components: {
-		Tag,
-	},
-}
+  data() {
+    return {
+      tags: ""
+    };
+  },
+  computed: {
+    ...mapGetters(["tag", "pre_tags"])
+  },
+  filters: {
+    preTag
+  },
+  watch: {
+    tags(val) {
+      this.$store.commit("preTags", val);
+      this.tags = this.tag;
+    }
+  },
+  methods: {
+    ...mapActions(["deleteTag"])
+  },
+  components: {
+    Tag
+  }
+};
 </script>
 <style lang='scss' module>
-@import '../../assets/value.scss';
+@import "../../assets/value.scss";
 
 .new_comment {
-	padding-top: 17px;
-	line-height: 14px;
-	font-size: 0;
+  padding-top: 17px;
+  line-height: 14px;
+  font-size: 0;
 }
 .new_comment_box {
-	width: 328px;
-	margin: 0 auto;
+  width: 328px;
+  margin: 0 auto;
 }
 .comment_cont {
-	display: block;
-	width: 100%;
-	height: 98px;
-	font-size: 28px; /*px*/
-	box-sizing: border-box;
-	padding: 17px 18px;
-	background: rgba(216,216,216,.25);
-	border: 2px solid #ECECEC; /*px*/
+  display: block;
+  width: 100%;
+  height: 98px;
+  font-size: 28px; /*px*/
+  box-sizing: border-box;
+  padding: 17px 18px;
+  background: rgba(216, 216, 216, 0.25);
+  border: 2px solid #ececec; /*px*/
 }
 .input_cont {
-	line-height: 14px;
-	padding: 12px 9px 9px 37px;
-	width: 100%;
-	box-sizing: border-box;
-	border-bottom: 2px solid #ECECEC; /*px*/
+  line-height: 14px;
+  padding: 12px 9px 9px 37px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 2px solid #ececec; /*px*/
 }
 .tag_cont {
-	position: relative;
+  position: relative;
 }
 .tag_icon {
-	position: absolute;
-	left: 18px;
-	top: 12px;
-	width: 14px;
-	height: 14px;
+  position: absolute;
+  left: 18px;
+  top: 12px;
+  width: 14px;
+  height: 14px;
 }
 .pre_tags {
-	color: #999999;
-	float: left;
+  color: #999999;
+  float: left;
 }
 .pre_tags_item {
-	font-size: 28px; /*px*/
+  font-size: 28px; /*px*/
 }
 .input_box {
-	overflow: hidden;
+  overflow: hidden;
 }
 .tag_input {
-	padding-left: .5em;
-	line-height: 14px;
-	font-size: 28px; /*px*/
-	width: 100%;
+  padding-left: 0.5em;
+  line-height: 14px;
+  font-size: 28px; /*px*/
+  width: 100%;
 }
 .btns {
-	width: 332px;
-	margin: 50px auto 0;
+  width: 332px;
+  margin: 50px auto 0;
 }
 .btn {
-	display: inline-block;
-	width: 156px;
-	height: 36px;
-	text-align: center;
-	line-height: 36px;
-	box-sizing: border-box;
-	border: 1px solid $_yellow;
-	border-radius: 2px;
-	font-size: 28px; /*px*/
+  display: inline-block;
+  width: 156px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  box-sizing: border-box;
+  border: 1px solid $_yellow;
+  border-radius: 2px;
+  font-size: 28px; /*px*/
 }
 .btn_left {
-	color: $_yellow; 
-	margin-right: 18px;
+  color: $_yellow;
+  margin-right: 18px;
 }
 .btn_right {
-	color: #fff;
-	background: $_yellow; 
+  color: #fff;
+  background: $_yellow;
 }
 </style>

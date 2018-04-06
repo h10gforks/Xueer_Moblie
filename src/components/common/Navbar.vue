@@ -39,110 +39,111 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters } from "vuex";
 
 export default {
-	computed: {
-		...mapState([
-			'page_flag',
-		]),
-		...mapGetters([
-			'snaps',
-			'is_index',
-			'is_recommend',
-			'is_all',
-			'is_search',
-			'is_auth',
-			'is_course',
-			'is_sub',
-		]),
-	},
-	methods: {
-		...mapActions([
-			'showSearch',
-			'changePageFlagN',
-			'changePageFlagY',
-			'getSnaps',
-		]),
-		backStep() {
-			history.back()
-		},
-		displaySearch() {
-			this.getSnaps(this.snaps)
-			this.showSearch()
-			// this.changePageFlagY(['is_search'])
-			// this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
-		},
-		toLogin() {
-			//window.location = "https://user.muxixyz.com/?http://xueer.muxixyz.com/landing"
-			window.location.href = "/landing/?email=1045671796%40qq.com&token=eyJhbGciOiJIUzI1NiIsImV4cCI6MTUxNDAzMDQyNywiaWF0IjoxNTE0MDI2ODI3fQ.eyJpZCI6MjY3fQ.bOgABI7EbpNgqhd1IT-6xvRiq4PHrTkZKkYe6zQxnNc"
-		}
-	},
-}
+  computed: {
+    ...mapState(["page_flag"]),
+    ...mapGetters([
+      "snaps",
+      "is_index",
+      "is_recommend",
+      "is_all",
+      "is_search",
+      "is_auth",
+      "is_course",
+      "is_sub"
+    ])
+  },
+  methods: {
+    ...mapActions([
+      "showSearch",
+      "changePageFlagN",
+      "changePageFlagY",
+      "getSnaps"
+    ]),
+    backStep() {
+      history.back();
+    },
+    displaySearch() {
+      this.getSnaps(this.snaps);
+      this.showSearch();
+      // this.changePageFlagY(['is_search'])
+      // this.changePageFlagN(['is_all','is_auth','is_recommend','is_sub'])
+    },
+    toLogin() {
+      //window.location = "https://user.muxixyz.com/?http://xueer.muxixyz.com/landing"
+      window.location.href =
+        "/landing/?email=1045671796%40qq.com&token=eyJhbGciOiJIUzI1NiIsImV4cCI6MTUxNDAzMDQyNywiaWF0IjoxNTE0MDI2ODI3fQ.eyJpZCI6MjY3fQ.bOgABI7EbpNgqhd1IT-6xvRiq4PHrTkZKkYe6zQxnNc";
+    }
+  }
+};
 </script>
 
 <style lang='scss' module>
-@import '../../assets/value.scss';
+@import "../../assets/value.scss";
 .nav_bar {
-	border-bottom: 1px solid $shallow_silver;
-	position: fixed;
-	width: 100%;
-	background: #fff;
-	z-index: 101;
-	box-shadow: 0 0 0.111111rem rgba(0,0,0,0.3);
+  border-bottom: 1px solid $shallow_silver;
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  z-index: 101;
+  box-shadow: 0 0 0.111111rem rgba(0, 0, 0, 0.3);
 }
 .container {
-	width: 328px;
-	margin: 0 auto;
-	font-size: 0;
-	line-height: 56px;
+  width: 328px;
+  margin: 0 auto;
+  font-size: 0;
+  line-height: 56px;
 }
 .logo {
-	height: 32px;
-	width: 71px;
+  height: 32px;
+  width: 71px;
 }
 .title_set {
-	display: inline-block;
-	width: 240px;
-	text-align: left;
+  display: inline-block;
+  width: 240px;
+  text-align: left;
 }
 .nav_icon use {
-	fill: none;
+  fill: none;
 }
 .icon_set {
-	display: inline-block;
-	width: 87px;
-	text-align: right;
+  display: inline-block;
+  width: 87px;
+  text-align: right;
 }
-.back, .search, .user {
-	height: 34px;
-	width: 34px;
+.back,
+.search,
+.user {
+  height: 34px;
+  width: 34px;
 }
 .search {
-	margin-right: 16px;
+  margin-right: 16px;
 }
 .nav_icon use {
-	fill: none;
+  fill: none;
 }
 .nav_icon {
-	display: inline-block;
-	vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 .title_s {
-	border-left: 2px solid #30b38a; /*px*/
-	line-height: 1;
-	font-size: 16px;
-	vertical-align: middle;
-	padding-left: 7px;
-	margin-left: 7px;
+  border-left: 2px solid #30b38a; /*px*/
+  line-height: 1;
+  font-size: 16px;
+  vertical-align: middle;
+  padding-left: 7px;
+  margin-left: 7px;
 }
 .title {
-	color: #30b38a;
+  color: #30b38a;
 }
 .title_l {
-	padding-left: 16px;
-	vertical-align: middle;
-	line-height: 20px;
-	font-size: 20px;
+  padding-left: 16px;
+  vertical-align: middle;
+  line-height: 20px;
+  font-size: 20px;
 }
 </style>

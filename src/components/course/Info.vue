@@ -23,137 +23,133 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-	props: ['id'],
-	computed: {
-		...mapGetters([
-			'info',
-		]),
-	},
-	created() {
-		this.fetchInfo(this.id)
-	},
-	methods: {
-		...mapActions([
-			'fetchInfo',
-			'showLogin',
-			'courseLike',
-		]),
-		likeCourse(){
-			this.showLogin(true)
-			this.courseLike()
-		},
-		writeComment(){
-			this.$router.push('comment')
-			// this.showLogin(true)
-		},
-	},
-}
+  props: ["id"],
+  computed: {
+    ...mapGetters(["info"])
+  },
+  created() {
+    this.fetchInfo(this.id);
+  },
+  methods: {
+    ...mapActions(["fetchInfo", "showLogin", "courseLike"]),
+    likeCourse() {
+      this.showLogin(true);
+      this.courseLike();
+    },
+    writeComment() {
+      this.$router.push("comment");
+      // this.showLogin(true)
+    }
+  }
+};
 </script>
 
 <style lang='scss' module>
-@import '../../assets/value.scss';
+@import "../../assets/value.scss";
 .info {
-	position: relative;
-	padding: 16px 0;
-	color: #FFF;
+  position: relative;
+  padding: 16px 0;
+  color: #fff;
 }
 .info::before {
-	content: '.';
-	font-size: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -100;
-	opacity: .8;
-	filter: alpha(opacity=.8);
-	background-color: $_yellow;
-	width: 100%;
-	height: 100%;
+  content: ".";
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  opacity: 0.8;
+  filter: alpha(opacity=.8);
+  background-color: $_yellow;
+  width: 100%;
+  height: 100%;
 }
 .info::after {
-	content: '.';
-	font-size: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -200;
-	background-image: url('../../assets/course_bg.jpg');
-	width: 100%;
-	height: 100%;
+  content: ".";
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -200;
+  background-image: url("../../assets/course_bg.jpg");
+  width: 100%;
+  height: 100%;
 }
 .title {
-	font-size: 40px; /*px*/
-	line-height: 28px;
-	padding: 0 31px;
+  font-size: 40px; /*px*/
+  line-height: 28px;
+  padding: 0 31px;
 }
 .teacher {
-	font-size: 28px; /*px*/
-	line-height: 24px;
-	padding: 16px 31px 7px;
+  font-size: 28px; /*px*/
+  line-height: 24px;
+  padding: 16px 31px 7px;
 }
 .btns {
-	font-size: 0;
-	margin: 0 16px 16px;
+  font-size: 0;
+  margin: 0 16px 16px;
 }
 .btn {
-	display: inline-block;
-	border: 2px solid #fff; /*px*/
-	border-radius: 4px; /*px*/
-	vertical-align: top;
-	overflow: hidden;
-	font-size: 0;
-	line-height: 14px;
-	text-align: left;
-	box-sizing: border-box;
-	padding: 10px 40px;
+  display: inline-block;
+  border: 2px solid #fff; /*px*/
+  border-radius: 4px; /*px*/
+  vertical-align: top;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 14px;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 10px 40px;
 }
 .btn:first-child {
-	margin-right: 16px;
+  margin-right: 16px;
 }
-.icon,.btn_text {
-	vertical-align: middle;
+.icon,
+.btn_text {
+  vertical-align: middle;
 }
 .icon {
-	width: 17px;
-	height: 14px;
-	margin-right: 8px;
+  width: 17px;
+  height: 14px;
+  margin-right: 8px;
 }
 .btn_text {
-	display: inline-block;
-	min-width: 48px;
-	text-align: center;
-	font-size: 28px; /*px*/
+  display: inline-block;
+  min-width: 48px;
+  text-align: center;
+  font-size: 28px; /*px*/
 }
-.heart_icon, .heart_icon_filled {
-	transform: translateX(-5.555556rem);
+.heart_icon,
+.heart_icon_filled {
+  transform: translateX(-5.555556rem);
 }
 .heart_icon {
-	animation-fill-mode: forwards;
-	animation: heart_s ease-in-out 1s;
+  animation-fill-mode: forwards;
+  animation: heart_s ease-in-out 1s;
 }
 .heart_icon_filled {
-	position: absolute;
-	fill: #fff;
-	animation: heart_f 1s ease-in-out 1s;
-	animation-fill-mode: forwards;
+  position: absolute;
+  fill: #fff;
+  animation: heart_f 1s ease-in-out 1s;
+  animation-fill-mode: forwards;
 }
 @keyframes heart_s {
-	0% {
-		transform: translateX(0) rotate(0deg);
-	}
-	100% {
-		transform: translateX(667%) rotate(400deg);
-	}
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(667%) rotate(400deg);
+  }
 }
 @keyframes heart_f {
-	0% {
-		transform: translateX(-667%) rotate(-400deg);
-	}
-	100% {
-		transform: translateX(0) rotate(0deg);
-	}
+  0% {
+    transform: translateX(-667%) rotate(-400deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
 }
 </style>

@@ -18,51 +18,47 @@
 </template>
 
 <script>
-import { mapState } from 'Vuex'
+import { mapState } from "Vuex";
 export default {
-	computed: mapState([
-		'is_index',
-		'is_search',
-		'is_recommend',
-	])
-}
+  computed: mapState(["is_index", "is_search", "is_recommend"])
+};
 </script>
 
 <style lang='scss' module>
-@import '../../assets/reset.scss';
-@import '../../assets/value.scss';
+@import "../../assets/reset.scss";
+@import "../../assets/value.scss";
 .index {
-	flex: 1;
-	margin-top: 56px;
- }
+  flex: 1;
+  margin-top: 56px;
+}
 
 .home {
-	font-family: 'STHeiti';
-	height: 100%;
+  font-family: "STHeiti";
+  height: 100%;
 }
 
 .tabs {
-	height: 48px;
-	padding: 0 16px;
-	font-size: 0;
-	background: $shallow_silver;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 0;
+  background: $shallow_silver;
 }
 
 .item {
-	width: 80px;
-	display: inline-block;
-	font-size: 14px;
-	text-align: center;
+  width: 80px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
 }
-			
+
 .link {
-	display: inline-block;
-	color: #666666;
-	line-height: 44px;
+  display: inline-block;
+  color: #666666;
+  line-height: 44px;
 }
- 
+
 .active {
-	border-bottom: 4px solid currentColor;
-	color: #EEAB5D;
+  border-bottom: 4px solid currentColor;
+  color: #eeab5d;
 }
 </style>

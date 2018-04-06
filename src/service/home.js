@@ -1,8 +1,8 @@
-import Fetch from './fetch.js'
+import Fetch from "./fetch.js";
 
 let HomeService = {
   getTips() {
-    return Fetch('/api/v1.0/tips/')
+    return Fetch("/api/v1.0/tips/");
   }
-}
-export default HomeService
+};
+export default HomeService;

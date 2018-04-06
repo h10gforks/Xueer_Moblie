@@ -8,53 +8,52 @@
 	 </div>
 </template>
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters } from "vuex";
 export default {
-    computed: {
-        ...mapState([
-            'is_loading',
-        ])
-    }
-}
+  computed: {
+    ...mapState(["is_loading"])
+  }
+};
 </script>
 <style lang='scss' module>
 .loading {
-    width: 100%;
-    height: 100%;
-    background: #FFF;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .boxes {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .box {
-    display: inline-block;
-    height: 14px;
-    width: 14px;
-    margin-right: 28px;
-    vertical-align: top;
-    background-color: #2bbb8f;
-    -webkit-animation: loading_box_ani 1s infinite;
-    animation: loading_box_ani 1s infinite;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  margin-right: 28px;
+  vertical-align: top;
+  background-color: #2bbb8f;
+  -webkit-animation: loading_box_ani 1s infinite;
+  animation: loading_box_ani 1s infinite;
 }
 .middle {
-    animation-delay: .33s;
+  animation-delay: 0.33s;
 }
 .right {
-    animation-delay: .66s;
-    margin-right: 0;
+  animation-delay: 0.66s;
+  margin-right: 0;
 }
 @keyframes loading_box_ani {
-	0%, 100% {
-	    transform: scale(1);
-	}
-	50% {
-	    transform: scale(2);
-	}
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
 }
 </style>

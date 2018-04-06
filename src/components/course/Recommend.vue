@@ -7,54 +7,47 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 
-import Selector from './Selector.vue'
-import ReSort from './ReSort.vue'
-import CourseList from './CourseList.vue'
-import NextBatch from './NextBatch.vue'
+import Selector from "./Selector.vue";
+import ReSort from "./ReSort.vue";
+import CourseList from "./CourseList.vue";
+import NextBatch from "./NextBatch.vue";
 
 export default {
-	computed: {
-		...mapState([
-			'is_selected',
-			'is_index',
-		]),
-	},
-	mounted() {
-		var self = this
-		// self.changePageFlagY(['is_recommend'])
-		// self.changePageFlagN(['is_index'])
-		setTimeout(function(){
-			self.changePageFlagY(['is_recommend'])
-			self.changePageFlagN(['is_index'])
-		},0)
-	},
-	methods: {
-		...mapActions([
-			'getPosition',
-			'changePageFlagN',
-			'changePageFlagY',
-		]),
-	},
-	components: {
-		Selector,
-        CourseList,
-        NextBatch,
-	},
-	beforeRouteLeave(to, from, next) {
-		this.getPosition(document.body.scrollTop)
-		this.flag = false
-		if(to.name === 'course') {
-			this.changePageFlagN(['is_index','is_all'])
-			this.changePageFlagY('is_course')
-		}
-		this.changePageFlagN(['is_recommend','is_search','is_all'])
-		this.changePageFlagY('is_index')
-		next()
-	},
-	beforeDestory() {
-		this.changePageFlagN('is_recommend')
-	},
-}
+  computed: {
+    ...mapState(["is_selected", "is_index"])
+  },
+  mounted() {
+    var self = this;
+    // self.changePageFlagY(['is_recommend'])
+    // self.changePageFlagN(['is_index'])
+    setTimeout(function() {
+      self.changePageFlagY(["is_recommend"]);
+      self.changePageFlagN(["is_index"]);
+    }, 0);
+  },
+  methods: {
+    ...mapActions(["getPosition", "changePageFlagN", "changePageFlagY"])
+  },
+  components: {
+    Selector,
+    CourseList,
+    NextBatch
+  },
+  beforeRouteLeave(to, from, next) {
+    this.getPosition(document.body.scrollTop);
+    this.flag = false;
+    if (to.name === "course") {
+      this.changePageFlagN(["is_index", "is_all"]);
+      this.changePageFlagY("is_course");
+    }
+    this.changePageFlagN(["is_recommend", "is_search", "is_all"]);
+    this.changePageFlagY("is_index");
+    next();
+  },
+  beforeDestory() {
+    this.changePageFlagN("is_recommend");
+  }
+};
 </script>

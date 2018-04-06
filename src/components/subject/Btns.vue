@@ -11,53 +11,52 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-	props: ['likes'],
-	methods: {
-		...mapActions([
-			'showLogin',
-		]),
-		backIndex() {
-			history.go(-1)
-		},
-		likeThis(){
-			this.showLogin(true)
-		},
-	},
-}
+  props: ["likes"],
+  methods: {
+    ...mapActions(["showLogin"]),
+    backIndex() {
+      history.go(-1);
+    },
+    likeThis() {
+      this.showLogin(true);
+    }
+  }
+};
 </script>
 
 <style lang='scss' module>
 .btns {
-	font-size: 0;
-	text-align: center;
-	margin-bottom: 15px;
+  font-size: 0;
+  text-align: center;
+  margin-bottom: 15px;
 }
 .tip_icon {
-	width: 16px;
-	height: 15px;
-	display: inline-block;
+  width: 16px;
+  height: 15px;
+  display: inline-block;
 }
 .tip_btn {
-	border: 2px solid #eeab5d; /*px*/
-	font-size: 28px; /*px*/
-	border-radius: 4px; /*px*/
-	display: inline-block;
-	vertical-align: top;
-	width: 154px;
-	height: 40px;
-	line-height: 38px;
-	text-align: center;
-	box-sizing: border-box;
-	color: #eeab5d;
+  border: 2px solid #eeab5d; /*px*/
+  font-size: 28px; /*px*/
+  border-radius: 4px; /*px*/
+  display: inline-block;
+  vertical-align: top;
+  width: 154px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  box-sizing: border-box;
+  color: #eeab5d;
 }
 .tip_btn_like {
-	font-size: 0;
-	margin-right: 20px;
+  font-size: 0;
+  margin-right: 20px;
 }
-.tip_icon,.likes {
-	vertical-align: middle;
+.tip_icon,
+.likes {
+  vertical-align: middle;
 }
 </style>

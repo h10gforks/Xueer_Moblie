@@ -12,95 +12,93 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
-    data(){
-        return {
-            isactive: true,
-            selected: []
-        }
+  data() {
+    return {
+      isactive: true,
+      selected: []
+    };
+  },
+  methods: {
+    ...mapActions(["showSelector", "fetchSelector", "initCourse"]),
+    addTag(e) {
+      const index = this.selected.indexOf(e.target.id);
+      if (index == -1) {
+        this.selected.push(e.target.id);
+        e.target.className += " filter-active";
+      } else {
+        this.selected.splice(index, 1);
+        let arr = e.target.className.split(" ");
+        arr.pop();
+        e.target.className = arr.join(" ");
+      }
     },
-    methods: {
-        ...mapActions([
-            'showSelector',
-            'fetchSelector',
-            'initCourse'
-        ]),
-        addTag(e){
-            const index = this.selected.indexOf(e.target.id)
-            if(index == -1) {
-                this.selected.push(e.target.id)
-                e.target.className += ' filter-active'
-            } else {
-                this.selected.splice(index,1)
-                let arr = e.target.className.split(' ')
-                arr.pop()
-                e.target.className = arr.join(' ')
-            }
-        },
-        hideSelector(){
-            this.showSelector(false)
-        },
-        selector(){
-            this.hideSelector()
-            const info = this.$route.params.txt
-            if (info) {
-                const option = {
-                    info: info,
-                    search: true
-                }
-                this.initCourse(option)
-            } else {
-                this.initCourse()
-            }
-            this.fetchSelector(this.selected)
-            this.is_selected ? document.body.className = "no_scroll" : document.body.className = ''
-            this.selected = []
-        }
+    hideSelector() {
+      this.showSelector(false);
+    },
+    selector() {
+      this.hideSelector();
+      const info = this.$route.params.txt;
+      if (info) {
+        const option = {
+          info: info,
+          search: true
+        };
+        this.initCourse(option);
+      } else {
+        this.initCourse();
+      }
+      this.fetchSelector(this.selected);
+      this.is_selected
+        ? (document.body.className = "no_scroll")
+        : (document.body.className = "");
+      this.selected = [];
     }
-}
+  }
+};
 </script>
 <style lang="scss" module>
 .selector {
-    padding-top: 103px;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    text-align: center;
-    background: rgba(0,0,0, .5);
+  padding-top: 103px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
 }
 .selector_cont {
-    padding: 16px 13px 20px;
-    display: inline-block;
-    background: #fff;
+  padding: 16px 13px 20px;
+  display: inline-block;
+  background: #fff;
 }
 .items {
-    font-size: 0;
+  font-size: 0;
 }
 .item {
-    width: 156px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 2px;
-    line-height: 40px;
+  width: 156px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 2px;
+  line-height: 40px;
 }
 .tag {
-    background: #F3F3F3;
-    font-size: 28px; /*px*/
-    color: #666666;
+  background: #f3f3f3;
+  font-size: 28px; /*px*/
+  color: #666666;
 }
 .bt {
-    margin-top: 20px;
-    box-sizing: border-box;
-    font-size: 28px; /*px*/
-    color: #EEAB5D;
-    border: 1px solid currentColor;
+  margin-top: 20px;
+  box-sizing: border-box;
+  font-size: 28px; /*px*/
+  color: #eeab5d;
+  border: 1px solid currentColor;
 }
 .item:nth-child(odd) {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 .first_line {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 </style>

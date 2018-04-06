@@ -1,9 +1,9 @@
-import Fetch from './fetch.js'
+import Fetch from "./fetch.js";
 
 let TagService = {
   getTags() {
-    return Fetch('/api/v1.0/tags/')
+    return Fetch("/api/v1.0/tags/");
   }
-}
+};
 
-export default TagService
+export default TagService;

@@ -11,110 +11,108 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import Btns from './Btns.vue'
+import { mapGetters, mapActions } from "vuex";
+import Btns from "./Btns.vue";
 
 export default {
-	created() {
-		this.isLoading(true)
-		this.fetchSubject(this.$route.params.id)
-		this.changePageFlagN('is_index')
-		this.changePageFlagY('is_sub')
-	},
-	computed: {
-		...mapGetters([
-			'sub_info',
-		]),
-	},
-	watch: {
-		sub_info(){
-			this.isLoading(false)
-		}
-	},
-	methods: {
-		...mapActions([
-			'fetchSubject',
-			'changePageFlagN',
-			'changePageFlagY',
-			'isLoading',
-		]),
-	},
-	components: {
-		Btns,
-	},
-	destroyed() {
-		this.changePageFlagY('is_index')
-		this.changePageFlagN('is_sub')
-	}
-}
+  created() {
+    this.isLoading(true);
+    this.fetchSubject(this.$route.params.id);
+    this.changePageFlagN("is_index");
+    this.changePageFlagY("is_sub");
+  },
+  computed: {
+    ...mapGetters(["sub_info"])
+  },
+  watch: {
+    sub_info() {
+      this.isLoading(false);
+    }
+  },
+  methods: {
+    ...mapActions([
+      "fetchSubject",
+      "changePageFlagN",
+      "changePageFlagY",
+      "isLoading"
+    ])
+  },
+  components: {
+    Btns
+  },
+  destroyed() {
+    this.changePageFlagY("is_index");
+    this.changePageFlagN("is_sub");
+  }
+};
 </script>
 
 <style lang='scss' module>
-@import '../../assets/value.scss';
+@import "../../assets/value.scss";
 
 .object {
-	font-size: 28px; /*px*/
-	font-weight: 300;
-	padding: 0 16px; 
+  font-size: 28px; /*px*/
+  font-weight: 300;
+  padding: 0 16px;
 }
 .title {
-	font-size: 40px;/*px*/
-	line-height: 28px;
-	padding: 14px 0 16px;
-	border-bottom: 1px solid $shallow_silver;
-	color: $shallow_black;
+  font-size: 40px; /*px*/
+  line-height: 28px;
+  padding: 14px 0 16px;
+  border-bottom: 1px solid $shallow_silver;
+  color: $shallow_black;
 }
 .tip_info {
-	font-size: 0;
-	padding: 10px 0;
+  font-size: 0;
+  padding: 10px 0;
 }
 .info {
-	font-size: 28px; /*px*/
-	line-height: 14px;
-	color: $shallow_grey;
-	display: inline-block;
-	width: 50%;
+  font-size: 28px; /*px*/
+  line-height: 14px;
+  color: $shallow_grey;
+  display: inline-block;
+  width: 50%;
 }
 .info_left {
-	text-align: left;
+  text-align: left;
 }
 .info_right {
-	text-align: right;
+  text-align: right;
 }
 .cont {
-	line-height: 36px; /*px*/
+  line-height: 36px; /*px*/
 }
 .cont p {
-	margin: 15px 0;
+  margin: 15px 0;
 }
 .cont blockquote {
-	padding: 10px 0 10px 20px; /*px*/
-	margin: 30px 0 30px 30px; /*px*/
-	position: relative;
-	font-weight: 300;
-	font-style: italic;
-	color: $shallow_grey;
-	letter-spacing: .08em;
-	border-left: 6px solid #ddd;
+  padding: 10px 0 10px 20px; /*px*/
+  margin: 30px 0 30px 30px; /*px*/
+  position: relative;
+  font-weight: 300;
+  font-style: italic;
+  color: $shallow_grey;
+  letter-spacing: 0.08em;
+  border-left: 6px solid #ddd;
 }
 .cont blockquote::before {
-	position: absolute;
-	left: -1.1em;
-	content: '\201C';
+  position: absolute;
+  left: -1.1em;
+  content: "\201C";
 }
 .cont blockquote::after {
-	content: '\201D';
-	margin-left: .7em;
+  content: "\201D";
+  margin-left: 0.7em;
 }
 .cont blockquote p {
-	margin: 15px 0 15px;
+  margin: 15px 0 15px;
 }
-.object{
-	ul {
-		padding: 16px;
-	}
-	li {
-		margin: 15px 0;
-	}
+.object {
+  ul {
+    padding: 16px;
+  }
+  li {
+    margin: 15px 0;
+  }
 }
 </style>

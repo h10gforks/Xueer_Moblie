@@ -1,15 +1,29 @@
-import Fetch from './fetch.js'
+import Fetch from "./fetch.js";
 
-let CListService = {
+let CoursesListService = {
   viewCourse(page) {
-    return Fetch('api/v1.0/courses/?sort=view&page=' + page)
+    return Fetch("api/v1.0/courses/?sort=view&page=" + page);
   },
   viewSearch(page, txt) {
-    return Fetch('/api/v1.0/search/?page=' + page + '&per_page=20&keywords=' + txt + '&sort=view')
+    return Fetch(
+      "/api/v1.0/search/?page=" +
+        page +
+        "&per_page=20&keywords=" +
+        txt +
+        "&sort=view"
+    );
   },
-  getCourse(page) {
-    return Fetch('api/v1.0/courses/?sort=view&page=' + page +'&pre_page=20&null=asc')
+  getCoursesList(params) {
+    return Fetch("api/v1.0/courses", {
+      data: params,
+      responseHeaders: ["link"]
+    });
+  },
+  getNextCoursesList(params) {
+    return Fetch("api/v1.0/courses", {
+      data: params
+    });
   }
-}
+};
 
-export default CListService
+export default CoursesListService;

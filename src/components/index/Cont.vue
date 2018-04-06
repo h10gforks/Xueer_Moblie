@@ -32,99 +32,94 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-	mounted() {
-		this.fetchData()
-	},
-	computed: {
-		...mapGetters([
-			'tips',
-		]),
-	},
-	methods: {
-		...mapActions([
-			'fetchData',
-		]),
-	},
-}
+  mounted() {
+    this.fetchData();
+  },
+  computed: {
+    ...mapGetters(["tips"])
+  },
+  methods: {
+    ...mapActions(["fetchData"])
+  }
+};
 </script>
 
 <style lang='scss' module>
-@import '../../assets/value.scss';
+@import "../../assets/value.scss";
 
 .img_cont {
-	height: 140px;
+  height: 140px;
 }
 .artical_cont {
-	margin: 16px 16px 0;
-	border: 1px solid $shallow_silver;
-	border-radius: 2px;
-	overflow: hidden;
-	box-shadow: 0 0 0 0, 
-		0 0 0 0, 
-		0 2px 3px -2px currentColor,
-		0 0 0 0;
+  margin: 16px 16px 0;
+  border: 1px solid $shallow_silver;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 0 0, 0 0 0 0, 0 2px 3px -2px currentColor, 0 0 0 0;
 }
 .artical_cont:last-child {
-	margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 .overview {
-	z-index: -100;
-	position: relative;
-	padding: 18px 16px 16px;
+  z-index: -100;
+  position: relative;
+  padding: 18px 16px 16px;
 }
 .title {
-	padding: 0 16px;
-	font-size: 20px;
-	//font-size: 40px;
-	line-height: 28px;
-	margin-top: 16px;
-	color: $shallow_black;
+  padding: 0 16px;
+  font-size: 20px;
+  //font-size: 40px;
+  line-height: 28px;
+  margin-top: 16px;
+  color: $shallow_black;
 }
 .like {
-	font-size: 0;
-	color: #FFF;
+  font-size: 0;
+  color: #fff;
 }
 .view,
 .liked {
-	display: inline-block;
-	text-align: center;
-	font-size: 0;
-	width: 64px;
-	height: 20px;
-	border-radius: 2px;
-	background: $_yellow;
+  display: inline-block;
+  text-align: center;
+  font-size: 0;
+  width: 64px;
+  height: 20px;
+  border-radius: 2px;
+  background: $_yellow;
 }
 .view {
-	margin-right: 11px;
+  margin-right: 11px;
 }
 .icon_views {
-	width: 40px; /*px*/
-    height: 20px; /*px*/
+  width: 40px; /*px*/
+  height: 20px; /*px*/
 }
 .icon_likes {
-	width: 30px; /*px*/
-    height: 25px; /*px*/
+  width: 30px; /*px*/
+  height: 25px; /*px*/
 }
 .icon_likes use {
-	fill: #FFF;
+  fill: #fff;
 }
-.count,.icon_views,.icon_likes {
-	vertical-align: middle;
+.count,
+.icon_views,
+.icon_likes {
+  vertical-align: middle;
 }
 .count {
-	line-height: 20px;
-	font-size: 24px;/*px*/
-	padding-left: 7px;
+  line-height: 20px;
+  font-size: 24px; /*px*/
+  padding-left: 7px;
 }
 .time {
-	position: absolute;
-	line-height: 20px;
-	bottom: 16px;
-	right: 16px;
-	font-size: 12px;
-	color: #999999;
+  position: absolute;
+  line-height: 20px;
+  bottom: 16px;
+  right: 16px;
+  font-size: 12px;
+  color: #999999;
 }
 </style>
