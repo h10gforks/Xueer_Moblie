@@ -1,6 +1,6 @@
 import Fetch from "./fetch.js";
 
-let DetailService = {
+const DetailService = {
   like(id, body, token) {
     return Fetch("/api/v1.0/courses/", {
       method: "POST",

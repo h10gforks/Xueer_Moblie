@@ -86,7 +86,7 @@ export default {
     // }
     // this.changePageFlagN(["is_search", "is_all", "is_recommend"]);
     // this.changePageFlagY("is_index");
-    // next();
+    next();
   }
 };
 </script>

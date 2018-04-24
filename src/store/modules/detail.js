@@ -1,4 +1,4 @@
-import { DetailService } from "../../service/detail";
+import DetailService from "../../service/detail";
 const state = {
   info: {},
   hot_tags: [],
@@ -78,7 +78,7 @@ const mutations = {
 		fetch(url).then(response => {
 			response.json()
 			*/
-    DetailService.getTinfo(state.course_id).then(json => {
+    DetailService.getInfo(state.course_id).then(json => {
       state.info = json;
       state.views = json.views;
       let hot_tags;
@@ -94,7 +94,7 @@ const mutations = {
 		const url = '/api/v1.0/courses/' + state.course_id + '/comments/?page=' + state.page + '&per_page=10'
 		fetch(url).then(response => {
 			response.json().
-			*/
+      */
     DetailService.getComments(state.id, state.page).then(json => {
       preprocess(json);
       if (json.length == 0) {

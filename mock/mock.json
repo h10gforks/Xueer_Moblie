@@ -18,13 +18,14 @@
       "async": false
     },
     {
-      "name": "tips",
-      "endpoint": "/api/v1.0/tips/",
-      "async": true
+      "name": "course",
+      "endpoint": "/course/313",
+      "template": "index",
+      "async": false
     },
     {
-      "name": "313",
-      "endpoint": "/course/313",
+      "name": "tips",
+      "endpoint": "/api/v1.0/tips/",
       "async": true
     }
   ],

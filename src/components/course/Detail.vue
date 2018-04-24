@@ -2,7 +2,7 @@
 	<div :class="$style.detail">
 		<info :id='id'></info>
 		<div :class="$style.tags">
-			<span v-for="item in hot_tags" :class="$style.tags_item">{{ item }}</span>
+			<span v-for="item in hot_tags" :class="$style.tags_item" :key="item.id">{{ item }}</span>
 		</div>
 		<addition></addition>
 		<div v-if="hot_comments.length != 0" :class="$style.comments">
