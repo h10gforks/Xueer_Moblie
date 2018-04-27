@@ -26,13 +26,13 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  props: ["id"],
-  computed: {
-    ...mapGetters(["info"])
-  },
-  created() {
-    this.fetchInfo(this.id);
-  },
+  props: ["info"],
+  // computed: {
+  //   ...mapGetters(["info"])
+  // },
+  // created() {
+  //   this.fetchInfo(this.id);
+  // },
   methods: {
     ...mapActions(["fetchInfo", "showLogin", "courseLike"]),
     likeCourse() {

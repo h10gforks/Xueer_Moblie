@@ -1,6 +1,6 @@
 <template>
 	<div :class="$style.detail">
-		<info :id='id'></info>
+		<info :info='info'></info>
 		<div :class="$style.tags">
 			<span v-for="item in hot_tags" :class="$style.tags_item" :key="item.id">{{ item }}</span>
 		</div>
@@ -37,25 +37,31 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["hot_tags", "comments", "hot_comments", "more", "back"])
+    ...mapGetters([
+      "info",
+      "hot_tags",
+      "comments",
+      "hot_comments",
+      "more",
+      "back"
+    ])
   },
   created() {
     this.changePageFlagN("is_index");
-    this.fetchComments(this.$route.params.id);
-    this.fetchHotComments(this.$route.params.id);
+    this.fetchAll(this.$route.params.id);
     this.isLoading(true);
     document.body.scrollTop = 0;
   },
   methods: {
     ...mapActions([
-      "fetchComments",
-      "fetchHotComments",
+      "fetchAll",
+      "fetchMoreComments",
       "turnFlag",
       "isLoading",
       "changePageFlagN"
     ]),
     moreComments() {
-      this.fetchComments(this.$route.params.id);
+      this.fetchMoreComments();
     }
   },
   components: {
