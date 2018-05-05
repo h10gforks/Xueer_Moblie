@@ -1,10 +1,10 @@
 <template>
 	<div v-scroll="scrollHandler">
-		<selector v-if="is_selected"></selector>
+		<selector v-if="is_selected" :catgories="catgories"></selector>
 		<reSort></reSort>
     <courseList></courseList>
 		<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
-		<div v-if="loadingMore">(￣▽￣") 加载中</div>
+		<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
 	</div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
     ...mapGetters(["isend", "fetch_flag", "is_search", "is_recommend"]),
     ...mapState({
       page: state => state.courselist.page,
-      loadingMore: state => state.courselist.loadingMore
+      catgories: state => state.courselist.catgories
     }),
     ...mapState(["is_selected", "fetch_flag"])
   },
