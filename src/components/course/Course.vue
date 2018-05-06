@@ -5,6 +5,7 @@
     <courseList></courseList>
 		<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
 		<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
+    <backToTop></backToTop>
 	</div>
 </template>
 
@@ -15,6 +16,7 @@ import Selector from "./Selector.vue";
 import ReSort from "./ReSort.vue";
 import CourseList from "./CourseList.vue";
 import scroll from "../../directives/scroll.js";
+import BackToTop from "../common/BackToTop.vue";
 
 export default {
   data() {
@@ -73,7 +75,8 @@ export default {
   components: {
     Selector,
     ReSort,
-    CourseList
+    CourseList,
+    BackToTop
   },
   beforeRouteLeave(to, from, next) {
     // this.getPosition(document.body.scrollTop);
