@@ -1,4 +1,7 @@
 const actions = {
+  changeCurrentRoute({ commit }, path) {
+    commit("changeCurrentRoute", path);
+  },
   changePageFlagN({ commit }, flag) {
     commit("changePageFlagN", flag);
   },
