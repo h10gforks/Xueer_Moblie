@@ -1,5 +1,3 @@
-import { SignService } from "../service/sign";
-
 const mutations = {
   changeCurrentRoute(state, path) {
     state.currentRoute = path;
@@ -40,9 +38,10 @@ const mutations = {
     state[data] = "";
   },
   getToken(state, token) {
-    SignService.getToken().then(res => {
-      state.token = res.token;
-    });
+    state.token = token
+  },
+  isLogin(state) {
+    state.is_logined = true
   }
 };
 
