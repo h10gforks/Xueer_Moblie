@@ -69,6 +69,7 @@ export default {
 <style lang='scss' module>
 .flex {
   display: flex;
+  align-items: center;
 }
 .list {
   width: 100%;
