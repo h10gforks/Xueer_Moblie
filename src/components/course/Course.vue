@@ -38,7 +38,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["isend", "fetch_flag", "is_search", "is_recommend"]),
+    ...mapGetters([
+      "courses",
+      "isend",
+      "fetch_flag",
+      "is_search",
+      "is_recommend"
+    ]),
     ...mapState({
       courses: state => state.courselist.courses,
       loading: state => state.courselist.loading,

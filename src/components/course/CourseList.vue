@@ -39,26 +39,11 @@ export default {
       is_recommend: false
     };
   },
-  computed: {
-    ...mapGetters(["courses", "position", "back", "page", "txt", "isend"]),
-    ...mapState([
-      "is_loading",
-      "page_snaps",
-      "is_selected",
-      "fetch_flag",
-      "is_search"
-    ])
-  },
-  methods: {
-    ...mapActions([
-      "getPosition",
-      "turnFlag",
-      "changePageFlagN",
-      "changePageFlagY",
-      "initCourse",
-      "isLoading"
-    ])
-  },
+  // computed: {
+  //   ...mapGetters(["courses"])
+  // },
+  props: ["courses"],
+  methods: {},
   filters: {
     subStr
   },
@@ -79,7 +64,7 @@ export default {
   width: 333px;
   margin: 0 auto;
   padding: 20px 0 16px;
-  border-bottom: 2px solid #ececec; /*px*/
+  border-bottom: 1px solid #ececec; /*px*/
 }
 .avatar {
   font-size: 20px; /*px*/
