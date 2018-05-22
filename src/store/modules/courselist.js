@@ -27,7 +27,6 @@ const state = {
   catgories: [],
   // list params end
 
-  position: undefined,
   scrollTop: 0,
   height: 0,
   back: false,
@@ -77,9 +76,8 @@ const actions = {
   changeSortMethod({ commit }, method) {
     commit("setSort", method);
   },
-
-  getPosition({ commit }, position) {
-    commit("getPosition", position);
+  setScrollTop({ commit }, position) {
+    commit("setScrollTop", position);
   },
   turnFlag({ commit }) {
     commit("turnFlag");
@@ -129,8 +127,8 @@ const mutations = {
   setLoadingMore(state, loading) {
     state.loadingMore = loading;
   },
-  getPosition(state, position) {
-    state.position = position;
+  setScrollTop(state, position) {
+    state.scrollTop = position;
   },
   turnFlag(state) {
     state.back = !state.back;
