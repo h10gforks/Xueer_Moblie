@@ -1,8 +1,8 @@
 <template>
 	<div v-scroll="scrollHandler">
-		<selector v-if="is_selected" :catgories="catgories"/>
-		<reSort/>
-    <courseList/>
+		<selector @change="fetchCoursesList" :changeSelector="changeSelector" v-if="is_selected" :catgories="catgories"/>
+		<reSort @change="fetchCoursesList" :changeSortMethod="changeSortMethod"/>
+    <courseList :courses="courses"/>
 		<div v-if='isend' :class="$style.hint">(￣▽￣") 已经是全部的结果啦</div>
 		<div v-else :class="$style.hint">(￣▽￣") 加载中</div>
     <backToTop/>
@@ -22,15 +22,9 @@ import Loading from "../common/Loading.vue";
 
 export default {
   data() {
-    return {
-      flag: true
-    };
+    return {};
   },
   mounted() {
-    this.changePageFlagN(["is_index", "is-recommend"]);
-    this.changePageFlagY(["is_all"]);
-    this.$route.params.page == "all" ? "" : (this.flag = false);
-    let page = this.page;
     // 判断store中是否已经有课程列表了，如果有，说明不是第一次加载课程列表。为了保持用户之前列表的状态，就不重新加载了。
     if (this.courses.length > 0) {
     } else {
@@ -57,10 +51,10 @@ export default {
   methods: {
     ...mapActions([
       "getPosition",
-      "changePageFlagN",
-      "changePageFlagY",
+      "changeSelector",
       "fetchCoursesList",
-      "fetchNextCoursesList"
+      "fetchNextCoursesList",
+      "changeSortMethod"
     ]),
     scrollHandler(ev) {
       // TODO: 把scroll的位置同步到store，然后在返回列表的时候恢复滚动的位置。

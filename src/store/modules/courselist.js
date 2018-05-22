@@ -1,10 +1,4 @@
 import CourseListService from "../../service/courselist";
-// const MAIN_CAT_MAP = {
-//   0: "gg_cat",
-//   1: "ts_cat",
-//   2: "zy_cat",
-//   3: "sz_cat"
-// };
 
 // params hepler
 function getQueryParams(state) {
@@ -93,8 +87,8 @@ const actions = {
   initCourse({ commit }, option) {
     commit("initCourse", option);
   },
-  fetchSelector({ commit }, sort) {
-    commit("fetchSelector", sort);
+  changeSelector({ commit }, sort) {
+    commit("changeSelector", sort);
   }
 };
 
@@ -109,7 +103,7 @@ const mutations = {
     state.courses = [];
     state.isend = false;
   },
-  fetchSelector(state, sort) {
+  changeSelector(state, sort) {
     state.catgories = sort;
   },
   reset(state) {
