@@ -5,7 +5,7 @@
       <div :class="$style.teacher">{{ info.teacher }}</div>
       <div :class="$style.btns">
         <div @click="likeCourse" :class="$style.btn" :id="info.id">
-          <svg viewBox="0 0 17 15"  v-bind:css="false" :class="[$style.icon, 
+          <svg viewBox="0 0 17 15"  v-bind:css="false" :class="[$style.icon,
           clickLike ? $style.heart_icon_filled : '',
           clickDisLike ? $style.heart_icon_out : '',
           notClick && liked ? $style.heart_icon_filled_end : '',
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     ...mapGetters(["is_logined", "course_id"]),
-    notClick: function() {
+    notClick() {
       if (!this.clickLike && !this.clickDisLike) {
         return true;
       }

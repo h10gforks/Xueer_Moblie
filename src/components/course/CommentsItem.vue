@@ -63,7 +63,9 @@ export default {
         return;
       }
       this.body = item.body;
+      /* eslint-disable */
       item.body = item._body;
+      /* eslint-enable */
     },
     likeComments(item, index) {
       if (this.is_logined) {

@@ -7,7 +7,7 @@
     "build": "rm -rf ./dist/* && node ./build/build.js",
     "dev": "ninja start",
     "lint": "eslint --ext .js,.vue src",
-    "precommit": "pretty-quick --staged"
+    "precommit": "npm run lint && pretty-quick --staged"
   },
   "repository": {
     "type": "git",
