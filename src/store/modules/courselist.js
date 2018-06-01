@@ -5,7 +5,8 @@ function getQueryParams(state) {
   const obj = {
     page: state.page,
     sort: state.sort,
-    pre_page: state.pre_page
+    pre_page: state.pre_page,
+    sub_cat: state.subCatgories
   };
   if (state.catgories.length >= 0) {
     state.catgories.forEach(item => {
@@ -24,6 +25,7 @@ const state = {
   sort: "view",
   pre_page: 20,
   catgories: [],
+  subCatgories: 0,
   // list params end
 
   scrollTop: 0,
@@ -86,6 +88,9 @@ const actions = {
   },
   changeSelector({ commit }, sort) {
     commit("changeSelector", sort);
+  },
+  changeSubSelector({ commit }, sort) {
+    commit("changeSubSelector", sort);
   }
 };
 
@@ -102,6 +107,9 @@ const mutations = {
   },
   changeSelector(state, sort) {
     state.catgories = sort;
+  },
+  changeSubSelector(state, sub) {
+    state.subCatgories = sub;
   },
   reset(state) {
     state.page = 1;

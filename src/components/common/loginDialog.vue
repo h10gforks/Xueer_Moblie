@@ -32,10 +32,10 @@ export default {
       Cookie.setCookie("url", window.location.href);
       // for development
       window.location =
-        "https://user.muxixyz.com/?landing=http://192.168.43.46/landing";
+        "https://user.muxixyz.com/?landing=192.168.43.46:3000/landing";
       // for production
       // window.location =
-      //   "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing";
+      //   "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing";
     }
   }
 };
@@ -78,7 +78,7 @@ export default {
   background-color: #2bbb8f;
 }
 .dialog_btn {
-  font-size: 14px; /*px*/
+  font-size: 14px;
   margin: 3px 0;
   line-height: 36px;
   display: inline-block;
