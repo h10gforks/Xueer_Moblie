@@ -2,7 +2,8 @@
 	<div :class="$style.detail">
 		<info :info='info'/>
 		<div :class="$style.tags">
-			<span v-for="item in tags" :class="$style.tags_item" :key="item.id">{{ item }}</span>
+      <span :class="$style.tags_item">{{info.main_category}}</span>
+			<span v-for="item in hot_tags" :class="$style.tags_item" :key="item.id">{{ item }}</span>
 		</div>
 		<addition/>
 		<div v-if="hot_comments.length != 0" :class="$style.comments">
@@ -35,8 +36,7 @@ import Loading from "../common/Loading.vue";
 export default {
   data() {
     return {
-      id: this.$route.params.id,
-      tags: []
+      id: this.$route.params.id
     };
   },
   computed: {
@@ -52,13 +52,9 @@ export default {
       "back"
     ])
   },
-  created() {
-    this.fetchAll(this.$route.params.id);
-  },
   mounted() {
+    this.fetchAll(this.id);
     window.scroll(0, 0);
-    this.tags = this.hot_tags;
-    this.tags.unshift(this.info.main_category);
   },
   methods: {
     ...mapActions(["fetchAll", "fetchMoreComments", "turnFlag"]),
