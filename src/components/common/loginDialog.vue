@@ -3,11 +3,11 @@
 	    <div :class="$style.dialog_top">
 	        <div :class="$style.dialog_img"></div>
 	        <div :class="$style.dialog_text">请登录后操作</div>
-	    </div> 
+	    </div>
 	    <div :class="$style.dialog_btns">
 	        <div @click="cancel" :class="[$style.dialog_btn, $style.dialog_btn_cancel]">等会再说</div>
             <div @click="toLogin" :class="[$style.dialog_btn, $style.dialog_btn_login]">去登录</div>
-	    </div> 
+	    </div>
 	 </div>
 </template>
 <script>
@@ -30,8 +30,12 @@ export default {
     },
     toLogin() {
       Cookie.setCookie("url", window.location.href);
+      // for development
       window.location =
-        "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing";
+        "https://user.muxixyz.com/?landing=http://192.168.43.46/landing";
+      // for production
+      // window.location =
+      //   "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing";
     }
   }
 };
