@@ -1,4 +1,6 @@
 node_modules
-*.log.*
-public/*.js
-static/x_m
+*.log
+.DS_Store
+static/
+dist
+package-lock.json

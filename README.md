@@ -1,14 +1,32 @@
-# Xueer_Moblie
-the Web App of Xueer
+## Xueer FE Serivce 2.0
 
-###install 
+Proudly prowered by Vuejs, Vuex and Vue-router.
 
-`npm install`
+### Develop
 
-###bulid
+```
+npm install
+ninja start
+```
 
-`npm run build`
+### Deployment
 
-###run
+```
 
-`npm run watch`
+```
+
+### RoadMap
+
+#### Now
+
+- [x] Add HTML compliation
+- [ ] Recycle View for list
+- [x] Add server side code
+- [x] Muxi auth integration
+- [ ] Full Code Review
+- [ ] Refactor Mangament Service
+
+#### Long-term
+
+- [ ] PWA support
+- [ ] UX enchancement
