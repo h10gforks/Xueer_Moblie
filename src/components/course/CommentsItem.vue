@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.space">
 	  <div :class="$style.avatar">
-			<img src="http://xueer.muxixyz.com/static/x_m/avatar.png">
+			<img src="https://occc3ev3l.qnssl.com/xueer/m/avatar.png">
 	  </div>
 	  <div :class="$style.content">
 	      <div :class="$style.name">{{ item.user_name }}</div>

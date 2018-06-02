@@ -66,7 +66,7 @@ export default {
       //   "https://user.muxixyz.com/?landing=http://192.168.43.46:3000/landing";
       // for production
       window.location =
-        "https://user.muxixyz.com/?landing=https://xueer.muxixyz.com/landing";
+        "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing";
     }
   },
   mounted() {
