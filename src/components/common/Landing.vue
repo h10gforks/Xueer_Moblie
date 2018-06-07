@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <Loading></Loading> -->
+       登录中...
     </div>
 </template>
 <script>

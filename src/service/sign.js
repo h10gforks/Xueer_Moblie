@@ -31,9 +31,7 @@ const SignService = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization:
-          "Basic ZXlKcFpDSTZNVEY5LlljM0pTbElmRktPd0tKY3g0QXZwX2Y0bEZvUTo=" // btoa(管理员token)
+        "Content-Type": "application/json"
       },
       data: {
         username: decodeURIComponent(username),

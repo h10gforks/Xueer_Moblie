@@ -18,8 +18,6 @@ export default {
   created() {
     this.isLoading(true);
     this.fetchSubject(this.$route.params.id);
-    this.changePageFlagN("is_index");
-    this.changePageFlagY("is_sub");
   },
   computed: {
     ...mapGetters(["sub_info"])
@@ -30,19 +28,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      "fetchSubject",
-      "changePageFlagN",
-      "changePageFlagY",
-      "isLoading"
-    ])
+    ...mapActions(["fetchSubject", "isLoading"])
   },
   components: {
     Btns
-  },
-  destroyed() {
-    this.changePageFlagY("is_index");
-    this.changePageFlagN("is_sub");
   }
 };
 </script>

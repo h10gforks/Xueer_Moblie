@@ -8,6 +8,7 @@ import NewComment from "../components/course/NewComment";
 import Detail from "../components/course/Detail";
 import Subject from "../components/subject/Subject";
 import Landing from "../components/common/Landing";
+import User from "../components/user";
 
 Vue.use(VueRouter);
 module.exports = new VueRouter({
@@ -43,6 +44,11 @@ module.exports = new VueRouter({
       name: "course",
       path: "/course/:id",
       component: Detail
+    },
+    {
+      name: "user",
+      path: "/user",
+      component: User
     },
     {
       name: "newComment",
