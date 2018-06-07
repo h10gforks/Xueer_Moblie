@@ -37,10 +37,10 @@ export default {
     this.fetchUserData(this.token);
   },
   mounted() {
-    Vue.nextTick(function() {
+    Vue.nextTick(() => {
       const clipboard = new ClipboardJS("#clip");
 
-      clipboard.on("success", function(e) {
+      clipboard.on("success", e => {
         console.info("Action:", e.action);
         console.info("Text:", e.text);
         console.info("Trigger:", e.trigger);
@@ -48,7 +48,7 @@ export default {
         e.clearSelection();
       });
 
-      clipboard.on("error", function(e) {
+      clipboard.on("error", e => {
         console.error("Action:", e.action);
         console.error("Trigger:", e.trigger);
       });
