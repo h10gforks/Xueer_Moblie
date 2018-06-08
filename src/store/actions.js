@@ -21,25 +21,35 @@ const actions = {
     Cookie.clearCookie("token");
     commit("clearUserData");
   },
+  setRecommender({ commit }, id) {
+    Cookie.setCookie("recommender_id", id);
+    commit("setRecommender", id);
+  },
   getToken({ commit }) {
     const email = SignService.getEmail();
-    SignService.getToken(email).then(res => {
-      if (res !== null && res !== undefined) {
+    SignService.getToken(email)
+      .then(res => {
         Cookie.setCookie("token", res.token);
         commit("isLoading", false);
         window.location.href = Cookie.getCookie("url");
-      } else {
+      })
+      .catch(() => {
         SignService.getUsername(email).then(info => {
-          SignService.register(info.username, email).then(() => {
+          const recommender_id = Cookie.getCookie("recommender_id");
+          SignService.register(
+            info.username,
+            email,
+            Number(recommender_id)
+          ).then(() => {
             SignService.getToken(email).then(res => {
               Cookie.setCookie("token", res.token);
+              Cookie.clearCookie("recommender_id");
               commit("isLoading", false);
               window.location.href = Cookie.getCookie("url");
             });
           });
         });
-      }
-    });
+      });
   },
   setToken({ commit }, token) {
     commit("setToken", token);

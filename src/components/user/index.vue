@@ -18,6 +18,7 @@
       <button :class="$style.clipBtn" id="clip" data-clipboard-target="#link">复制</button>
      <textarea id="link" readonly v-model="link" :class="$style.link"/>
     </div>
+    <Dialog :show="showDialog" @ok="onOK"></Dialog>
   </div>
 </template>
 
@@ -25,10 +26,12 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import ClipboardJS from "clipboard";
 import Vue from "vue";
+import Dialog from "../common/commonDialog.vue";
 
 export default {
   data() {
     return {
+      showDialog: false,
       showLink: false,
       promotionLink: ""
     };
@@ -41,11 +44,11 @@ export default {
       const clipboard = new ClipboardJS("#clip");
 
       clipboard.on("success", e => {
-        console.info("Action:", e.action);
-        console.info("Text:", e.text);
-        console.info("Trigger:", e.trigger);
-
         e.clearSelection();
+        this.showDialog = true;
+        setTimeout(() => {
+          this.showDialog = false;
+        }, 1000);
       });
 
       clipboard.on("error", e => {
@@ -73,7 +76,13 @@ export default {
     getPromotionLink() {
       this.showLink = true;
       this.fetchLink(this.token);
+    },
+    onOK() {
+      this.showDialog = false;
     }
+  },
+  components: {
+    Dialog
   }
 };
 </script>

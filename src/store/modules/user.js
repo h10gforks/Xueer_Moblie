@@ -18,6 +18,7 @@ const actions = {
   },
   fetchLink({ commit }, token) {
     commit("setLoadingLink", true);
+    commit("setLink", "加载中");
     UserService.getPromotionLink({ token }).then(res => {
       commit("setLink", res.private_promotion_link);
       commit("setLoadingLink", false);

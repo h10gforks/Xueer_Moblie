@@ -23,6 +23,9 @@ const mutations = {
   clearUserData(state) {
     state.token = "";
     state.is_logined = false;
+  },
+  setRecommender(state, id) {
+    state.recommender = id;
   }
 };
 

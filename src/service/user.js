@@ -2,14 +2,11 @@ import Fetch from "./fetch.js";
 
 const UserService = {
   getCurrentUserInfo({ token }) {
-    return Fetch("/api/v1.0/user/mime/", {
-      method: "POST",
+    return Fetch("/api/v1.0/user/mine/", {
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      data: {
-        token
+        "Content-Type": "application/json",
+        Authorization: "Basic " + window.btoa(token + ":")
       }
     });
   },

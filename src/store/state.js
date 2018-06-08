@@ -5,7 +5,8 @@ const state = {
   is_logined: false,
   fetch_flag: true,
   token: "",
-  currentRoute: ""
+  currentRoute: "",
+  recommender: null
 };
 
 export default state;

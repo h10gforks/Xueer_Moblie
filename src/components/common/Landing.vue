@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="$style.container">
        登录中...
     </div>
 </template>
@@ -14,9 +14,6 @@ export default {
   computed: {
     ...mapState(["is_loading"])
   },
-  // components: {
-  //   Loading: Loading
-  // },
   methods: {
     ...mapActions(["isLoading", "getToken"])
   },
@@ -26,3 +23,10 @@ export default {
   }
 };
 </script>
+
+<style lang='scss' module>
+.container {
+  padding: 40px;
+  text-align: center;
+}
+</style>
