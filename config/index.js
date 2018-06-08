@@ -7,7 +7,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, "../dist"),
     assetsSubDirectory: "/static/",
     // assetsPublicPath: 'http://cdn.com/dist/',
-    assetsPublicPath: "/static/",
+    assetsPublicPath: "https://occc3ev3l.qnssl.com/xueer/",
     productionSourceMap: false,
     bundleAnalyzerReport: false
   },

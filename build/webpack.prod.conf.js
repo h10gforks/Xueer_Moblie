@@ -7,6 +7,7 @@ var baseWebpackConfig = require("./webpack.base.conf");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
 var env = config.build.env;
+var pjson = require("../package.json");
 // var faviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 var webpackConfig = merge(baseWebpackConfig, {
@@ -21,8 +22,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: "js/[name].[chunkhash].js",
-    chunkFilename: "js/[id].[chunkhash].js"
+    filename: "js/[name]." + pjson.version + ".js",
+    chunkFilename: "js/[id]." + pjson.version + ".js"
   },
   devtool: config.build.productionSourceMap ? "#source-map" : false,
   plugins: [
