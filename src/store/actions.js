@@ -27,11 +27,13 @@ const actions = {
   },
   getToken({ commit }) {
     const email = SignService.getEmail();
+    let redirectURL = Cookie.getCookie("url");
+    if (!redirectURL) redirectURL = "/";
     SignService.getToken(email)
       .then(res => {
         Cookie.setCookie("token", res.token);
         commit("isLoading", false);
-        window.location.href = Cookie.getCookie("url");
+        window.location.href = redirectURL;
       })
       .catch(() => {
         SignService.getUsername(email).then(info => {
@@ -45,7 +47,7 @@ const actions = {
               Cookie.setCookie("token", res.token);
               Cookie.clearCookie("recommender_id");
               commit("isLoading", false);
-              window.location.href = Cookie.getCookie("url");
+              window.location.href = redirectURL;
             });
           });
         });

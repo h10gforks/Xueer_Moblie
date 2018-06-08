@@ -13,15 +13,15 @@ const actions = {
       commit("fetchSubject", json);
     });
   },
-  likeTip({ state, commit }, id) {
-   SubjectService.likeTip(state.sub_info.id, State.token).then(res => {
-     commit("setLike", true)
-   })
+  likeTip({ state, commit }) {
+    SubjectService.likeTip(state.sub_info.id, State.token).then(() => {
+      commit("setLike", true);
+    });
   },
-  cancelLike({ state, commit }, id) {
-    SubjectService.cancelLike(state.sub_info.id, State.token).then(res => {
-      commit("setLike", false)
-    })
+  cancelLike({ state, commit }) {
+    SubjectService.cancelLike(state.sub_info.id, State.token).then(() => {
+      commit("setLike", false);
+    });
   }
 };
 const mutations = {

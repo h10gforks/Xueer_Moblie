@@ -6,7 +6,6 @@
 <script>
 import { mapActions } from "vuex";
 import { getParameterByName } from "../../util";
-import Cookie from "../../service/cookie.js";
 
 export default {
   data() {
@@ -21,7 +20,6 @@ export default {
     if (id) {
       this.setRecommender(id);
     }
-    Cookie.setCookie("url", window.location.href);
     // 确保 recommender id 在 cookie 中设置完成
     setTimeout(() => {
       window.location =
