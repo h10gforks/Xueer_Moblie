@@ -1,3 +1,6 @@
+import Vue from "vue";
+import Dialog from "../components/common/commonDialog";
+
 export function encodeUrlParams(data) {
   return Object.keys(data)
     .map(key => {
@@ -14,4 +17,25 @@ export function getParameterByName(name, url) {
   if (!results) return null;
   if (!results[2]) return "";
   return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+export function showDialog(text) {
+  /* eslint-disable no-new */
+  new Vue({
+    el: "#dialog",
+    data() {
+      return {
+        show: true
+      };
+    },
+    render: h => {
+      return h(Dialog, {
+        props: {
+          show: true,
+          durition: 1500,
+          text
+        }
+      });
+    }
+  });
 }

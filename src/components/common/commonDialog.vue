@@ -1,17 +1,27 @@
 <template>
-	<div v-if="show" :class="$style.dialog">
+	<div id="dialog" v-if="show" :class="[$style.dialog, hidden ? $style.hidden: '']">
 	    <div :class="$style.dialog_top">
-	        <div :class="$style.dialog_text">复制成功</div>
+	        <div :class="$style.dialog_text">{{text}}</div>
 	    </div>
 	 </div>
 </template>
 <script>
 export default {
-  props: ["show"],
+  props: ["show", "text", "durition"],
   data() {
-    return {};
+    return {
+      hidden: false
+    };
   },
   computed: {},
+  mounted() {
+    if (this.durition) {
+      const self = this;
+      setTimeout(() => {
+        self.hidden = true;
+      }, self.durition);
+    }
+  },
   methods: {
     onCancel() {
       this.$emit("cancel");
@@ -24,6 +34,9 @@ export default {
 </script>
 
 <style lang='scss' module>
+.hidden {
+  display: none;
+}
 .dialog {
   z-index: 5;
   background-color: #fff;

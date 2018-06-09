@@ -61,11 +61,11 @@ export default {
       } else {
         Cookie.setCookie("url", window.location.href);
         // for development
-        window.location =
-          "https://user.muxixyz.com/?landing=192.168.1.13:3000/landing";
-        // for production
         // window.location =
-        //   "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing";
+        //   "https://user.muxixyz.com/?landing=192.168.1.13:3000/landing";
+        // for production
+        window.location =
+          "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing";
       }
     }
   },

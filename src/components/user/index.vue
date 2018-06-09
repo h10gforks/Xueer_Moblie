@@ -21,7 +21,7 @@
       <button :class="$style.clipBtn" id="clip" data-clipboard-target="#link">复制</button>
      <textarea id="link" readonly v-model="link" :class="$style.link"/>
     </div>
-    <Dialog :show="showDialog" @ok="onOK"></Dialog>
+    <Dialog :show="showDialog" :text="复制成功"></Dialog>
   </div>
 </template>
 
