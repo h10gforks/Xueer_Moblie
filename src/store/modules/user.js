@@ -4,6 +4,7 @@ const state = {
   email: "",
   username: "",
   link: "",
+  recommendCount: 0,
   loadingLink: false
 };
 const getters = {};
@@ -33,6 +34,7 @@ const mutations = {
   setUserInfo(state, info) {
     state.email = info.email;
     state.username = info.username;
+    state.recommendCount = info.valid_recommend_count;
   },
   setLink(state, link) {
     state.link = link;

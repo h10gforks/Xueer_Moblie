@@ -9,6 +9,9 @@
         <div :class="$style.email">{{email}}</div>
       </div>
     </div>
+    <div v-if="recommendCount > 0" :class="$style.promotionTip">
+      {{ recommendCount >= 3 ? `您已成功推荐${recommendCount}人注册学而并发表评论，感谢您对学而的支持！活动期间评论5条以上也有获奖机会哦！`: `您已成功推荐${recommendCount}人注册学而并发表评论，继续加油！` }}
+    </div>
     <div :class="$style.btns" ref="foo">
       <div :class="[$style.btn, $style.logout]" @click="onLogout">注销</div>
       <div :class="$style.btn" @click="getPromotionLink">{{
@@ -62,7 +65,8 @@ export default {
       username: state => state.user.username,
       email: state => state.user.email,
       link: state => state.user.link,
-      loadingLink: state => state.user.loadingLink
+      loadingLink: state => state.user.loadingLink,
+      recommendCount: state => state.user.recommendCount
     }),
     ...mapGetters(["token"])
   },
@@ -121,12 +125,13 @@ export default {
 .btns {
   margin-top: 20px;
   display: flex;
+  justify-content: center;
   .logout {
     margin-right: 20px;
   }
 }
 .btn {
-  padding: 0 36px;
+  width: 150px;
   height: 36px;
   text-align: center;
   line-height: 36px;
@@ -158,5 +163,11 @@ export default {
   border-bottom: 1px solid #eee;
   border-radius: 2px;
   padding: 5px;
+}
+.promotionTip {
+  line-height: 15px; /*px*/
+  font-size: 12px; /*px*/
+  color: #666;
+  margin-top: 10px;
 }
 </style>

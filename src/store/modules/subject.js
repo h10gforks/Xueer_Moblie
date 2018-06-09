@@ -2,7 +2,9 @@ import SubjectService from "../../service/subject";
 import State from "../state";
 
 const state = {
-  sub_info: {}
+  sub_info: {
+    author: ""
+  }
 };
 const getters = {
   sub_info: () => state.sub_info

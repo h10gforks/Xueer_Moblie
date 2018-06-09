@@ -19,7 +19,7 @@
           <span v-if="currentRoute === 'search'" :class="[$style.title_l, $style.title]">搜索结果</span>
           <span v-if="currentRoute === 'newComment'" :class="[$style.title_l, $style.title]">写评价</span>
           <span v-if="currentRoute === 'user'" :class="[$style.title_l, $style.title]">我的学而</span>
-					<!-- <span v-if="is_sub" :class="[$style.title_l, $style.title]">专题</span> -->
+					<span v-if="currentRoute === 'tip'" :class="[$style.title_l, $style.title]">专题</span>
 				</div>
 			</div>
 			<div :class="$style.icon_set">
@@ -61,11 +61,11 @@ export default {
       } else {
         Cookie.setCookie("url", window.location.href);
         // for development
-        // window.location =
-        //   "https://user.muxixyz.com/?landing=192.168.43.58:3000/landing";
-        // for production
         window.location =
-          "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing";
+          "https://user.muxixyz.com/?landing=192.168.1.13:3000/landing";
+        // for production
+        // window.location =
+        //   "https://user.muxixyz.com/?landing=xueer.muxixyz.com/landing";
       }
     }
   },
