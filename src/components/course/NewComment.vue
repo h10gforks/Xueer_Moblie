@@ -29,6 +29,7 @@ import Tag from "../common/Tag.vue";
 export default {
   data() {
     return {
+      submitting: false,
       showDialog: false,
       tip: "",
       tags: "",
@@ -53,6 +54,9 @@ export default {
   methods: {
     ...mapActions(["preTags", "deleteTag", "submitComment"]),
     setComment() {
+      if (this.submitting) {
+        return;
+      }
       if (this.comment_text.length === 0) {
         this.showDialog = true;
         this.tip = "请输入评论内容！";
@@ -61,6 +65,7 @@ export default {
         }, 1500);
         return;
       }
+      this.submitting = true;
       // 发送评论请求的 data
       this.submit_body.course_id = this.info.id;
       this.submit_body.comment_text = this.comment_text;

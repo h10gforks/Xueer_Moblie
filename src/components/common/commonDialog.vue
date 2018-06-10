@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  props: ["show", "text", "durition"],
+  props: ["show", "text", "durition", "onHide"],
   data() {
     return {
       hidden: false
@@ -19,6 +19,7 @@ export default {
       const self = this;
       setTimeout(() => {
         self.hidden = true;
+        self.onHide();
       }, self.durition);
     }
   },
@@ -38,7 +39,7 @@ export default {
   display: none;
 }
 .dialog {
-  z-index: 5;
+  z-index: 1000;
   background-color: #fff;
   position: fixed;
   top: 50%;

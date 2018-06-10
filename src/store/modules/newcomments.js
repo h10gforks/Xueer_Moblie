@@ -1,4 +1,5 @@
 import DetailService from "../../service/detail";
+import { showDialog } from "../../util";
 
 const state = {
   tag: "",
@@ -30,8 +31,28 @@ const actions = {
       body.course_id,
       body.token,
       body.comment_text
-    ).then(() => {
-      window.location.href = "/course/" + body.course_id;
+    ).then(res => {
+      if (res.current_user_comment_count > 5) {
+        showDialog(
+          `您已累计评论${
+            res.current_user_comment_count
+          }条，感谢您提供的高质量评论！`,
+          2000,
+          () => {
+            window.location.href = "/course/" + body.course_id;
+          }
+        );
+      } else {
+        showDialog(
+          `您已累计评论${
+            res.current_user_comment_count
+          }条，评论5条及以上就有机会获得奶茶和零食奖励，请继续编写高质量的评论！`,
+          25000,
+          () => {
+            window.location.href = "/course/" + body.course_id;
+          }
+        );
+      }
     });
   }
 };

@@ -19,7 +19,7 @@ export function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export function showDialog(text) {
+export function showDialog(text, durition, callback) {
   /* eslint-disable no-new */
   new Vue({
     el: "#dialog",
@@ -32,8 +32,9 @@ export function showDialog(text) {
       return h(Dialog, {
         props: {
           show: true,
-          durition: 1500,
-          text
+          durition: durition || 1500,
+          text,
+          onHide: callback
         }
       });
     }
