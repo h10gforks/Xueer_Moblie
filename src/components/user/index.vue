@@ -146,9 +146,15 @@ export default {
   padding: 3px;
   margin-top: 20px;
   position: relative;
-  height: 50px;
+  height: 132px;
   border: 1px solid #eee;
   border-radius: 2px;
+}
+.linkBox {
+  textarea {
+    height: 120px;
+    width: 80%;
+  }
 }
 .showLink {
   visibility: visible;

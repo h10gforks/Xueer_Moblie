@@ -21,7 +21,13 @@ const actions = {
     commit("setLoadingLink", true);
     commit("setLink", "加载中");
     UserService.getPromotionLink({ token }).then(res => {
-      commit("setLink", res.private_promotion_link);
+      commit(
+        "setLink",
+        `【我分享了一条评课链接，快来看看吧】---点击 ${
+          res.private_promotion_link
+        } 进入👉学而👈评课；或复制链接，推荐给你的qq或微信好友完成此次邀请，一起来赢奶盖和零食套餐吧！
+      `
+      );
       commit("setLoadingLink", false);
     });
   }

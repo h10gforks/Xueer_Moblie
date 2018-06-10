@@ -59,6 +59,7 @@ export default {
         setTimeout(() => {
           this.showDialog = false;
         }, 1500);
+        return;
       }
       // 发送评论请求的 data
       this.submit_body.course_id = this.info.id;
