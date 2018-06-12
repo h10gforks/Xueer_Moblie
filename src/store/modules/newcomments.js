@@ -34,9 +34,9 @@ const actions = {
     ).then(res => {
       if (res.current_user_comment_count > 5) {
         showDialog(
-          `您已累计评论${
+          `您累计评论${
             res.current_user_comment_count
-          }条，感谢您提供的高质量评论！`,
+          }条，已有机会获得奶茶和零食奖励，请继续编写高质量的评论！`,
           2000,
           () => {
             window.location.href = "/course/" + body.course_id;
@@ -47,7 +47,7 @@ const actions = {
           `您已累计评论${
             res.current_user_comment_count
           }条，评论5条及以上就有机会获得奶茶和零食奖励，请继续编写高质量的评论！`,
-          25000,
+          2500,
           () => {
             window.location.href = "/course/" + body.course_id;
           }
