@@ -9,19 +9,21 @@
         <div :class="$style.email">{{email}}</div>
       </div>
     </div>
-    <div v-if="recommendCount > 0" :class="$style.promotionTip">
+    <!-- 学而推广代码 -->
+    <!-- TODO: 搞一个代码里的开关来驱动是不是显示推广信息 -->
+    <!-- <div v-if="recommendCount > 0" :class="$style.promotionTip">
       {{ recommendCount >= 3 ? `您已成功推荐${recommendCount}人注册学而并发表评论，感谢您对学而的支持！活动期间评论5条以上也有获奖机会哦！`: `您已成功推荐${recommendCount}人注册学而并发表评论，继续加油！` }}
-    </div>
+    </div> -->
     <div :class="$style.btns" ref="foo">
       <div :class="[$style.btn, $style.logout]" @click="onLogout">注销</div>
-      <div :class="$style.btn" @click="getPromotionLink">{{
-        loadingLink ? "加载中":"获取专属推广链接"}}</div>
+      <!-- <div :class="$style.btn" @click="getPromotionLink">{{
+        loadingLink ? "加载中":"获取专属推广链接"}}</div> -->
 	  </div>
-    <div :class="[$style.linkBox, showLink ? $style.showLink:'']">
+    <!-- <div :class="[$style.linkBox, showLink ? $style.showLink:'']">
       <button :class="$style.clipBtn" id="clip" data-clipboard-target="#link">复制</button>
      <textarea id="link" readonly v-model="link" :class="$style.link"/>
     </div>
-    <Dialog :show="showDialog" text="复制成功"></Dialog>
+    <Dialog :show="showDialog" text="复制成功"></Dialog> -->
   </div>
 </template>
 
