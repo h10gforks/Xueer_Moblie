@@ -2,7 +2,7 @@
 	<div :class="$style.container">
     <div :class="$style.info">
       <div :class="$style.avatar">
-        <img src="https://occc3ev3l.qnssl.com/xueer/m/avatar.png">
+        <img src="http://static.muxixyz.com/xueer/m/avatar.png">
       </div>
       <div :class="$style.ids">
         <div :class="$style.username">{{username}}</div>
