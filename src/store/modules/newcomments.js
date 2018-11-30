@@ -1,5 +1,5 @@
 import DetailService from "../../service/detail";
-import { showDialog } from "../../util";
+// import { showDialog } from "../../util";
 
 const state = {
   tag: "",
@@ -31,16 +31,20 @@ const actions = {
       body.course_id,
       body.token,
       body.comment_text
-    ).then(res => {
-      showDialog(
-        `您累计评论${
-          res.current_user_comment_count
-        }条，请继续编写高质量的评论！`,
-        2000,
-        () => {
-          window.location.href = "/course/" + body.course_id;
-        }
-      );
+    ).then(() => {
+      setTimeout(() => {
+        window.location.href = "/course/" + body.course_id;
+      }, 1500);
+
+      // showDialog(
+      //   `您累计评论${
+      //     res.current_user_comment_count
+      //   }条，请继续编写高质量的评论！`,
+      //   2000,
+      //   () => {
+      //     window.location.href = "/course/" + body.course_id;
+      //   }
+      // );
     });
   }
 };

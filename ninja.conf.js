@@ -7,7 +7,7 @@ module.exports = {
   webpackConfigPath: path.join(__dirname, "./build/webpack.dev.conf.js"),
   proxy: {
     route: "/api",
-    origin: "https://xueer.muxixyz.com"
+    origin: "http://xueer.muxixyz.com"
   },
   staticDir: "/static",
   templateDir: "/template"
