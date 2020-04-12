@@ -144,21 +144,7 @@
                     </g>
                 </g>
             </symbol>
-            <symbol id="user">
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g id="课程详情" transform="translate(-311.000000, -35.000000)">
-                        <g id="app-bar-bg-copy" transform="translate(0.000000, 24.000000)">
-                            <g id="Oval-16-+-Oval-13-Copy-+-Oval-15" transform="translate(312.000000, 12.000000)">
-                                <path d="M25.6880254,28.5167372 C24.5820819,22.4699513 20.6639027,18 16,18 C11.304048,18 7.36410369,22.5315953 6.2895743,28.641616" id="Oval-16" stroke="#666666"></path>
-                                <g id="Oval-13-Copy-+-Oval-15">
-                                    <circle id="Oval-13-Copy" stroke="#CDCDCD" cx="16" cy="16" r="16"></circle>
-                                    <circle id="Oval-15" stroke="#666666" cx="16" cy="13" r="5"></circle>
-                                </g>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-            </symbol>
+            
             <symbol id="back">
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g id="搜索结果" transform="translate(-18.000000, -35.000000)">

@@ -12,7 +12,7 @@ import CommentsItem from "./CommentsItem.vue";
 export default {
   props: ["comments"],
   components: {
-    CommentsItem
+    //CommentsItem
   }
 };
 </script>
