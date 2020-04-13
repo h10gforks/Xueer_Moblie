@@ -9,7 +9,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, "../dist"),
     assetsSubDirectory: "/static/",
     // assetsPublicPath: 'http://cdn.com/dist/',
-    assetsPublicPath: "http://static.muxixyz.com/xueer/",
+    assetsPublicPath: "http://picturesbed.oss-cn-hangzhou.aliyuncs.com/xueer/",
     productionSourceMap: false,
     bundleAnalyzerReport: false
   },

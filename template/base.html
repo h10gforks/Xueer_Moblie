@@ -13,6 +13,16 @@
   </script>
   <title>{% block title %}{% endblock %}</title>
   {% block css %}{% endblock %}
+  <script>
+    // 百度统计
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?48c34e69d0550c8ab1154db481526bbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 </head>
 
@@ -25,9 +35,9 @@
     })(window, document, "https://retcode.alicdn.com/retcode/bl.js", "__bl");
   </script> {% block body %}{% endblock %}
   
-    <script src="/dist/manifest.js"></script>
+    <script src="http://picturesbed.oss-cn-hangzhou.aliyuncs.com/xueer/js/manifest.2.0.12.js"></script>
     
-    <script src="/dist/vendor.js"></script>
+    <script src="http://picturesbed.oss-cn-hangzhou.aliyuncs.com/xueer/js/vendor.2.0.12.js"></script>
     
       {% block script %}{% endblock %}
 </body>
